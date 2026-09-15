@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valide</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      main {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Regras</h1>
+      <h2>
+        Confira essa pagina com f12(inspecionar) na aba console do DevTools
+      </h2>
+      <h4>
+        <pre>
+    
+  Valide:  (Material 3-42)
+
+  1- Nome: mínimo 3 caracteres
+
+  2- Email: precisa ter .com
+
+  3- Idade: maior que 0
+            </pre
+        >
+      </h4>
+
+      <pre>  
+            
+            <a href="./atividade4.html">clique aqui para voltar atividade</a>
+        </pre>
+    </main>
+
+    <script>
+        let nome = prompt("Digite seu nome:");
+        let email = prompt("Digite seu e-mail:");
+        let idade = Number(prompt("Digite sua idade:"));
+  
+        if (nome.length >= 3) {
+          console.log("Nome válido:", nome);
+        } else {
+          console.log("Nome inválido: deve ter pelo menos 3 caracteres.");
+        }
+  
+        if (email.includes(".com")) {
+          console.log("E-mail válido:", email);
+        } else {
+          console.log("E-mail inválido: precisa conter '.com'.");
+        }
+  
+        if (idade > 0) {
+          console.log("Idade válida:", idade);
+        } else {
+          console.log("Idade inválida: deve ser maior que 0.");
+        }
+      </script>
+  </body>
+</html>

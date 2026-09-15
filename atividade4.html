@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Idade para votar</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
+
+      main {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>qual sua nota?</h1>
+      <h2>
+        Confira essa pagina com f12(inspecionar) na aba console do DevTools
+      </h2>
+      <h4>
+        <pre>
+    Calcule o desconto para: (Material 3-37)
+    Valor da compra = 30
+    Valor da compra = 75
+    Valor da compra = 120
+    Valor da compra= 450
+            </pre
+        >
+      </h4>
+
+      <pre>
+            <a href="./atividade5.html">clique aqui para ir a próxima atividade</a>
+  
+            
+            <a href="./atividade3.html">clique aqui para voltar atividade</a>
+        </pre>
+    </main>
+
+    <script>
+        let nota = Number(prompt("Qual sua nota? de 1 a 10"));
+  
+        if (nota >= 9) {
+          console.log("copiando da IA é fácil");
+          alert("copiando da IA é fácil");
+  
+        } else if (nota >= 7) {
+          console.log("não fez mais que a obrigação");
+          alert("não fez mais que a obrigação");
+  
+        } else if (nota >= 5) {
+          console.log(" o professor teve pena de você");
+          alert(" o professor teve pena de você");
+  
+        } else if (nota >= 3) {
+          console.log("esta do jeitinho que os politico gosta!");
+          alert("esta do jeitinho que os politico gosta!");
+  
+        } else {
+          console.log("reprovadasso");
+          alert("reprovadasso");
+        }
+      </script>
+  </body>
+</html>
