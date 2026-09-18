@@ -1,52 +1,561 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Idade para Dirigir</title>
+    <title>Game Boy - Materiais</title>
+
     <style>
-      body {
-        margin: 0;
-        padding: 20px;
+      /* =========================================================
+           ESTILO GERAL
+           ========================================================= */
+
+      * {
         box-sizing: border-box;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
       }
 
-      main {
-        text-align: left;
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle, #3b3b3b 0 2px, transparent 2px),
+          #181818;
+        background-size: 8px 8px;
+        font-family: Arial, sans-serif;
+      }
+
+      /* =========================================================
+           O GAME BOY = MOLDURA DO SITE
+           ========================================================= */
+
+      .gameboy {
+        width: 430px;
+        min-height: 650px;
+        padding: 35px 35px 30px;
+        border-radius: 25px 25px 45px 25px;
+
+        background: linear-gradient(135deg, #d9d5c7, #aaa69a);
+
+        box-shadow: inset -8px -8px 0 #77746c, inset 8px 8px 0 #eeeade,
+          15px 20px 0 #080808, 0 25px 50px rgba(0, 0, 0, 0.6);
+
+        color: #30302d;
+      }
+
+      /* Logo */
+      .logo {
+        margin-bottom: 18px;
+        font-size: 25px;
+        font-weight: bold;
+        font-style: italic;
+        letter-spacing: 2px;
+        color: #30302d;
+      }
+
+      .logo span {
+        font-size: 12px;
+        letter-spacing: 1px;
+      }
+
+      /* =========================================================
+           TELA DO GAME BOY
+           ========================================================= */
+
+      .screen-frame {
+        padding: 20px;
+        border-radius: 12px 12px 35px 12px;
+        background: #46443e;
+
+        box-shadow: inset 4px 4px 0 #22221f, inset -4px -4px 0 #68655d;
+      }
+
+      .screen {
+        height: 330px;
+        overflow: hidden;
+        position: relative;
+
+        border: 8px solid #151515;
+
+        background: linear-gradient(
+          rgba(70, 90, 45, 0.12) 50%,
+          transparent 50%
+        );
+        background-color: #9bbc65;
+        background-size: 100% 4px;
+
+        color: #17220e;
+        font-family: "Courier New", monospace;
+
+        box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.35);
+      }
+
+      /* =========================================================
+           TELAS INTERNAS
+           ========================================================= */
+
+      .page {
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        text-align: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: 25px;
+        text-transform: uppercase;
+        text-shadow: 2px 2px #769b45;
+      }
+
+      p {
+        margin: 5px 0 20px;
+        font-size: 12px;
+      }
+
+      /* =========================================================
+           BOTÕES DA TELA
+           ========================================================= */
+
+      .screen-button {
+        border: 3px solid #17220e;
+        padding: 8px 18px;
+        margin: 5px;
+
+        background: #769b45;
+        color: #17220e;
+
+        font-family: "Courier New", monospace;
+        font-weight: bold;
+        font-size: 14px;
+
+        cursor: pointer;
+
+        box-shadow: 3px 3px 0 #17220e;
+
+        transition: 0.1s;
+      }
+
+      .screen-button:hover {
+        background: #a8c878;
+      }
+
+      .screen-button:active {
+        transform: translate(3px, 3px);
+        box-shadow: none;
+      }
+
+      /* =========================================================
+           SELEÇÃO DE MATERIAIS
+           ========================================================= */
+
+      .folders {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 10px 0 15px;
+      }
+
+      .folder {
+        width: 115px;
+        min-height: 105px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        border: 3px solid #17220e;
+        background: #8aaa58;
+
+        cursor: pointer;
+
+        box-shadow: 4px 4px 0 #17220e;
+      }
+
+      .folder:hover {
+        background: #abc978;
+        transform: translateY(-2px);
+      }
+
+      .folder-icon {
+        font-size: 42px;
+        filter: grayscale(100%) contrast(1.3);
+      }
+
+      .folder-name {
+        margin-top: 5px;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
+      /* =========================================================
+           LISTA DE LINKS
+           ========================================================= */
+
+      .links {
+        width: 100%;
+        margin: 5px 0 10px;
+      }
+
+      .link {
+        display: block;
+
+        margin: 6px 0;
+        padding: 7px;
+
+        border: 2px solid #17220e;
+        background: #769b45;
+
+        color: #17220e;
+        text-decoration: none;
+
+        font-size: 12px;
+        font-weight: bold;
+
+        box-shadow: 2px 2px 0 #17220e;
+      }
+
+      .link:hover {
+        background: #abc978;
+      }
+
+      /* =========================================================
+           PARTE INFERIOR DO GAME BOY
+           ========================================================= */
+
+      .controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 25px;
+      }
+
+      .dpad {
+        width: 90px;
+        height: 90px;
+        position: relative;
+      }
+
+      .dpad div {
+        position: absolute;
+        background: #292929;
+        border-radius: 4px;
+        box-shadow: inset 2px 2px 0 #111;
+      }
+
+      .dpad-center {
+        width: 30px;
+        height: 90px;
+        left: 30px;
+        top: 0;
+      }
+
+      .dpad-horizontal {
+        width: 90px;
+        height: 30px;
+        left: 0;
+        top: 30px;
+      }
+
+      .ab-buttons {
+        display: flex;
+        gap: 15px;
+        transform: rotate(-25deg);
+      }
+
+      .ab {
+        width: 48px;
+        height: 48px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        border-radius: 50%;
+        background: #8d244c;
+        color: #eee;
+
+        font-weight: bold;
+        box-shadow: 3px 4px 0 #4b1028;
+      }
+
+      .select-start {
+        display: flex;
+        gap: 12px;
+        margin-top: 20px;
+        justify-content: center;
+      }
+
+      .small-button {
+        width: 70px;
+        height: 14px;
+
+        border-radius: 10px;
+        border: 0;
+
+        background: #5d5b56;
+        box-shadow: 2px 2px 0 #373633;
+
+        font-size: 8px;
+        color: #292929;
+      }
+
+      /* =========================================================
+           ESTILO RETRÔ EXTRA
+           ========================================================= */
+
+      .status {
+        margin-top: 8px;
+        font-size: 9px;
+        opacity: 0.75;
+      }
+
+      .blink {
+        animation: blink 1s steps(2, start) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* =========================================================
+           CELULAR
+           ========================================================= */
+
+      @media (max-width: 500px) {
+        .gameboy {
+          width: 94vw;
+          min-height: 620px;
+          padding: 25px 20px;
+        }
+
+        .screen {
+          height: 320px;
+        }
+
+        .folder {
+          width: 105px;
+        }
       }
     </style>
   </head>
+
   <body>
-    <main>
-        <h1>Idade para dirigir</h1>
-        <h2>Confira essa pagina com f12(inspecionar) na aba console do DevTools</h2>
-        <h4>
-          <pre>
-        Crie variáveis e faça uma condição:
+    <!-- =========================================================
+         GAME BOY
+         Tudo que estiver aqui representa a "moldura" física.
+         ========================================================= -->
 
-        idade = 18
+    <main class="gameboy">
+      <div class="logo">GAME BOY <span>COLOR</span></div>
 
-        SE idade >=  18 → "pode dirigir"
+      <!-- Moldura da tela -->
+      <div class="screen-frame">
+        <!-- =================================================
+                 TELA INICIAL
+                 ================================================= -->
 
-        SENÃO → "não pode dirigir"
-          </pre>
-        </h4>
-        
-        <a href="./atividade2.html">clique aqui para ir a próxima atividade</a>
+        <section id="startScreen" class="screen">
+          <div class="page">
+            <h1>Simulador de Blog</h1>
+
+            <p>
+              <span class="blink">▶</span>
+              pressione START
+            </p>
+
+            <button class="screen-button" onclick="mostrarSelecao()">
+              START
+            </button>
+
+            <div class="status">© 2000 — SYSTEM READY</div>
+          </div>
+        </section>
+
+        <!-- =================================================
+                 TELA DE SELEÇÃO
+                 ================================================= -->
+
+        <section id="selectionScreen" class="screen hidden">
+          <div class="page">
+            <h1>Selecione</h1>
+
+            <p>Escolha um material:</p>
+
+            <div class="folders">
+              <!-- MATERIAL 4 -->
+              <button class="folder" onclick="mostrarMaterial(4)">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">MATERIAL 4</span>
+              </button>
+
+              <!-- MATERIAL 5 -->
+              <button class="folder" onclick="mostrarMaterial(5)">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">MATERIAL 5</span>
+              </button>
+            </div>
+
+            <button class="screen-button" onclick="voltarInicio()">
+              ← VOLTAR
+            </button>
+          </div>
+        </section>
+
+        <!-- =================================================
+                 MATERIAL 4
+                 ================================================= -->
+
+        <section id="material4" class="screen hidden">
+          <div class="page">
+            <h1>Material 4</h1>
+
+            <div class="links">
+              <!-- COLOQUE SEUS LINKS REAIS AQUI -->
+
+              <a class="link" href="atividade1.html">
+                ▸ Exercício A
+              </a>
+
+              <a class="link" href="atividade2.html">
+                ▸ Exercício B
+              </a>
+
+              <a class="link" href="atividade3.html">
+                ▸ Exercício C
+              </a>
+
+              <a class="link" href="atividade4.html">
+                ▸ Exercício D
+              </a>
+
+              <a class="link" href="atividade5.html">
+                ▸ Exercício E
+              </a>
+            </div>
+
+            <button class="screen-button" onclick="voltarSelecao()">
+              ← VOLTAR
+            </button>
+          </div>
+        </section>
+
+        <!-- =================================================
+                 MATERIAL 5
+                 ================================================= -->
+
+        <section id="material5" class="screen hidden">
+          <div class="page">
+            <h1>Material 5</h1>
+
+            <div class="links">
+              <!-- COLOQUE SEUS LINKS REAIS AQUI -->
+
+              <a class="link" href="loop.html">
+                ▸ Exercício A
+              </a>
+
+              <a class="link" href="loop2.html">
+                ▸ Exercício B
+              </a>
+
+              <a class="link" href="switch.html">
+                ▸ Exercício C
+              </a>
+
+              <a class="link" href="switch2.html">
+                ▸ Exercício D
+              </a>
+
+              <a class="link" href="while.html">
+                ▸ Exercício E
+              </a>
+            </div>
+
+            <button class="screen-button" onclick="voltarSelecao()">
+              ← VOLTAR
+            </button>
+          </div>
+        </section>
+      </div>
+
+      <!-- =====================================================
+             CONTROLES FÍSICOS DO GAME BOY
+             ===================================================== -->
+
+      <div class="controls">
+        <!-- Cruzeta -->
+        <div class="dpad">
+          <div class="dpad-center"></div>
+          <div class="dpad-horizontal"></div>
+        </div>
+
+        <!-- Botões A e B -->
+        <div class="ab-buttons">
+          <div class="ab">B</div>
+          <div class="ab">A</div>
+        </div>
+      </div>
+
+      <!-- Select / Start decorativos -->
+      <div class="select-start">
+        <div class="small-button">SELECT</div>
+        <div class="small-button">START</div>
+      </div>
     </main>
 
-    <script>
-      let idade = 18;
+    <!-- =========================================================
+         JAVASCRIPT
+         Controla qual "tela" aparece.
+         ========================================================= -->
 
-      if (idade >= 18) {
-        console.log("pode dirigir");
-      } else {
-        console.log("não pode dirigir");
+    <script>
+      function esconderTodas() {
+        document.getElementById("startScreen").classList.add("hidden");
+        document.getElementById("selectionScreen").classList.add("hidden");
+        document.getElementById("material4").classList.add("hidden");
+        document.getElementById("material5").classList.add("hidden");
+      }
+
+      function mostrarSelecao() {
+        esconderTodas();
+        document.getElementById("selectionScreen").classList.remove("hidden");
+      }
+
+      function mostrarMaterial(numero) {
+        esconderTodas();
+
+        if (numero === 4) {
+          document.getElementById("material4").classList.remove("hidden");
+        }
+
+        if (numero === 5) {
+          document.getElementById("material5").classList.remove("hidden");
+        }
+      }
+
+      function voltarInicio() {
+        esconderTodas();
+        document.getElementById("startScreen").classList.remove("hidden");
+      }
+
+      function voltarSelecao() {
+        esconderTodas();
+        document.getElementById("selectionScreen").classList.remove("hidden");
       }
     </script>
   </body>

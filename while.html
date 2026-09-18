@@ -541,85 +541,129 @@
 
             <!-- O CONTEÚDO REAL COMEÇA AQUI -->
 
-            
-    
-      <h2>Regras</h2>
-     
-      <h4>
-        <pre>
-    
-  Faça um programa que obrigue:
+            <h2>While</h2>
+            <h2>Use While para:</h2>
+            <ul>
+              <li>A - Contar de 1 a 10</li>
+              <li>B - Somar de 1 a 10</li>
+              <li>C - Contagem regressiva de 10 a 1</li>
+            </ul>
+            <h5>
+              Confira essa página com f12(inspecionar) na aba console do
+              DevTools para ver as respostas!
+            </h5>
 
-  1- Nome: mínimo 3 caracteres
-
-  2- Email: precisa ter .com
-
-  3- Idade: maior que 0
-            </pre
-        >
-      </h4>
-
-      <h5>*Confira essa página com f12(inspecionar) na aba console do
-        DevTools para ver as respostas</h5>
-
- 
-    <script>
-        let nome = prompt("Digite seu nome:");
-        let email = prompt("Digite seu e-mail:");
-        let idade = Number(prompt("Digite sua idade:"));
-  
-        if (nome.length >= 3) {
-          console.log("Nome válido:", nome);
-        } else {
-          console.log("Nome inválido: deve ter pelo menos 3 caracteres.");
-        }
-  
-        if (email.includes(".com")) {
-          console.log("E-mail válido:", email);
-        } else {
-          console.log("E-mail inválido: precisa conter '.com'.");
-        }
-  
-        if (idade > 0) {
-          console.log("Idade válida:", idade);
-        } else {
-          console.log("Idade inválida: deve ser maior que 0.");
-        }
-      </script>
- 
+            <script>
+                // ==========================================
+                // Exercício A: Contar de 1 a 10
+                // ==========================================
+                // Define o limite desejado para a contagem
+                const limite = 10;
+                let X = 1;
+          
+                while (X <= limite) {
+                  console.log(X);
+                  X++;
+                }
+          
+                // ==========================================
+                // Exercício B: Soma de 1 a 10
+                // ==========================================
+                let i = 1;
+                let soma = 0;
+          
+                while (i <= 10) {
+                  soma += i;
+                  i++;
+                }
+          
+                console.log("Soma total de 1 a 10:", soma); // Exibe 55
+          
+                // ==========================================
+                // Exercício C: Contagem regressiva de 10 a 1
+                // ==========================================
+                let regressivo = 10;
+          
+                while (regressivo >= 1) {
+                  console.log(regressivo);
+                  regressivo--;
+                }
+              </script>
 
             <!-- O CONTEÚDO REAL ACABA AQUI -->
 
             <hr class="linha" />
 
-            <h2>E foi isso que eu encontrei nos meus arquivos! 😊</h2>
+            <h2>Mas afinal, o que é While?</h2>
 
-            <p>
-              O que acharam, galera? Espero que tenham gostado de dar uma
-              olhadinha nesse pequeno registro. Eu adoro encontrar essas coisas
-              antigas e compartilhar por aqui.
-            </p>
+<p>Ótima pergunta pequeno gafanhoto! e a resposta é simples... é a mesma coisa que o loop, porém se usa de um jeito diferente. </p>
 
-            <p>
-              Se vocês quiserem ver mais curiosidades, arquivos e outras coisas
-              que eu encontrar por aí, continuem acompanhando o blog para não
-              perder os próximos posts!
-            </p>
+<hr>
 
-            <p>Até a próxima! 💾✨</p>
+<p>
+  <strong>Exemplo</strong>: no loop tradicional, para você fazer uma contagem de 1 a 10 precisa escrever: 
+  <pre>
+  <code>
+    for (let x = 1; x <= 10; x=x+1) {
+      console.log("Número: " + x);
+    }
+  </code>
+</pre>
+</p>
+
+<p><strong>Com While</strong> você escreve:
+  <code>
+    <pre>
+      const limite = 10;
+      let X = 1;
+
+      while (X <= limite) {
+        console.log(X);
+        X++;
+      }
+    </pre>
+  </code>
+
+</p>
+<hr>
+<h2>E o que isso quer dizer?</h2>
+
+<h3>Vamos por partes</h3>
+<ul>
+  <li>const <strong> significa</strong> constante, um valor imutável</li>
+  <li>let <strong> significa</strong> um valor que muda</li>
+  <li>While <strong> significa</strong> Enquanto</li>
+  <li>X++ <strong> significa</strong> X + X = X</li>
+</ul>
+<hr>
+<h3>Em outras palavras, o código pode ser lido como:</h3>
+<p>O limite é 10, X começa valendo 1, e Enquanto X não for maior que 10, fique contando X + X = X</p>
+<h3>Ou seja:</h3>
+<p>
+  <pre>
+    O programa vai fazer 1 + X = 1 (agora ele sabe que X vale 1)
+    Depois vai fazer 1 + 1 = 2 (agora ele sabe que X vale 2)
+    Depois vai fazer 1 + 2 = 3 (agora ele sabe que X vale 3)
+    E enquanto X não tiver valendo 10 ele vai continuar nisso
+  </pre>
+   
+</p>
+<hr>
+<h3>E porque existe duas formas de fazer exatamente a mesma coisa?</h3>
+<p>Também não sei, frescura pura.</p>
 
             <hr class="linha" />
 
             <h2>Música enquanto você lê</h2>
 
             <p>
-              Este é um texto de enrolação apenas para dar uma estética legal
-              a essa imagem do lado.
+              Este é um texto de enrolação apenas para dar uma estética legal a
+              essa imagem do lado.
               <strong>LEIA O SEGUNDO PARÁGRAFO ELE É IMPORTANTE</strong>.
               Antigamente, páginas da internet não precisavam necessariamente
-              ter uma aparência extremamente elaborada. Muitas vezes bastava
-              uma pequena imagem posicionada ao lado de alguns parágrafos para
-              que a página parecesse completamente diferente.
+              ter uma aparência extremamente elaborada. Muitas vezes bastava uma
+              pequena imagem posicionada ao lado de alguns parágrafos para que a
+              página parecesse completamente diferente.
             </p>
 
             <div class="player">
@@ -627,7 +671,7 @@
 
               <div class="visor">
                 NOW PLAYING:<br />
-                Material 3-E.mp3
+                Material 4-E.mp3
               </div>
 
               <div class="botoes-player">
@@ -660,76 +704,74 @@
                 </a>
               </div>
 
-              
+               <!-- PLAYLIST -->
 
-                           <!-- PLAYLIST -->
-
-                           <div class="playlist">
-                            <div class="musica">
-                              <a href="atividade1.html">material 3-A (Dirigir)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade2.html">material 3-B (Votar)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade3.html">material 3-C (Desconto)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade4.html">material 3-D (Nota)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade5.html">material 3-E (validação)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="switch.html">material 4-A (switch)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="switch2.html">material 4-B (switch 2)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="loop.html">material 4-C (loop)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="loop2.html">material 4-D (Soma+loop)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="while.html">material 4-E (While)</a>
-                            </div>
-            
-                          </div>
-                        </div>
-            
-                        <!-- TEXTO AO REDOR DO PLAYER -->
-            
-                        <p>
-                          Gente, preste muita atenção: o player de música ali do lado não é
-                          apenas um item de decoração visual para deixar o layout com cara
-                          de anos 2000! Ele é totalmente funcional. Você pode navegar diretamente
-                          para as outras atividades dos materiais 4 e 5 do conteúdo de
-                          aprendizagem de JavaScript da professora Tamara Fumeiro. Use o
-                          visor para se guiar e trocar de exercício sempre que quiser
-                          continuar explorando! 
-                        </p>
-            
-                        <p>
-                          Este é outro enorme texto de enrolação feito exclusivamente para
-                          preencher o espaço ao redor do pequeno aparelho de música. Imagine
-                          que este texto está contando uma história muito importante sobre
-                          como as pessoas costumavam ouvir música enquanto navegavam pela
-                          internet em seus computadores.
-                        </p>
-                      </main>
-                    </div>
-                  </div>
+               <div class="playlist">
+                <div class="musica">
+                  <a href="atividade1.html">material 3-A (Dirigir)</a>
                 </div>
-              </body>
-            </html>
+
+                <div class="musica">
+                  <a href="atividade2.html">material 3-B (Votar)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade3.html">material 3-C (Desconto)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade4.html">material 3-D (Nota)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade5.html">material 3-E (validação)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="switch.html">material 4-A (switch)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="switch2.html">material 4-B (switch 2)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="loop.html">material 4-C (loop)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="loop2.html">material 4-D (Soma+loop)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="while.html">material 4-E (While)</a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TEXTO AO REDOR DO PLAYER -->
+
+            <p>
+              Gente, preste muita atenção: o player de música ali do lado não é
+              apenas um item de decoração visual para deixar o layout com cara
+              de anos 2000! Ele é totalmente funcional. Você pode navegar diretamente
+              para as outras atividades dos materiais 4 e 5 do conteúdo de
+              aprendizagem de JavaScript da professora Tamara Fumeiro. Use o
+              visor para se guiar e trocar de exercício sempre que quiser
+              continuar explorando! 
+            </p>
+
+            <p>
+              Este é outro enorme texto de enrolação feito exclusivamente para
+              preencher o espaço ao redor do pequeno aparelho de música. Imagine
+              que este texto está contando uma história muito importante sobre
+              como as pessoas costumavam ouvir música enquanto navegavam pela
+              internet em seus computadores.
+            </p>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

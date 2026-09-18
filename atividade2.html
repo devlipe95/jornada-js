@@ -1,32 +1,551 @@
+
+
+
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Idade para votar</title>
+    <title>Blog Retrô</title>
+
     <style>
-      body {
-        margin: 0;
-        padding: 20px;
+      * {
         box-sizing: border-box;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
       }
 
-      main {
-        text-align: left;
+      body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #202020;
+        font-family: "Courier New", monospace;
+      }
+
+      /* =========================
+           COMPUTADOR
+        ========================= */
+
+      .computador {
+        width: 90%;
+        max-width: 1000px;
+        height: 700px;
+
+        background: #c0c0c0;
+
+        border-top: 5px solid #ffffff;
+        border-left: 5px solid #ffffff;
+        border-right: 5px solid #404040;
+        border-bottom: 5px solid #404040;
+
+        padding: 8px;
+      }
+
+      .barra-superior {
+        height: 35px;
+
+        background: #000080;
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 6px 0 8px;
+
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .controles {
+        display: flex;
+        gap: 3px;
+      }
+
+      .controle {
+        width: 22px;
+        height: 22px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #c0c0c0;
+        color: #000000;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      /* =========================
+           TELA
+        ========================= */
+
+      .tela {
+        height: calc(100% - 43px);
+
+        margin-top: 8px;
+
+        background: #ffffff;
+
+        border-top: 3px solid #404040;
+        border-left: 3px solid #404040;
+        border-right: 3px solid #ffffff;
+        border-bottom: 3px solid #ffffff;
+
+        display: flex;
+        flex-direction: column;
+
+        overflow: hidden;
+      }
+
+      /* =========================
+           BARRA DO NAVEGADOR
+        ========================= */
+
+      .navegador {
+        height: 42px;
+
+        background: #c0c0c0;
+
+        border-bottom: 3px solid #808080;
+
+        display: flex;
+        align-items: center;
+
+        padding: 5px;
+        gap: 6px;
+      }
+
+      .endereco {
+        height: 27px;
+        flex: 1;
+
+        background: #ffffff;
+
+        border-top: 2px solid #404040;
+        border-left: 2px solid #404040;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+
+        padding: 3px 7px;
+
+        color: #222222;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+      }
+
+      .botao-navegador {
+        height: 27px;
+        width: 30px;
+
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+
+        font-weight: bold;
+      }
+
+      /* =========================
+           ÁREA PRINCIPAL
+        ========================= */
+
+      .area-principal {
+        flex: 1;
+
+        display: flex;
+
+        min-height: 0;
+      }
+
+      /* =========================
+           EXPLORADOR
+        ========================= */
+
+      .explorador {
+        width: 180px;
+
+        flex-shrink: 0;
+
+        background: #c0c0c0;
+
+        border-right: 3px solid #808080;
+
+        padding: 7px;
+      }
+
+      .explorador-titulo {
+        background: #000080;
+        color: white;
+
+        padding: 4px 5px;
+
+        font-size: 13px;
+        font-weight: bold;
+
+        margin-bottom: 8px;
+      }
+
+      .pasta {
+        padding: 6px 4px;
+
+        font-size: 13px;
+
+        border-bottom: 1px solid #a0a0a0;
+      }
+
+      .pasta::before {
+        content: "📁 ";
+      }
+
+      .arquivo {
+        padding: 6px 4px 6px 18px;
+
+        font-size: 12px;
+      }
+
+      .arquivo::before {
+        content: "▣ ";
+      }
+
+      /* =========================
+           BLOG
+        ========================= */
+
+      .blog {
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 25px 35px;
+
+        overflow-y: scroll;
+
+        background: #ffffff;
+
+        color: #111111;
+      }
+
+      /* Barra de rolagem */
+
+      .blog::-webkit-scrollbar {
+        width: 22px;
+      }
+
+      .blog::-webkit-scrollbar-track {
+        background: #c0c0c0;
+
+        border-left: 2px solid #ffffff;
+      }
+
+      .blog::-webkit-scrollbar-thumb {
+        background: #c0c0c0;
+
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #404040;
+        border-bottom: 3px solid #404040;
+      }
+
+      .blog::-webkit-scrollbar-button {
+        height: 22px;
+
+        background: #c0c0c0;
+
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #404040;
+        border-bottom: 3px solid #404040;
+      }
+
+      /* =========================
+           TEXTO
+        ========================= */
+
+      h1 {
+        font-size: 30px;
+
+        margin-top: 0;
+        margin-bottom: 10px;
+
+        color: #000080;
+      }
+
+      h2 {
+        font-size: 21px;
+
+        margin-top: 30px;
+        margin-bottom: 8px;
+
+        color: #222222;
+      }
+
+      h3 {
+        font-size: 17px;
+
+        margin-top: 22px;
+        margin-bottom: 5px;
+
+        color: #333333;
+      }
+
+      p {
+        font-family: Georgia, "Times New Roman", serif;
+
+        font-size: 16px;
+        line-height: 1.6;
+
+        max-width: 700px;
+      }
+
+      ul,
+      ol {
+        font-family: Georgia, "Times New Roman", serif;
+
+        line-height: 1.8;
+      }
+
+      .linha {
+        border: 0;
+        border-top: 2px solid #000080;
+
+        margin: 20px 0;
+      }
+
+      /* =========================
+           PLAYER DE MÚSICA
+        ========================= */
+
+      .player {
+        float: right;
+
+        width: 270px;
+
+        margin: 5px 0 15px 25px;
+
+        background: #c0c0c0;
+
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #404040;
+        border-bottom: 3px solid #404040;
+
+        padding: 8px;
+      }
+
+      .player-titulo {
+        background: #000080;
+        color: white;
+
+        padding: 4px;
+
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        font-weight: bold;
+
+        margin-bottom: 8px;
+      }
+
+      .visor {
+        background: #000000;
+        color: #00ff00;
+
+        border: 2px inset #808080;
+
+        padding: 7px;
+
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+
+        margin-bottom: 8px;
+      }
+
+      .botoes-player {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+
+        margin-bottom: 10px;
+      }
+
+      .botao-player {
+        width: 42px;
+        height: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+
+        text-decoration: none;
+
+        color: #000000;
+
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .botao-player:active {
+        border-top: 2px solid #404040;
+        border-left: 2px solid #404040;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+
+      /* Playlist */
+
+      .playlist {
+        height: 90px;
+
+        overflow-y: scroll;
+
+        background: white;
+
+        border-top: 2px solid #404040;
+        border-left: 2px solid #404040;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+
+        padding: 4px;
+
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+      }
+
+      .musica {
+        padding: 4px;
+
+        border-bottom: 1px dotted #999999;
+      }
+
+      .musica:hover {
+        background: #000080;
+        color: white;
+      }
+
+      /* Scroll da playlist */
+
+      .playlist::-webkit-scrollbar {
+        width: 15px;
+      }
+
+      .playlist::-webkit-scrollbar-track {
+        background: #c0c0c0;
+      }
+
+      .playlist::-webkit-scrollbar-thumb {
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+      }
+
+      /* =========================
+           RODAPÉ
+        ========================= */
+
+      .status {
+        height: 25px;
+
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+
+        padding: 3px 7px;
+
+        font-size: 11px;
       }
     </style>
   </head>
+
   <body>
-    <main>
-      <h1>Idade para votar</h1>
-      <h2>
-        Confira essa pagina com f12(inspecionar) na aba console do DevTools
-      </h2>
+    <div class="computador">
+      <!-- BARRA DA JANELA -->
+
+      <div class="barra-superior">
+        <span>🌐 Internet Explorer — Blog Antigo</span>
+
+        <div class="controles">
+          <div class="controle">−</div>
+          <div class="controle">□</div>
+          <div class="controle">×</div>
+        </div>
+      </div>
+
+      <div class="tela">
+        <!-- BARRA DE ENDEREÇO -->
+
+        <div class="navegador">
+          <button class="botao-navegador">←</button>
+          <button class="botao-navegador">→</button>
+
+          <div class="endereco">https://fantasia.blog/curiosidades</div>
+
+          <button class="botao-navegador">↻</button>
+        </div>
+
+        <div class="area-principal">
+          <!-- EXPLORADOR -->
+
+          <aside class="explorador">
+            <div class="explorador-titulo">EXPLORADOR</div>
+
+            <div class="pasta">My Computer</div>
+
+            <div class="pasta">Files</div>
+
+            <div class="pasta">Downloads</div>
+
+            <div class="arquivo">artigo.txt</div>
+
+            <div class="arquivo">favoritos.htm</div>
+
+            <div class="pasta">Images</div>
+
+            <div class="arquivo">foto_01.bmp</div>
+
+            <div class="pasta">Recentes</div>
+          </aside>
+
+          <!-- BLOG -->
+
+          <main class="blog">
+            <h1>Diário de um webmaster</h1>
+
+            <p>
+              Hoje eu estava mexendo nos meus arquivos antigos e acabei
+              encontrando uma coisinha que achei que seria legal mostrar aqui no
+              blog. É um pequeno arquivo de estudos que estava guardado por aqui
+              há algum tempo.
+            </p>
+
+            <hr class="linha" />
+
+            <!-- O CONTEÚDO REAL COMEÇA AQUI -->
+
+            <h2>Idade para votar</h2>
       <h4>
         <pre>
     Crie um programa que: (Material 3-25)
@@ -36,21 +555,14 @@
     b- SE idade >= 16 → "Pode votar"
                 
     c- SENÃO → "Não pode votar"
-                
-    if/else COM DUAS OPÇÕES!
-                
-    CADA BLOCO PODE TER VÁRIAS LINHAS
+                                
                 </pre>
       </h4>
 
-      <pre>
-          <a href="./atividade3.html">clique aqui para ir a próxima atividade</a>
-
-          
-          <a href="./atividade.html">clique aqui para voltar atividade</a>
-      </pre>
-
-    </main>
+      <h5>
+        *Confira essa página com f12(inspecionar) na aba console do
+            DevTools para ver as respostas. Eu escrevi [let idade = prompt("Qual é a sua idade?")"] então na teoria se você escreveu um numero maior de 16 no alert deve aparecer "Pode votar"
+      <h5>
 
     <script>
       let idade = prompt("Qual é a sua idade?");
@@ -61,5 +573,149 @@
         console.log("Não pode votar");
       }
     </script>
-  </body>
-</html>
+
+            <!-- O CONTEÚDO REAL ACABA AQUI -->
+
+            <hr class="linha" />
+
+            <h2>E foi isso que eu encontrei nos meus arquivos! 😊</h2>
+
+            <p>
+              O que acharam, galera? Espero que tenham gostado de dar uma
+              olhadinha nesse pequeno registro. Eu adoro encontrar essas coisas
+              antigas e compartilhar por aqui.
+            </p>
+
+            <p>
+              Se vocês quiserem ver mais curiosidades, arquivos e outras coisas
+              que eu encontrar por aí, continuem acompanhando o blog para não
+              perder os próximos posts!
+            </p>
+
+            <p>Até a próxima! 💾✨</p>
+
+            <hr class="linha" />
+
+            <h2>Música enquanto você lê</h2>
+
+            <p>
+              Este é um texto de enrolação apenas para dar uma estética legal
+              a essa imagem do lado.
+              <strong>LEIA O SEGUNDO PARÁGRAFO ELE É IMPORTANTE</strong>.
+              Antigamente, páginas da internet não precisavam necessariamente
+              ter uma aparência extremamente elaborada. Muitas vezes bastava
+              uma pequena imagem posicionada ao lado de alguns parágrafos para
+              que a página parecesse completamente diferente.
+            </p>
+
+            <div class="player">
+              <div class="player-titulo">♫ MUSIC PLAYER</div>
+
+              <div class="visor">
+                NOW PLAYING:<br />
+                Material 3-B.mp3
+              </div>
+
+              <div class="botoes-player">
+                <!-- BOTÃO VOLTAR -->
+
+                <a
+                  href="SEU LINK AQUI"
+                  class="botao-player"
+                  title="Voltar música"
+                >
+                  ◀◀
+                </a>
+
+                <!-- BOTÃO PAUSE — APENAS ESTÉTICO -->
+
+                <a href="index.html" class="botao-player" title="Pausar simulação"> ❚❚ </a>
+
+                <!-- BOTÃO PLAY — APENAS ESTÉTICO -->
+
+                <a href="#" class="botao-player" title="Play"> ▶ </a>
+
+                <!-- BOTÃO AVANÇAR -->
+
+                <a
+                  href="SEU LINK AQUI"
+                  class="botao-player"
+                  title="Avançar música"
+                >
+                  ▶▶
+                </a>
+              </div>
+
+              
+
+                            <!-- PLAYLIST -->
+
+                            <div class="playlist">
+                              <div class="musica">
+                                <a href="atividade1.html">material 3-A (Dirigir)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="atividade2.html">material 3-B (Votar)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="atividade3.html">material 3-C (Desconto)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="atividade4.html">material 3-D (Nota)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="atividade5.html">material 3-E (validação)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="switch.html">material 4-A (switch)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="switch2.html">material 4-B (switch 2)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="loop.html">material 4-C (loop)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="loop2.html">material 4-D (Soma+loop)</a>
+                              </div>
+              
+                              <div class="musica">
+                                <a href="while.html">material 4-E (While)</a>
+                              </div>
+              
+                            </div>
+                          </div>
+              
+                          <!-- TEXTO AO REDOR DO PLAYER -->
+              
+                          <p>
+                            Gente, preste muita atenção: o player de música ali do lado não é
+                            apenas um item de decoração visual para deixar o layout com cara
+                            de anos 2000! Ele é totalmente funcional. Você pode navegar diretamente
+                            para as outras atividades dos materiais 4 e 5 do conteúdo de
+                            aprendizagem de JavaScript da professora Tamara Fumeiro. Use o
+                            visor para se guiar e trocar de exercício sempre que quiser
+                            continuar explorando! 
+                          </p>
+              
+                          <p>
+                            Este é outro enorme texto de enrolação feito exclusivamente para
+                            preencher o espaço ao redor do pequeno aparelho de música. Imagine
+                            que este texto está contando uma história muito importante sobre
+                            como as pessoas costumavam ouvir música enquanto navegavam pela
+                            internet em seus computadores.
+                          </p>
+                        </main>
+                      </div>
+                    </div>
+                  </div>
+                </body>
+              </html>

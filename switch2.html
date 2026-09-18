@@ -542,51 +542,46 @@
             <!-- O CONTEÚDO REAL COMEÇA AQUI -->
 
             
-    
-      <h2>Regras</h2>
-     
-      <h4>
-        <pre>
-    
-  Faça um programa que obrigue:
+    <h2>switch (2)</h2>
 
-  1- Nome: mínimo 3 caracteres
+    <h3>
+      Defina um resultados de acordo com a notas. Use
+      [let nota = "B";] como referencia
+    </h3>
 
-  2- Email: precisa ter .com
+    <ul>
+      <li>case "A": console.log("Excelente"); break;</li>
+      <li>case "B": console.log("Bom"); break;</li>
+      <li>case "C": console.log("Regular"); break;</li>
+      <li>default: console.log("Conceito inválido");</li>
+    </ul>
 
-  3- Idade: maior que 0
-            </pre
-        >
-      </h4>
+    <h5>*Confira essa página com f12(inspecionar) na aba console do
+      DevTools para ver as respostas! eu defini let como nota B, então se deu tudo certo deve aparecer um "BOM" lá no console </h5>
 
-      <h5>*Confira essa página com f12(inspecionar) na aba console do
-        DevTools para ver as respostas</h5>
 
- 
     <script>
-        let nome = prompt("Digite seu nome:");
-        let email = prompt("Digite seu e-mail:");
-        let idade = Number(prompt("Digite sua idade:"));
-  
-        if (nome.length >= 3) {
-          console.log("Nome válido:", nome);
-        } else {
-          console.log("Nome inválido: deve ter pelo menos 3 caracteres.");
-        }
-  
-        if (email.includes(".com")) {
-          console.log("E-mail válido:", email);
-        } else {
-          console.log("E-mail inválido: precisa conter '.com'.");
-        }
-  
-        if (idade > 0) {
-          console.log("Idade válida:", idade);
-        } else {
-          console.log("Idade inválida: deve ser maior que 0.");
-        }
-      </script>
- 
+      let nota = "B";
+
+      switch (nota) {
+        case "A":
+          console.log("EXCELENTE");
+          break;
+
+        case "B":
+          console.log("BOM");
+          break;
+
+        case "C":
+          console.log("REGULAR");
+          break;
+
+        default:
+          console.log("CONCEITO INVALIDO");
+      }
+    </script>
+
+
 
             <!-- O CONTEÚDO REAL ACABA AQUI -->
 
@@ -627,7 +622,7 @@
 
               <div class="visor">
                 NOW PLAYING:<br />
-                Material 3-E.mp3
+                Material 4-B.mp3
               </div>
 
               <div class="botoes-player">
@@ -662,74 +657,74 @@
 
               
 
-                           <!-- PLAYLIST -->
+               <!-- PLAYLIST -->
 
-                           <div class="playlist">
-                            <div class="musica">
-                              <a href="atividade1.html">material 3-A (Dirigir)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade2.html">material 3-B (Votar)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade3.html">material 3-C (Desconto)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade4.html">material 3-D (Nota)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade5.html">material 3-E (validação)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="switch.html">material 4-A (switch)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="switch2.html">material 4-B (switch 2)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="loop.html">material 4-C (loop)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="loop2.html">material 4-D (Soma+loop)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="while.html">material 4-E (While)</a>
-                            </div>
-            
-                          </div>
-                        </div>
-            
-                        <!-- TEXTO AO REDOR DO PLAYER -->
-            
-                        <p>
-                          Gente, preste muita atenção: o player de música ali do lado não é
-                          apenas um item de decoração visual para deixar o layout com cara
-                          de anos 2000! Ele é totalmente funcional. Você pode navegar diretamente
-                          para as outras atividades dos materiais 4 e 5 do conteúdo de
-                          aprendizagem de JavaScript da professora Tamara Fumeiro. Use o
-                          visor para se guiar e trocar de exercício sempre que quiser
-                          continuar explorando! 
-                        </p>
-            
-                        <p>
-                          Este é outro enorme texto de enrolação feito exclusivamente para
-                          preencher o espaço ao redor do pequeno aparelho de música. Imagine
-                          que este texto está contando uma história muito importante sobre
-                          como as pessoas costumavam ouvir música enquanto navegavam pela
-                          internet em seus computadores.
-                        </p>
-                      </main>
-                    </div>
-                  </div>
+               <div class="playlist">
+                <div class="musica">
+                  <a href="atividade1.html">material 3-A (Dirigir)</a>
                 </div>
-              </body>
-            </html>
+
+                <div class="musica">
+                  <a href="atividade2.html">material 3-B (Votar)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade3.html">material 3-C (Desconto)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade4.html">material 3-D (Nota)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade5.html">material 3-E (validação)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="switch.html">material 4-A (switch)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="switch2.html">material 4-B (switch 2)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="loop.html">material 4-C (loop)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="loop2.html">material 4-D (Soma+loop)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="while.html">material 4-E (While)</a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TEXTO AO REDOR DO PLAYER -->
+
+            <p>
+              Gente, preste muita atenção: o player de música ali do lado não é
+              apenas um item de decoração visual para deixar o layout com cara
+              de anos 2000! Ele é totalmente funcional. Você pode navegar diretamente
+              para as outras atividades dos materiais 4 e 5 do conteúdo de
+              aprendizagem de JavaScript da professora Tamara Fumeiro. Use o
+              visor para se guiar e trocar de exercício sempre que quiser
+              continuar explorando! 
+            </p>
+
+            <p>
+              Este é outro enorme texto de enrolação feito exclusivamente para
+              preencher o espaço ao redor do pequeno aparelho de música. Imagine
+              que este texto está contando uma história muito importante sobre
+              como as pessoas costumavam ouvir música enquanto navegavam pela
+              internet em seus computadores.
+            </p>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -541,72 +541,96 @@
 
             <!-- O CONTEÚDO REAL COMEÇA AQUI -->
 
-            
-    
-      <h2>Regras</h2>
-     
-      <h4>
-        <pre>
-    
-  Faça um programa que obrigue:
+            <h2>Loops</h2>
+            <h3>Crie loops para:</h3>
+            <ul>
+              <li>a-  Contar de 1 a 16</li>
+              <li>b- Contar de 10 a 1 (decrescente)</li>
+              <li>c- Mostrar os números pares de 2 a 20</li>
+            </ul>
+        
+            <h5>Confira essa página com f12(inspecionar) na aba console do
+              DevTools para ver as respostas!</h5>
 
-  1- Nome: mínimo 3 caracteres
-
-  2- Email: precisa ter .com
-
-  3- Idade: maior que 0
-            </pre
-        >
-      </h4>
-
-      <h5>*Confira essa página com f12(inspecionar) na aba console do
-        DevTools para ver as respostas</h5>
-
- 
-    <script>
-        let nome = prompt("Digite seu nome:");
-        let email = prompt("Digite seu e-mail:");
-        let idade = Number(prompt("Digite sua idade:"));
-  
-        if (nome.length >= 3) {
-          console.log("Nome válido:", nome);
-        } else {
-          console.log("Nome inválido: deve ter pelo menos 3 caracteres.");
-        }
-  
-        if (email.includes(".com")) {
-          console.log("E-mail válido:", email);
-        } else {
-          console.log("E-mail inválido: precisa conter '.com'.");
-        }
-  
-        if (idade > 0) {
-          console.log("Idade válida:", idade);
-        } else {
-          console.log("Idade inválida: deve ser maior que 0.");
-        }
-      </script>
- 
+              <script>
+                // for (let x = 1; x <= 16; x=x+1)
+              //   comece por (x, e x vai começar valendo 1) o LIMITE É (X NÃO PODE PASSAR DE MENOR IGUAL 16) FICA REPETINDO (X+1 = X) DE NOVO E DE NOVO ATÉ O LIMITE
+                for (let x = 1; x <= 16; x=x+1) {
+                  console.log("Número: " + x);
+                }
+          
+                //   b- Contar de 10 a 1 (decrescente)
+          
+                for (let x = 10; x >= 1; x=x-1) {
+                  console.log("Número: " + x);
+                }
+          
+              //   c- Mostrar os números pares de 2 a 20
+          
+              for (let x = 2; x <= 20; x=x+2) {
+                  console.log("Número par: " + x);
+                }
+              </script>
+           
+          
 
             <!-- O CONTEÚDO REAL ACABA AQUI -->
 
             <hr class="linha" />
 
-            <h2>E foi isso que eu encontrei nos meus arquivos! 😊</h2>
+            <h2>Mas afinal, o que são Loops?</h2>
 
+            <p>Loops, ou laço, é uma comando para algo se repetir sem você ter que escrever tudo de novo. veja abaixo dois exemplos</p>
+            <hr>
+        
+            <h3>Sem usar comando loop:</h3>
             <p>
-              O que acharam, galera? Espero que tenham gostado de dar uma
-              olhadinha nesse pequeno registro. Eu adoro encontrar essas coisas
-              antigas e compartilhar por aqui.
+              <pre>
+                console.log(1);
+                console.log(2);
+                console.log(3);
+                console.log(4);
+                console.log(5);
+                console.log(6);
+                console.log(7);
+                console.log(8);
+                console.log(9);
+                console.log(10);
+                console.log(11);
+                console.log(12);
+                console.log(13);
+                console.log(14);
+                console.log(15);
+                console.log(16);
+                      </pre>
             </p>
-
+            <hr>
+            <h3>Usando o looping:</h3>
             <p>
-              Se vocês quiserem ver mais curiosidades, arquivos e outras coisas
-              que eu encontrar por aí, continuem acompanhando o blog para não
-              perder os próximos posts!
+              <pre>
+                <code>
+                  for (let x = 1; x <= 16; x=x+1) {
+                    console.log("Número: " + x);
+                  }
+                </code>
+                </pre>
             </p>
-
-            <p>Até a próxima! 💾✨</p>
+            <hr>
+            <h3> Muito mais pratico! </h3>
+            <p>Como você acabou de ver, é muito mais prático! ainda assim, fica uma pergunta...MAS QUE P@$$@ É ESSA?. Então agora, vamos entender a lógica por trás disso!</p>
+        
+            <h3>Como o JS lê e interpreta essa badarosca? assim ó:</h3>
+            <ul>
+              <li>For ➡️ Comece Por</li>
+              <li>let X = 1 ➡️ A variável X vale 1</li>
+              <li> <= 16 ➡️ Pare quando X for menor ou igual a 16 </li>
+              <li>x = x + 1 ➡️ Fique repetindo X+1 e o resultado será o novo valor de X</li>
+            </ul>
+        <hr>
+        <h3>Então a leitura é:</h3>
+        <p>
+          Comece por X valendo 1, Só pare quando X for maior ou igual a 16, Até lá, fique repetindo X + 1 e o resultado será o novo valor de X
+        </p>
 
             <hr class="linha" />
 
@@ -627,7 +651,7 @@
 
               <div class="visor">
                 NOW PLAYING:<br />
-                Material 3-E.mp3
+                Material 4-C.mp3
               </div>
 
               <div class="botoes-player">
@@ -662,74 +686,74 @@
 
               
 
-                           <!-- PLAYLIST -->
+              <!-- PLAYLIST -->
 
-                           <div class="playlist">
-                            <div class="musica">
-                              <a href="atividade1.html">material 3-A (Dirigir)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade2.html">material 3-B (Votar)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade3.html">material 3-C (Desconto)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade4.html">material 3-D (Nota)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="atividade5.html">material 3-E (validação)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="switch.html">material 4-A (switch)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="switch2.html">material 4-B (switch 2)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="loop.html">material 4-C (loop)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="loop2.html">material 4-D (Soma+loop)</a>
-                            </div>
-            
-                            <div class="musica">
-                              <a href="while.html">material 4-E (While)</a>
-                            </div>
-            
-                          </div>
-                        </div>
-            
-                        <!-- TEXTO AO REDOR DO PLAYER -->
-            
-                        <p>
-                          Gente, preste muita atenção: o player de música ali do lado não é
-                          apenas um item de decoração visual para deixar o layout com cara
-                          de anos 2000! Ele é totalmente funcional. Você pode navegar diretamente
-                          para as outras atividades dos materiais 4 e 5 do conteúdo de
-                          aprendizagem de JavaScript da professora Tamara Fumeiro. Use o
-                          visor para se guiar e trocar de exercício sempre que quiser
-                          continuar explorando! 
-                        </p>
-            
-                        <p>
-                          Este é outro enorme texto de enrolação feito exclusivamente para
-                          preencher o espaço ao redor do pequeno aparelho de música. Imagine
-                          que este texto está contando uma história muito importante sobre
-                          como as pessoas costumavam ouvir música enquanto navegavam pela
-                          internet em seus computadores.
-                        </p>
-                      </main>
-                    </div>
-                  </div>
+              <div class="playlist">
+                <div class="musica">
+                  <a href="atividade1.html">material 3-A (Dirigir)</a>
                 </div>
-              </body>
-            </html>
+
+                <div class="musica">
+                  <a href="atividade2.html">material 3-B (Votar)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade3.html">material 3-C (Desconto)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade4.html">material 3-D (Nota)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="atividade5.html">material 3-E (validação)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="switch.html">material 4-A (switch)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="switch2.html">material 4-B (switch 2)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="loop.html">material 4-C (loop)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="loop2.html">material 4-D (Soma+loop)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="while.html">material 4-E (While)</a>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- TEXTO AO REDOR DO PLAYER -->
+
+            <p>
+              Gente, preste muita atenção: o player de música ali do lado não é
+              apenas um item de decoração visual para deixar o layout com cara
+              de anos 2000! Ele é totalmente funcional. Você pode navegar diretamente
+              para as outras atividades dos materiais 4 e 5 do conteúdo de
+              aprendizagem de JavaScript da professora Tamara Fumeiro. Use o
+              visor para se guiar e trocar de exercício sempre que quiser
+              continuar explorando! 
+            </p>
+
+            <p>
+              Este é outro enorme texto de enrolação feito exclusivamente para
+              preencher o espaço ao redor do pequeno aparelho de música. Imagine
+              que este texto está contando uma história muito importante sobre
+              como as pessoas costumavam ouvir música enquanto navegavam pela
+              internet em seus computadores.
+            </p>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
