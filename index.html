@@ -161,14 +161,41 @@
            ========================================================= */
 
       .folders {
-        display: flex;
-        justify-content: center;
+        width: 100%;
+        max-height: 155px;
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
+
         margin: 10px 0 15px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        padding: 5px 8px 8px 5px;
+
+        /* Mantém a aparência retrô */
+        scrollbar-color: #17220e #769b45;
+        scrollbar-width: auto;
+      }
+
+      /* Barra de rolagem para navegadores baseados em Chromium */
+      .folders::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      .folders::-webkit-scrollbar-track {
+        background: #769b45;
+        border: 2px solid #17220e;
+      }
+
+      .folders::-webkit-scrollbar-thumb {
+        background: #17220e;
       }
 
       .folder {
-        width: 115px;
+        width: 100%;
         min-height: 105px;
 
         display: flex;
@@ -347,8 +374,32 @@
           height: 320px;
         }
 
+        .folders {
+          max-height: 150px;
+          gap: 10px;
+        }
+
         .folder {
-          width: 105px;
+          min-height: 100px;
+        }
+      }
+
+      /* =========================================================
+           CELULARES MUITO PEQUENOS
+           ========================================================= */
+
+      @media (max-width: 360px) {
+        .folders {
+          grid-template-columns: 1fr;
+          max-height: 145px;
+        }
+
+        .folder {
+          min-height: 90px;
+        }
+
+        .folder-icon {
+          font-size: 35px;
         }
       }
     </style>
@@ -366,8 +417,8 @@
       <!-- Moldura da tela -->
       <div class="screen-frame">
         <!-- =================================================
-                 TELA INICIAL
-                 ================================================= -->
+             TELA INICIAL
+             ================================================= -->
 
         <section id="startScreen" class="screen">
           <div class="page">
@@ -387,8 +438,8 @@
         </section>
 
         <!-- =================================================
-                 TELA DE SELEÇÃO
-                 ================================================= -->
+             TELA DE SELEÇÃO
+             ================================================= -->
 
         <section id="selectionScreen" class="screen hidden">
           <div class="page">
@@ -397,16 +448,40 @@
             <p>Escolha um material:</p>
 
             <div class="folders">
-              <!-- MATERIAL 3 -->
-              <button class="folder" onclick="mostrarMaterial(4)">
+              <!-- =================================================
+                   PASTA 3
+                   ================================================= -->
+
+              <button class="folder" onclick="mostrarMaterial(3)">
                 <span class="folder-icon">📁</span>
                 <span class="folder-name">MATERIAL 3</span>
               </button>
 
-              <!-- MATERIAL 3 -->
-              <button class="folder" onclick="mostrarMaterial(5)">
+              <!-- =================================================
+                   PASTA 4
+                   ================================================= -->
+
+              <button class="folder" onclick="mostrarMaterial(4)">
                 <span class="folder-icon">📁</span>
                 <span class="folder-name">MATERIAL 4</span>
+              </button>
+
+              <!-- =================================================
+                   PASTA 5
+                   ================================================= -->
+
+              <button class="folder" onclick="mostrarMaterial(5)">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">MATERIAL 5</span>
+              </button>
+
+              <!-- =================================================
+                   PASTA 6
+                   ================================================= -->
+
+              <button class="folder" onclick="mostrarMaterial(6)">
+                <span class="folder-icon">📁</span>
+                <span class="folder-name">MATERIAL 6</span>
               </button>
             </div>
 
@@ -417,35 +492,28 @@
         </section>
 
         <!-- =================================================
-                 MATERIAL 3
-                 ================================================= -->
+             MATERIAL 3
+             ================================================= -->
 
-        <section id="material4" class="screen hidden">
+        <section id="material3" class="screen hidden">
           <div class="page">
             <h1>Material 3</h1>
 
             <div class="links">
-              <!-- COLOQUE SEUS LINKS REAIS AQUI -->
+              <!-- Aqui você coloca o LINK da atividade A do Material 3 -->
+              <a class="link" href="atividade1.html"> ▸ Exercício A </a>
 
-              <a class="link" href="atividade1.html">
-                ▸ Exercício A
-              </a>
+              <!-- Aqui você coloca o LINK da atividade B do Material 3 -->
+              <a class="link" href="atividade2.html"> ▸ Exercício B </a>
 
-              <a class="link" href="atividade2.html">
-                ▸ Exercício B
-              </a>
+              <!-- Aqui você coloca o LINK da atividade C do Material 3 -->
+              <a class="link" href="atividade3.html"> ▸ Exercício C </a>
 
-              <a class="link" href="atividade3.html">
-                ▸ Exercício C
-              </a>
+              <!-- Aqui você coloca o LINK da atividade D do Material 3 -->
+              <a class="link" href="atividade4.html"> ▸ Exercício D </a>
 
-              <a class="link" href="atividade4.html">
-                ▸ Exercício D
-              </a>
-
-              <a class="link" href="atividade5.html">
-                ▸ Exercício E
-              </a>
+              <!-- Aqui você coloca o LINK da atividade E do Material 3 -->
+              <a class="link" href="atividade5.html"> ▸ Exercício E </a>
             </div>
 
             <button class="screen-button" onclick="voltarSelecao()">
@@ -455,35 +523,130 @@
         </section>
 
         <!-- =================================================
-                 MATERIAL 4
-                 ================================================= -->
+             MATERIAL 4
+             ================================================= -->
 
-        <section id="material5" class="screen hidden">
+        <section id="material4" class="screen hidden">
           <div class="page">
             <h1>Material 4</h1>
 
             <div class="links">
-              <!-- COLOQUE SEUS LINKS REAIS AQUI -->
+              <!-- Aqui você coloca o LINK da atividade A do Material 4 -->
+              <a class="link" href="loop.html"> ▸ Exercício A </a>
 
-              <a class="link" href="loop.html">
-                ▸ Exercício A
-              </a>
+              <!-- Aqui você coloca o LINK da atividade B do Material 4 -->
+              <a class="link" href="loop2.html"> ▸ Exercício B </a>
 
-              <a class="link" href="loop2.html">
-                ▸ Exercício B
-              </a>
+              <!-- Aqui você coloca o LINK da atividade C do Material 4 -->
+              <a class="link" href="switch.html"> ▸ Exercício C </a>
 
-              <a class="link" href="switch.html">
-                ▸ Exercício C
-              </a>
+              <!-- Aqui você coloca o LINK da atividade D do Material 4 -->
+              <a class="link" href="switch2.html"> ▸ Exercício D </a>
 
-              <a class="link" href="switch2.html">
-                ▸ Exercício D
-              </a>
+              <!-- Aqui você coloca o LINK da atividade E do Material 4 -->
+              <a class="link" href="while.html"> ▸ Exercício E </a>
+            </div>
 
-              <a class="link" href="while.html">
-                ▸ Exercício E
-              </a>
+            <button class="screen-button" onclick="voltarSelecao()">
+              ← VOLTAR
+            </button>
+          </div>
+        </section>
+
+        <!-- =================================================
+             MATERIAL 5
+             ================================================= -->
+
+        <section id="material5" class="screen hidden">
+          <div class="page">
+            <h1>Material 5</h1>
+
+            <div class="links">
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE A
+                   DO MATERIAL 5
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício A </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE B
+                   DO MATERIAL 5
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício B </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE C
+                   DO MATERIAL 5
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício C </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE D
+                   DO MATERIAL 5
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício D </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE E
+                   DO MATERIAL 5
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício E </a>
+            </div>
+
+            <button class="screen-button" onclick="voltarSelecao()">
+              ← VOLTAR
+            </button>
+          </div>
+        </section>
+
+        <!-- =================================================
+             MATERIAL 6
+             ================================================= -->
+
+        <section id="material6" class="screen hidden">
+          <div class="page">
+            <h1>Material 6</h1>
+
+            <div class="links">
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE A
+                   DO MATERIAL 6
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício A </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE B
+                   DO MATERIAL 6
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício B </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE C
+                   DO MATERIAL 6
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício C </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE D
+                   DO MATERIAL 6
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício D </a>
+
+              <!-- =================================================
+                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE E
+                   DO MATERIAL 6
+                   ================================================= -->
+
+              <a class="link" href="#"> ▸ Exercício E </a>
             </div>
 
             <button class="screen-button" onclick="voltarSelecao()">
@@ -494,8 +657,8 @@
       </div>
 
       <!-- =====================================================
-             CONTROLES FÍSICOS DO GAME BOY
-             ===================================================== -->
+           CONTROLES FÍSICOS DO GAME BOY
+           ===================================================== -->
 
       <div class="controls">
         <!-- Cruzeta -->
@@ -527,17 +690,25 @@
       function esconderTodas() {
         document.getElementById("startScreen").classList.add("hidden");
         document.getElementById("selectionScreen").classList.add("hidden");
+
+        document.getElementById("material3").classList.add("hidden");
         document.getElementById("material4").classList.add("hidden");
         document.getElementById("material5").classList.add("hidden");
+        document.getElementById("material6").classList.add("hidden");
       }
 
       function mostrarSelecao() {
         esconderTodas();
+
         document.getElementById("selectionScreen").classList.remove("hidden");
       }
 
       function mostrarMaterial(numero) {
         esconderTodas();
+
+        if (numero === 3) {
+          document.getElementById("material3").classList.remove("hidden");
+        }
 
         if (numero === 4) {
           document.getElementById("material4").classList.remove("hidden");
@@ -546,15 +717,21 @@
         if (numero === 5) {
           document.getElementById("material5").classList.remove("hidden");
         }
+
+        if (numero === 6) {
+          document.getElementById("material6").classList.remove("hidden");
+        }
       }
 
       function voltarInicio() {
         esconderTodas();
+
         document.getElementById("startScreen").classList.remove("hidden");
       }
 
       function voltarSelecao() {
         esconderTodas();
+
         document.getElementById("selectionScreen").classList.remove("hidden");
       }
     </script>
