@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Retrô</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #202020;
+        font-family: "Courier New", monospace;
+      }
+
+      /* =========================
+           COMPUTADOR
+        ========================= */
+
+      .computador {
+        width: 90%;
+        max-width: 1000px;
+        height: 700px;
+
+        background: #c0c0c0;
+
+        border-top: 5px solid #ffffff;
+        border-left: 5px solid #ffffff;
+        border-right: 5px solid #404040;
+        border-bottom: 5px solid #404040;
+
+        padding: 8px;
+      }
+
+      .barra-superior {
+        height: 35px;
+
+        background: #000080;
+        color: white;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        padding: 0 6px 0 8px;
+
+        font-size: 15px;
+        font-weight: bold;
+      }
+
+      .controles {
+        display: flex;
+        gap: 3px;
+      }
+
+      .controle {
+        width: 22px;
+        height: 22px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: #c0c0c0;
+        color: #000000;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      /* =========================
+           TELA
+        ========================= */
+
+      .tela {
+        height: calc(100% - 43px);
+
+        margin-top: 8px;
+
+        background: #ffffff;
+
+        border-top: 3px solid #404040;
+        border-left: 3px solid #404040;
+        border-right: 3px solid #ffffff;
+        border-bottom: 3px solid #ffffff;
+
+        display: flex;
+        flex-direction: column;
+
+        overflow: hidden;
+      }
+
+      /* =========================
+           BARRA DO NAVEGADOR
+        ========================= */
+
+      .navegador {
+        height: 42px;
+
+        background: #c0c0c0;
+
+        border-bottom: 3px solid #808080;
+
+        display: flex;
+        align-items: center;
+
+        padding: 5px;
+        gap: 6px;
+      }
+
+      .endereco {
+        height: 27px;
+        flex: 1;
+
+        background: #ffffff;
+
+        border-top: 2px solid #404040;
+        border-left: 2px solid #404040;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+
+        padding: 3px 7px;
+
+        color: #222222;
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+      }
+
+      .botao-navegador {
+        height: 27px;
+        width: 30px;
+
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+
+        font-weight: bold;
+      }
+
+      /* =========================
+           ÁREA PRINCIPAL
+        ========================= */
+
+      .area-principal {
+        flex: 1;
+
+        display: flex;
+
+        min-height: 0;
+      }
+
+      /* =========================
+           EXPLORADOR
+        ========================= */
+
+      .explorador {
+        width: 180px;
+
+        flex-shrink: 0;
+
+        background: #c0c0c0;
+
+        border-right: 3px solid #808080;
+
+        padding: 7px;
+      }
+
+      .explorador-titulo {
+        background: #000080;
+        color: white;
+
+        padding: 4px 5px;
+
+        font-size: 13px;
+        font-weight: bold;
+
+        margin-bottom: 8px;
+      }
+
+      .pasta {
+        padding: 6px 4px;
+
+        font-size: 13px;
+
+        border-bottom: 1px solid #a0a0a0;
+      }
+
+      .pasta::before {
+        content: "📁 ";
+      }
+
+      .arquivo {
+        padding: 6px 4px 6px 18px;
+
+        font-size: 12px;
+      }
+
+      .arquivo::before {
+        content: "▣ ";
+      }
+
+      /* =========================
+           BLOG
+        ========================= */
+
+      .blog {
+        flex: 1;
+
+        min-width: 0;
+
+        padding: 25px 35px;
+
+        overflow-y: scroll;
+
+        background: #ffffff;
+
+        color: #111111;
+      }
+
+      /* Barra de rolagem */
+
+      .blog::-webkit-scrollbar {
+        width: 22px;
+      }
+
+      .blog::-webkit-scrollbar-track {
+        background: #c0c0c0;
+
+        border-left: 2px solid #ffffff;
+      }
+
+      .blog::-webkit-scrollbar-thumb {
+        background: #c0c0c0;
+
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #404040;
+        border-bottom: 3px solid #404040;
+      }
+
+      .blog::-webkit-scrollbar-button {
+        height: 22px;
+
+        background: #c0c0c0;
+
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #404040;
+        border-bottom: 3px solid #404040;
+      }
+
+      /* =========================
+           TEXTO
+        ========================= */
+
+      h1 {
+        font-size: 30px;
+
+        margin-top: 0;
+        margin-bottom: 10px;
+
+        color: #000080;
+      }
+
+      h2 {
+        font-size: 21px;
+
+        margin-top: 30px;
+        margin-bottom: 8px;
+
+        color: #222222;
+      }
+
+      h3 {
+        font-size: 17px;
+
+        margin-top: 22px;
+        margin-bottom: 5px;
+
+        color: #333333;
+      }
+
+      p {
+        font-family: Georgia, "Times New Roman", serif;
+
+        font-size: 16px;
+        line-height: 1.6;
+
+        max-width: 700px;
+      }
+
+      ul,
+      ol {
+        font-family: Georgia, "Times New Roman", serif;
+
+        line-height: 1.8;
+      }
+
+      .linha {
+        border: 0;
+        border-top: 2px solid #000080;
+
+        margin: 20px 0;
+      }
+
+      /* =========================
+           PLAYER DE MÚSICA
+        ========================= */
+
+      .player {
+        float: right;
+
+        width: 270px;
+
+        margin: 5px 0 15px 25px;
+
+        background: #c0c0c0;
+
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #404040;
+        border-bottom: 3px solid #404040;
+
+        padding: 8px;
+      }
+
+      .player-titulo {
+        background: #000080;
+        color: white;
+
+        padding: 4px;
+
+        font-family: "Courier New", monospace;
+        font-size: 13px;
+        font-weight: bold;
+
+        margin-bottom: 8px;
+      }
+
+      .visor {
+        background: #000000;
+        color: #00ff00;
+
+        border: 2px inset #808080;
+
+        padding: 7px;
+
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+
+        margin-bottom: 8px;
+      }
+
+      .botoes-player {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+
+        margin-bottom: 10px;
+      }
+
+      .botao-player {
+        width: 42px;
+        height: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+
+        text-decoration: none;
+
+        color: #000000;
+
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .botao-player:active {
+        border-top: 2px solid #404040;
+        border-left: 2px solid #404040;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+
+      /* Playlist */
+
+      .playlist {
+        height: 90px;
+
+        overflow-y: scroll;
+
+        background: white;
+
+        border-top: 2px solid #404040;
+        border-left: 2px solid #404040;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+
+        padding: 4px;
+
+        font-family: "Courier New", monospace;
+        font-size: 12px;
+      }
+
+      .musica {
+        padding: 4px;
+
+        border-bottom: 1px dotted #999999;
+      }
+
+      .musica:hover {
+        background: #000080;
+        color: white;
+      }
+
+      /* Scroll da playlist */
+
+      .playlist::-webkit-scrollbar {
+        width: 15px;
+      }
+
+      .playlist::-webkit-scrollbar-track {
+        background: #c0c0c0;
+      }
+
+      .playlist::-webkit-scrollbar-thumb {
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+        border-left: 2px solid #ffffff;
+        border-right: 2px solid #404040;
+        border-bottom: 2px solid #404040;
+      }
+
+      /* =========================
+           RODAPÉ
+        ========================= */
+
+      .status {
+        height: 25px;
+
+        background: #c0c0c0;
+
+        border-top: 2px solid #ffffff;
+
+        padding: 3px 7px;
+
+        font-size: 11px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="computador">
+      <!-- BARRA DA JANELA -->
+
+      <div class="barra-superior">
+        <span>🌐 Internet Explorer — Blog Antigo</span>
+
+        <div class="controles">
+          <div class="controle">−</div>
+          <div class="controle">□</div>
+          <div class="controle">×</div>
+        </div>
+      </div>
+
+      <div class="tela">
+        <!-- BARRA DE ENDEREÇO -->
+
+        <div class="navegador">
+          <button class="botao-navegador">←</button>
+          <button class="botao-navegador">→</button>
+
+          <div class="endereco">https://fantasia.blog/curiosidades</div>
+
+          <button class="botao-navegador">↻</button>
+        </div>
+
+        <div class="area-principal">
+          <!-- EXPLORADOR -->
+
+          <aside class="explorador">
+            <div class="explorador-titulo">EXPLORADOR</div>
+
+            <div class="pasta">My Computer</div>
+
+            <div class="pasta">Files</div>
+
+            <div class="pasta">Downloads</div>
+
+            <div class="arquivo">artigo.txt</div>
+
+            <div class="arquivo">favoritos.htm</div>
+
+            <div class="pasta">Images</div>
+
+            <div class="arquivo">foto_01.bmp</div>
+
+            <div class="pasta">Recentes</div>
+          </aside>
+
+          <!-- BLOG -->
+
+          <main class="blog">
+            <h1>Diário de um webmaster</h1>
+
+            <p>
+              Hoje eu estava mexendo nos meus arquivos antigos e acabei
+              encontrando uma coisinha que achei que seria legal mostrar aqui no
+              blog. É um pequeno arquivo de estudos que estava guardado por aqui
+              há algum tempo.
+            </p>
+
+            <hr class="linha" />
+
+            <!-- O CONTEÚDO REAL COMEÇA AQUI -->
+
+            <h2>Ei você, sim você mesmo, você sabe o que é um arrays?</h2>
+
+            <p>
+              Vou fingir que você disse "não" e vou te explicar! O Arrays surge
+              de uma mina chamada Rayssa, mas que todos chamavam de Ray, e ela
+              tinha um infeliz problema de asma, como era de costume ela usava
+              varias const de forma isolada pra respirar, desse jeito:
+            </p>
+
+            <ul>
+              <li>const respiração1 = "Ar";</li>
+              <li>const respiração2 = "Ar"</li>
+              <li>;const respiração3 = "Ar";</li>
+            </ul>
+
+            <p>
+              Mas então ela inovou, e pensou numa nova forma revolucionaria de
+              respirar, e ficou assim:
+            </p>
+
+            <ul>
+              const respiração = ["Ar", "Ar", "Ar"];
+            </ul>
+
+            <p>
+              e todo mundo começou a usa a ideia dela, e dai sempre falavam "uau
+              que ideia fantástica! quem fez?" e respondiam "A ray" e com o
+              tempo, o apelido ficou "arrays"!
+            </p>
+
+            <p>
+              Ok, agora a explicação cientifica e simples, isso serve pra
+              colocar varias variáveis com apenas um comando
+            </p>
+            <hr />
+
+            <h3>Crie 3 arrays:</h3>
+
+            <ul>
+              <li>a- Nomes de 3 frutas</li>
+              <li>b- 5 números</li>
+              <li>c- Cores favoritas (4 cores)</li>
+            </ul>
+
+            <h5>
+              *Confira essa página com f12(inspecionar) na aba console do
+              DevTools para ver como ficou.
+            </h5>
+
+            <hr />
+            <details>
+              <summary>
+                <strong
+                  >Clique aqui para ver a resolução e explicação do Exercício:
+                  Criando Arrays</strong
+                >
+              </summary>
+
+              <h3>Código do Script</h3>
+              <pre><code>// a- Nome de três frutas
+  const frutas = ["Maçã", "Banana", "Morango"];
+  
+  // b- 5 números
+  const numeros = [10, 25, 42, 7, 99];
+  
+  // c- Cores favoritas (4 cores)
+  const coresFavoritas = ["Azul", "Preto", "Verde", "Roxo"];
+  
+  // Exibindo os arrays no console
+  console.log("Frutas:", frutas);
+  console.log("Números:", numeros);
+  console.log("Cores Favoritas:", coresFavoritas);</code></pre>
+
+              <h2>Dissecando o Script: Estrutura dos Arrays</h2>
+
+              <p>
+                Neste exercício, aplicamos a sintaxe básica dos
+                <strong>Arrays</strong> para armazenar diferentes coleções de
+                dados utilizando colchetes (<code>[ ]</code>) e separando os
+                valores por vírgula.
+              </p>
+
+              <h3>1. Tipos de Dados nos Arrays</h3>
+              <ul>
+                <li>
+                  <strong>Array de Frutas (<code>frutas</code>)</strong>: Guarda
+                  3 textos (strings) intercalados entre aspas
+                  (<code>"Maçã"</code>, <code>"Banana"</code>,
+                  <code>"Morango"</code>).
+                </li>
+                <li>
+                  <strong>Array de Números (<code>numeros</code>)</strong>:
+                  Guarda 5 valores numéricos diretamente, sem o uso de aspas.
+                </li>
+                <li>
+                  <strong>Array de Cores (<code>coresFavoritas</code>)</strong>:
+                  Outra coleção de textos, contendo exatamente 4 elementos.
+                </li>
+              </ul>
+
+              <h3>2. Regras Fundamentais ao Criar Arrays</h3>
+              <ul>
+                <li>
+                  <strong>Uso de Colchetes (<code>[ ]</code>)</strong>:
+                  Delimitam o início e o fim da lista.
+                </li>
+                <li>
+                  <strong>Separação por Vírgula</strong>: Cada item dentro do
+                  array precisa ser separado por uma vírgula.
+                </li>
+                <li>
+                  <strong>Uso de <code>const</code></strong
+                  >: É a boa prática recomendada para declarar arrays em
+                  JavaScript.
+                </li>
+              </ul>
+            </details>
+
+            <script>
+              // ==========================================
+              // EXERCÍCIO: CRIANDO ARRAYS
+              // ==========================================
+
+              // a- Array com nomes de 3 frutas
+              const frutas = ["Maçã", "Banana", "Morango"];
+
+              // b- Array com 5 números
+              const numeros = [10, 25, 42, 7, 99];
+
+              // c- Array com 4 cores favoritas
+              const coresFavoritas = ["Azul", "Preto", "Verde", "Roxo"];
+
+              // ==========================================
+              // TESTANDO OS ARRAYS NO CONSOLE
+              // ==========================================
+
+              console.log("Array de Frutas:", frutas);
+              console.log("Array de Números:", numeros);
+              console.log("Array de Cores Favoritas:", coresFavoritas);
+
+              // Exibindo a quantidade de elementos de cada array usando .length
+              console.log(`Total de frutas: ${frutas.length}`);
+              console.log(`Total de números: ${numeros.length}`);
+              console.log(`Total de cores: ${coresFavoritas.length}`);
+            </script>
+
+            <!-- O CONTEÚDO REAL ACABA AQUI -->
+
+            <hr class="linha" />
+
+            <h2>Música enquanto você lê</h2>
+
+            <p>
+              Este é um texto de enrolação apenas para dar uma estética legal a
+              essa imagem do lado.
+              <strong>LEIA O SEGUNDO PARÁGRAFO ELE É IMPORTANTE</strong>.
+              Antigamente, páginas da internet não precisavam necessariamente
+              ter uma aparência extremamente elaborada. Muitas vezes bastava uma
+              pequena imagem posicionada ao lado de alguns parágrafos para que a
+              página parecesse completamente diferente.
+            </p>
+
+            <div class="player">
+              <div class="player-titulo">♫ MUSIC PLAYER</div>
+
+              <div class="visor">
+                NOW PLAYING:<br />
+                Material 4-C.mp3
+              </div>
+
+              <div class="botoes-player">
+                <!-- BOTÃO VOLTAR -->
+
+                <a
+                  href="SEU LINK AQUI"
+                  class="botao-player"
+                  title="Voltar música"
+                >
+                  ◀◀
+                </a>
+
+                <!-- BOTÃO PAUSE — APENAS ESTÉTICO -->
+
+                <a
+                  href="index.html"
+                  class="botao-player"
+                  title="Pausar simulação"
+                >
+                  ❚❚
+                </a>
+
+                <!-- BOTÃO PLAY — APENAS ESTÉTICO -->
+
+                <a href="#" class="botao-player" title="Play"> ▶ </a>
+
+                <!-- BOTÃO AVANÇAR -->
+
+                <a
+                  href="SEU LINK AQUI"
+                  class="botao-player"
+                  title="Avançar música"
+                >
+                  ▶▶
+                </a>
+              </div>
+
+              <!-- PLAYLIST -->
+
+              <div class="playlist">
+                <div class="musica">
+                  <a href="material5a.html">material 5-A (Sobre funções)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="material5b.html">material 5-B (Cálculos)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="material5c.html">material 5-C (Olá nome) </a>
+                </div>
+
+                <div class="musica">
+                  <a href="material5d.html">material 5-D (Cálculos a,b)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="material6a.html">material 6-A (Arrays)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="material6b.html">material 6-B (Cidades)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="material6c.html">material 6-C (Números)</a>
+                </div>
+
+                <div class="musica">
+                  <a href="material6d.html">material 6-D (For e ForEach) </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- TEXTO AO REDOR DO PLAYER -->
+
+            <p>
+              Gente, preste muita atenção: o player de música ali do lado não é
+              apenas um item de decoração visual para deixar o layout com cara
+              de anos 2000! Ele é totalmente funcional. Você pode navegar
+              diretamente para as outras atividades dos materiais 5 e 6 do
+              conteúdo de aprendizagem de JavaScript da professora Tamara
+              Fumeiro. Use o visor para se guiar e trocar de exercício sempre
+              que quiser continuar explorando!
+            </p>
+
+            <p>
+              Este é outro enorme texto de enrolação feito exclusivamente para
+              preencher o espaço ao redor do pequeno aparelho de música. Imagine
+              que este texto está contando uma história muito importante sobre
+              como as pessoas costumavam ouvir música enquanto navegavam pela
+              internet em seus computadores.
+            </p>
+          </main>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
