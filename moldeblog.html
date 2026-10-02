@@ -272,6 +272,73 @@
       }
 
       /* =========================
+     MENU VINTAGE
+  ========================= */
+
+      .menu-grupo {
+        max-width: 700px;
+        margin-bottom: 22px;
+        padding: 6px;
+        background: #c0c0c0;
+        border-top: 3px solid #ffffff;
+        border-left: 3px solid #ffffff;
+        border-right: 3px solid #404040;
+        border-bottom: 3px solid #404040;
+      }
+
+      .menu-grupo-titulo {
+        background: #000080;
+        color: white;
+        padding: 4px 6px;
+        font-size: 13px;
+        font-weight: bold;
+      }
+
+      .menu-lista {
+        list-style: none;
+        margin: 6px 0 0;
+        padding: 0;
+        background: #ffffff;
+        font-family: "Courier New", monospace;
+        line-height: 1.4;
+        border-top: 2px solid #404040;
+        border-left: 2px solid #404040;
+        border-right: 2px solid #ffffff;
+        border-bottom: 2px solid #ffffff;
+      }
+
+      .menu-lista li {
+        border-bottom: 1px dotted #999999;
+      }
+
+      .menu-lista li:last-child {
+        border-bottom: none;
+      }
+
+      .menu-lista a {
+        display: block;
+        padding: 7px 8px;
+        color: #000080;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .menu-lista a::before {
+        content: "▶ ";
+        color: #808080;
+      }
+
+      .menu-lista a:hover {
+        background: #000080;
+        color: #ffffff;
+      }
+
+      .menu-lista a:hover::before {
+        color: #00ff00;
+      }
+
+      /* =========================
            RODAPÉ
         ========================= */
 
@@ -384,181 +451,118 @@
           <!-- BLOG -->
 
           <main class="blog">
-            <h1>Registros de um Dev Aprendiz</h1>
+            <h1>📂 MENU PRINCIPAL</h1>
 
-            <p>
-              Atenção: este parágrafo não contém nenhum ensinamento de JavaScript, apenas carisma e preenchimento. Pode rolar para o exercício!
-            </p>
+            <p>Escolha uma atividade para abrir.</p>
 
             <hr class="linha" />
 
-            <!-- O CONTEÚDO REAL COMEÇA AQUI -->
-
-            <h3>Crie funções para:</h3>
-
-            <ol>
-              <li>1- somar(a, b)</li>
-
-              <li>2- subtrair(a, b)</li>
-
-              <li>3- multiplicar(a, b)</li>
-
-              <li>4- dividir(a, b)</li>
-            </ol>
-
-            <h5>
-              *Confira essa página com f12(inspecionar) na aba console do
-              DevTools para ver as respostas! Meu A vale 10 e o B vale 5!
-            </h5>
-
-            <hr />
-
-            <details>
-              <summary>
-                <strong
-                  >Clique aqui para ver a resolução e explicação do Exercício:
-                  Quatro Operações Matemáticas</strong
-                >
-              </summary>
-
-              <h3>Código do Script</h3>
-              <pre><code>// 1. Função para Somar
-  function somar(a, b) {
-    return a + b;
-  }
-  
-  // 2. Função para Subtrair
-  function subtrair(a, b) {
-    return a - b;
-  }
-  
-  // 3. Função para Multiplicar
-  function multiplicar(a, b) {
-    return a * b;
-  }
-  
-  // 4. Função para Dividir
-  function dividir(a, b) {
-    if (b === 0) {
-      return "Erro: Divisão por zero!";
-    }
-    return a / b;
-  }
-  
-  // Testando as funções
-  console.log(somar(10, 5));        // 15
-  console.log(subtrair(10, 5));     // 5
-  console.log(multiplicar(10, 5));  // 50
-  console.log(dividir(10, 5));      // 2
-  console.log(dividir(10, 0));      // Erro: Divisão por zero!</code></pre>
-
-              <h2>Dissecando o Script: Entendendo as Operações Básicas</h2>
-
-              <p>
-                Neste exercício, criamos quatro funções separadas para realizar
-                cada uma das operações fundamentais da matemática em JavaScript.
-              </p>
-
-              <h3>1. As Quatro Funções Principais</h3>
-              <ul>
+            <div class="menu-grupo">
+              <div class="menu-grupo-titulo">📁 MATERIAL 3</div>
+              <ul class="menu-lista">
                 <li>
-                  <strong><code>somar(a, b)</code></strong
-                  >: Utiliza o operador aritmético <code>+</code> para somar os
-                  valores de <code>a</code> e <code>b</code>.
+                  <a href="material3a.html" data-i="0">3-A &nbsp;Dirigir</a>
                 </li>
                 <li>
-                  <strong><code>subtrair(a, b)</code></strong
-                  >: Utiliza o operador <code>-</code> para calcular a diferença
-                  entre <code>a</code> e <code>b</code>.
+                  <a href="material3b.html" data-i="1">3-B &nbsp;Votar</a>
                 </li>
                 <li>
-                  <strong><code>multiplicar(a, b)</code></strong
-                  >: Utiliza o operador <code>*</code> para multiplicar
-                  <code>a</code> por <code>b</code>.
+                  <a href="material3c.html" data-i="2">3-C &nbsp;Desconto</a>
                 </li>
+                <li><a href="material3d.html" data-i="3">3-D &nbsp;Nota</a></li>
                 <li>
-                  <strong><code>dividir(a, b)</code></strong
-                  >: Utiliza o operador <code>/</code> para dividir
-                  <code>a</code> por <code>b</code>.
+                  <a href="material3e.html" data-i="4">3-E &nbsp;Validação</a>
                 </li>
               </ul>
+            </div>
 
-              <h3>2. Uso do Comandos <code>return</code> e Validação</h3>
-              <ul>
+            <div class="menu-grupo">
+              <div class="menu-grupo-titulo">📁 MATERIAL 4</div>
+              <ul class="menu-lista">
                 <li>
-                  <strong><code>return</code></strong
-                  >: Instrução que faz a função devolver o resultado do cálculo
-                  para onde ela foi chamada.
+                  <a href="material4a.html" data-i="5">4-A &nbsp;Switch</a>
                 </li>
                 <li>
-                  <strong
-                    >Validação de segurança (<code>if (b === 0)</code>)</strong
-                  >: Na função de divisão, verificamos se o divisor
-                  <code>b</code> é igual a zero, evitando um resultado
-                  matematicamente inválido (<code>Infinity</code>) e retornando
-                  uma mensagem amigável.
+                  <a href="material4b.html" data-i="6">4-B &nbsp;Switch 2</a>
                 </li>
-              </ul>
-
-              <h3>3. Execução e Teste</h3>
-              <ul>
+                <li><a href="material4c.html" data-i="7">4-C &nbsp;Loop</a></li>
                 <li>
-                  Ao passar os números como argumentos entre parênteses (ex:
-                  <code>somar(10, 5)</code>), cada função executa sua respectiva
-                  conta e devolve o valor para ser exibido pelo
-                  <code>console.log()</code>.
+                  <a href="material4d.html" data-i="8">4-D &nbsp;Soma + loop</a>
+                </li>
+                <li>
+                  <a href="material4e.html" data-i="9">4-E &nbsp;While</a>
                 </li>
               </ul>
-            </details>
-            <hr />
+            </div>
 
-            <script>
-              // ==========================================
-              // OPERAÇÕES MATEMÁTICAS BÁSICAS
-              // ==========================================
+            <div class="menu-grupo">
+              <div class="menu-grupo-titulo">📁 MATERIAL 5</div>
+              <ul class="menu-lista">
+                <li>
+                  <a href="material5a.html" data-i="10"
+                    >5-A &nbsp; O que é uma função?</a
+                  >
+                </li>
+                <li>
+                  <a href="material5b.html" data-i="11"
+                    >5-B &nbsp;Faça contas</a
+                  >
+                </li>
+                <li>
+                  <a href="material5c.html" data-i="12"
+                    >5-C &nbsp;Olá nome!</a
+                  >
+                </li>
+                <li>
+                  <a href="material5d.html" data-i="13"
+                    >5-D &nbsp;A+B = ?</a
+                  >
+                </li>
+              </ul>
+            </div>
 
-              // 1. Função de Somar
-              function somar(a, b) {
-                return a + b;
-              }
-
-              // 2. Função de Subtrair
-              function subtrair(a, b) {
-                return a - b;
-              }
-
-              // 3. Função de Multiplicar
-              function multiplicar(a, b) {
-                return a * b;
-              }
-
-              // 4. Função de Dividir (com verificação para divisão por zero)
-              function dividir(a, b) {
-                if (b === 0) {
-                  return "Erro: Divisão por zero não é permitida!";
-                }
-                return a / b;
-              }
-
-              // ==========================================
-              // TESTANDO AS FUNÇÕES NO CONSOLE
-              // ==========================================
-
-              console.log("Soma (10 + 5):", somar(10, 5)); // Saída: 15
-              console.log("Subtração (10 - 5):", subtrair(10, 5)); // Saída: 5
-              console.log("Multiplicação (10 * 5):", multiplicar(10, 5)); // Saída: 50
-              console.log("Divisão (10 / 5):", dividir(10, 5)); // Saída: 2
-              console.log("Divisão por zero:", dividir(10, 0)); // Saída: Erro...
-            </script>
-
-            <!-- O CONTEÚDO REAL ACABA AQUI -->
-
-            <hr class="linha" />
-
-            <p>Texto de despedida do post. 💾✨</p>
+            <div class="menu-grupo">
+              <div class="menu-grupo-titulo">📁 MATERIAL 6</div>
+              <ul class="menu-lista">
+                <li>
+                  <a href="material6a.html" data-i="14"
+                    >6-A &nbsp;Arrays?</a
+                  >
+                </li>
+                <li>
+                  <a href="material6b.html" data-i="15"
+                    >6-B &nbsp;Array let cidades</a
+                  >
+                </li>
+                <li>
+                  <a href="material6c.html" data-i="16"
+                    >6-C &nbsp;Array let números</a
+                  >
+                </li>
+                <li>
+                  <a href="material6d.html" data-i="17"
+                    >6-D &nbsp;Array let números(2)</a
+                  >
+                </li>
+              </ul>
+            </div>
           </main>
         </div>
       </div>
     </div>
+
+    <script>
+      document.querySelectorAll("a[data-i]").forEach((link) => {
+        link.addEventListener("click", () => {
+          /* O link abre normalmente. Se estiver dentro do iPod, só avisa qual atividade abriu. */
+          if (window.parent !== window) {
+            window.parent.postMessage(
+              { tipo: "sincronizar", indice: Number(link.dataset.i) },
+              "*"
+            );
+          }
+        });
+      });
+    </script>
   </body>
 </html>

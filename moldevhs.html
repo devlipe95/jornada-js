@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moldura de TV e Videocassete</title>
+
+    <style>
+      /* =========================================================
+         CONFIGURAÇÕES GERAIS
+         ALTERE O 700px PARA DEIXAR TUDO MAIOR OU MENOR.
+      ========================================================= */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --largura: min(700px, 96vw);
+        --altura-tela: 420px;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #3b3a37;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 30px 12px;
+      }
+
+      body:has(.conjunto.expandido) { overflow: hidden; }
+
+      .conjunto {
+        width: var(--largura);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* =========================================================
+         TELEVISÃO DE TUBO
+      ========================================================= */
+      .tv {
+        width: 100%;
+        background: linear-gradient(#5a4a3c, #3d3128);
+        border-radius: 26px 26px 14px 14px;
+        padding: 26px;
+        display: flex;
+        gap: 18px;
+        box-shadow: 0 10px 22px rgba(0,0,0,.45), inset 0 2px 0 rgba(255,255,255,.12);
+        position: relative;
+        z-index: 2;
+      }
+
+      /* moldura interna do vidro */
+      .vidro {
+        flex: 1;
+        min-width: 0;
+        background: #0c0c0c;
+        padding: 14px;
+        border-radius: 30px / 26px;
+        box-shadow: inset 0 0 14px #000, 0 0 0 3px #2a2018;
+      }
+
+      /* =========================================================
+         TELA (aqui dentro entra o site de verdade)
+         ALTERE --altura-tela NO :root PARA MUDAR A ALTURA.
+      ========================================================= */
+      .tela {
+        position: relative;
+        height: var(--altura-tela);
+        background: #fff;
+        overflow: hidden;
+        border-radius: 22px / 18px;
+        box-shadow: inset 0 0 40px rgba(0,0,0,.45);
+        display: flex;
+        flex-direction: column;
+        transition: border-radius .3s ease;
+      }
+
+      /* reflexo do vidro por cima do conteúdo (não bloqueia cliques) */
+      .tela::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background:
+          linear-gradient(125deg, rgba(255,255,255,.16) 0%, rgba(255,255,255,0) 28%),
+          radial-gradient(ellipse at center, transparent 62%, rgba(0,0,0,.28) 100%);
+      }
+
+      .conteudo-tela {
+        flex: 1;
+        min-height: 0;
+        overflow: auto;
+        background: #121518; /* combina com o fundo escuro do canal */
+      }
+
+      /* =========================================================
+         ESPAÇO RESERVADO AO CONTEÚDO REAL
+      ========================================================= */
+      /* =========================================================
+         EFEITO DE CANAL DE TV (OSD, rodapé e scanlines)
+         Adaptado para preencher a tela do molde.
+      ========================================================= */
+      .tv-channel-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 100%;
+        display: flex;
+        flex-direction: column;
+        background: #121518;
+        color: #e6e6e6;
+        font-family: "Courier New", monospace;
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      /* Textos de menu da TV (OSD) */
+      .tv-osd-top {
+        display: flex;
+        justify-content: space-between;
+        color: #00ff66;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 15px;
+        text-shadow: 0 0 4px #00ff66;
+      }
+
+      /* Cresce para empurrar o rodapé sempre para baixo */
+      .tv-content {
+        flex: 1;
+        background: #1c2024;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #333;
+        min-height: 200px;
+      }
+
+      /* Rodapé do canal */
+      .tv-osd-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+        background: #000;
+        padding: 6px 12px;
+        border-radius: 4px;
+        border-left: 3px solid #ff3366;
+      }
+
+      .ticker-text {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 11px;
+        color: #ffcc00;
+      }
+
+      .tv-logo {
+        flex-shrink: 0;
+        font-weight: bold;
+        background: #ff3366;
+        color: #fff;
+        padding: 2px 6px;
+        font-size: 10px;
+        border-radius: 2px;
+      }
+
+      /* Linhas de tubo (não bloqueiam cliques) */
+      .scanlines {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+        background-size: 100% 4px;
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         PAINEL LATERAL DA TV
+      ========================================================= */
+      .painel {
+        width: 84px;
+        background: #2b221b;
+        border-radius: 10px;
+        padding: 16px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        box-shadow: inset 0 0 8px rgba(0,0,0,.6);
+      }
+
+      .botao-expandir {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 3px solid #1b1b1b;
+        background: radial-gradient(circle at 35% 30%, #e5e5e5, #8c8c8c);
+        color: #222;
+        font-size: 21px;
+        font-weight: bold;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0,0,0,.5);
+      }
+      .botao-expandir:hover { filter: brightness(1.12); }
+      .botao-expandir:focus-visible { outline: 3px solid #ffd45c; outline-offset: 2px; }
+
+      .knob {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: repeating-conic-gradient(#555 0 8deg, #3a3a3a 8deg 16deg);
+        border: 3px solid #1b1b1b;
+        box-shadow: 0 2px 4px rgba(0,0,0,.5);
+      }
+
+      .grade-alto-falante {
+        width: 56px;
+        height: 70px;
+        margin-top: auto;
+        background: repeating-linear-gradient(#0f0b08 0 3px, #3d3128 3px 7px);
+        border-radius: 4px;
+      }
+
+      .led {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #e23b2e;
+        box-shadow: 0 0 8px #e23b2e;
+      }
+
+      /* pezinhos da TV */
+      .pes {
+        width: calc(100% - 90px);
+        display: flex;
+        justify-content: space-between;
+        height: 8px;
+        position: relative;
+        z-index: 1;
+      }
+      .pes span { width: 56px; background: #1d1813; border-radius: 0 0 6px 6px; }
+
+      /* =========================================================
+         VIDEOCASSETE
+      ========================================================= */
+      .vcr {
+        width: 100%;
+        background: linear-gradient(#2c2c2e, #151516);
+        border-radius: 8px;
+        padding: 14px 24px 16px;
+        box-shadow: 0 10px 18px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.14);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .vcr-topo {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      /* abertura da fita */
+      .slot {
+        flex: 1;
+        height: 34px;
+        background: #050505;
+        border-radius: 4px;
+        box-shadow: inset 0 3px 8px #000, 0 1px 0 rgba(255,255,255,.15);
+        position: relative;
+      }
+      .slot::after {
+        content: "";
+        position: absolute;
+        left: 14px; right: 14px; top: 13px;
+        height: 7px;
+        background: #1a1a1a;
+        border-radius: 2px;
+      }
+
+      /* visor digital */
+      .visor {
+        width: 118px;
+        padding: 6px 10px;
+        background: #07140d;
+        border-radius: 3px;
+        box-shadow: inset 0 0 6px #000;
+        color: #5dffa0;
+        font-family: "Courier New", monospace;
+        font-size: 20px;
+        text-align: center;
+        text-shadow: 0 0 6px #2bd873;
+      }
+
+      .vcr-base {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .marca {
+        font-size: 13px;
+        font-weight: bold;
+        letter-spacing: 3px;
+        color: #8d8d90;
+      }
+
+      .botoes { display: flex; gap: 8px; }
+
+      .botoes a {
+        min-width: 46px;
+        height: 28px;
+        padding: 0 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(#58585b, #3a3a3d);
+        color: #d8d8da;
+        font-size: 13px;
+        text-decoration: none;
+        border-radius: 3px;
+        border-bottom: 3px solid #0f0f10;
+      }
+      .botoes a:hover { background: linear-gradient(#6a6a6e, #48484c); }
+      .botoes a:active { border-bottom-width: 1px; transform: translateY(2px); }
+      .botoes a:focus-visible { outline: 3px solid #ffd45c; }
+
+      .pes-vcr {
+        width: calc(100% - 50px);
+        display: flex;
+        justify-content: space-between;
+        height: 7px;
+      }
+      .pes-vcr span { width: 44px; background: #0e0e0f; border-radius: 0 0 5px 5px; }
+
+      /* =========================================================
+         MODO EXPANDIDO
+         A TV e o videocassete somem e a tela ocupa a janela toda.
+      ========================================================= */
+      .conjunto.expandido { position: fixed; inset: 0; width: 100%; z-index: 100; background: #fff; }
+      .conjunto.expandido .tv {
+        position: absolute; inset: 0;
+        padding: 0; gap: 0; border-radius: 0; background: #fff; box-shadow: none;
+      }
+      .conjunto.expandido .vidro { padding: 0; border-radius: 0; box-shadow: none; background: #fff; }
+      .conjunto.expandido .tela { height: 100%; border-radius: 0; box-shadow: none; }
+      .conjunto.expandido .tela::after { display: none; }
+      .conjunto.expandido .vcr,
+      .conjunto.expandido .pes { display: none; }
+      /* o painel vira só um botão de retrair no canto */
+      .conjunto.expandido .painel {
+        position: absolute; top: 10px; right: 10px;
+        width: auto; padding: 0; background: transparent; box-shadow: none; z-index: 5;
+      }
+      .conjunto.expandido .painel > :not(.botao-expandir) { display: none; }
+
+      /* =========================================================
+         CELULAR
+      ========================================================= */
+      @media (max-width: 600px) {
+        :root { --altura-tela: 340px; }
+        .tv { padding: 14px; gap: 10px; }
+        .vidro { padding: 8px; }
+        .painel { width: 52px; gap: 10px; }
+        .knob, .botao-expandir { width: 34px; height: 34px; font-size: 16px; }
+        .grade-alto-falante { width: 36px; height: 50px; }
+        .vcr { padding: 12px 14px; }
+        .visor { width: 90px; font-size: 16px; }
+        .marca { display: none; }
+        .botoes { width: 100%; justify-content: space-between; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="conjunto" id="conjunto">
+      <!-- ===================== TELEVISÃO ===================== -->
+      <div class="tv">
+        <div class="vidro">
+          <div class="tela">
+            <div class="conteudo-tela">
+              <div class="tv-channel-wrapper">
+                <!-- Interface de TV (OSD) -->
+                <div class="tv-osd-top">
+                  <span class="tv-channel">CH 03 - AUTO</span>
+                  <span class="tv-status">● PLAY</span>
+                </div>
+
+                <div class="tv-content">
+                  <!-- =========================================================
+                       ★★★ AQUI FICA O CONTEÚDO REAL ★★★
+                       Apague o texto abaixo e coloque a sua atividade
+                       (título, texto, scripts, etc.) dentro desta área.
+
+                       Se preferir usar um iframe, use:
+                       <iframe src="seusite.html" title="Site"
+                         style="width:100%;min-height:300px;border:none;display:block"></iframe>
+                  ========================================================== -->
+                  <h2>Título da Atividade JS</h2>
+                  <p>espaço reservado a conteúdo real</p>
+
+                  <div class="js-exercise-area">
+                    <!-- O código / script da sua atividade roda aqui dentro -->
+                  </div>
+
+
+                  
+                  <!--===========================================================
+                    ★★★ FIM DO CONTEÚDO REAL ★★★ 
+                 ==========================================================-->
+                </div>
+
+                <!-- Rodapé (news ticker) -->
+                <div class="tv-osd-bottom">
+                  <div class="ticker-text">
+                    PROGRAMAÇÃO: EXERCÍCIOS JS DA SEMANA --- TRANSMISSÃO AO VIVO ---
+                  </div>
+                  <div class="tv-logo">JS-TV</div>
+                </div>
+
+                <!-- Efeito visual de tubo (scanlines) -->
+                <div class="scanlines"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="painel">
+          <!-- Botão expandir / retrair (controlado pelo JavaScript) -->
+          <button class="botao-expandir" id="botaoExpandir" onclick="alternarTela()" title="Expandir tela">⛶</button>
+          <div class="knob"></div>
+          <div class="knob"></div>
+          <div class="led"></div>
+          <div class="grade-alto-falante"></div>
+        </div>
+      </div>
+      <div class="pes"><span></span><span></span></div>
+
+      <!-- ===================== VIDEOCASSETE ===================== -->
+      <div class="vcr">
+        <div class="vcr-topo">
+          <div class="slot"></div>
+          <div class="visor">12:00</div>
+        </div>
+        <div class="vcr-base">
+          <div class="marca">VHS HI-FI</div>
+          <div class="botoes">
+            <!-- Troque os href pelos links que quiser -->
+            <a href="#" title="Voltar">◀◀</a>
+            <a href="#" title="Play">▶</a>
+            <a href="#" title="Pausa">❚❚</a>
+            <a href="#" title="Parar">■</a>
+            <a href="#" title="Avançar">▶▶</a>
+          </div>
+        </div>
+      </div>
+      <div class="pes-vcr"><span></span><span></span></div>
+    </div>
+
+    <script>
+      /* Expande a tela para a janela inteira e volta ao normal */
+      function alternarTela() {
+        const conjunto = document.getElementById("conjunto");
+        const botao = document.getElementById("botaoExpandir");
+        const expandido = conjunto.classList.toggle("expandido");
+        botao.textContent = expandido ? "↙" : "⛶";
+        botao.title = expandido ? "Retrair tela" : "Expandir tela";
+      }
+    </script>
+  </body>
+</html>

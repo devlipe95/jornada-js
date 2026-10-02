@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Moldura de iPod</title>
+
+    <style>
+      /* =========================================================
+           CONFIGURAÇÕES GERAIS
+        ========================================================= */
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        min-height: 100vh;
+
+        background: #d6d6d6;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        font-family: Arial, Helvetica, sans-serif;
+
+        padding: 30px 15px;
+        
+      }
+
+      /* =========================================================
+           MOLDURA DO IPOD
+
+           ALTERE O 520px PARA DEIXAR O IPOD MAIOR OU MENOR.
+
+           Exemplo:
+
+           width: min(650px, 95vw);
+
+           deixará o iPod maior.
+
+        ========================================================= */
+
+      .ipod {
+        width: min(520px, 95vw);
+
+        background: linear-gradient(
+          to right,
+          #eeeeee,
+          #ffffff 12%,
+          #eeeeee 50%,
+          #ffffff 88%,
+          #d4d4d4
+        );
+
+        border-radius: 42px;
+
+        padding: 28px 25px 45px;
+
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25),
+          inset 0 0 25px rgba(0, 0, 0, 0.12);
+
+        border: 1px solid #c5c5c5;
+
+        transition: width 0.35s ease, padding 0.35s ease,
+          border-radius 0.35s ease;
+      }
+
+      /* =========================================================
+           TELA DO IPOD
+
+           ALTERE O 530px PARA AUMENTAR OU DIMINUIR A ALTURA.
+
+        ========================================================= */
+
+      .tela {
+        width: 100%;
+
+        height: 530px;
+
+        background: white;
+
+        border: 7px solid #111111;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.35),
+          0 2px 3px rgba(0, 0, 0, 0.2);
+
+        position: relative;
+
+        transition: border-radius 0.35s ease, border 0.35s ease;
+      }
+
+      /* =========================================================
+           CABEÇALHO DA TELA
+        ========================================================= */
+
+      .cabecalho {
+        height: 65px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        padding: 0 18px;
+
+        background: linear-gradient(to bottom, #f8f8f8, #dddddd);
+
+        border-bottom: 1px solid #999999;
+
+        flex-shrink: 0;
+      }
+
+      .titulo-ipod {
+        font-size: 22px;
+
+        font-weight: bold;
+
+        color: #111111;
+      }
+
+      /* =========================================================
+           ÁREA DIREITA DO CABEÇALHO
+        ========================================================= */
+
+      .cabecalho-direita {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+      }
+
+      /* =========================================================
+           BOTÃO EXPANDIR / RETRAIR
+        ========================================================= */
+
+      .botao-expandir {
+        border: none;
+
+        background: transparent;
+
+        color: #777777;
+
+        font-size: 23px;
+
+        font-weight: bold;
+
+        cursor: pointer;
+
+        line-height: 1;
+
+        padding: 4px;
+
+        transition: 0.15s;
+      }
+
+      .botao-expandir:hover {
+        color: #222222;
+
+        transform: scale(1.15);
+      }
+
+      /* =========================================================
+           BATERIA
+        ========================================================= */
+
+      .bateria {
+        width: 48px;
+
+        height: 23px;
+
+        border: 2px solid #777777;
+
+        border-radius: 3px;
+
+        padding: 2px;
+
+        position: relative;
+
+        background: #eeeeee;
+      }
+
+      .bateria::after {
+        content: "";
+
+        position: absolute;
+
+        right: -5px;
+
+        top: 6px;
+
+        width: 4px;
+
+        height: 8px;
+
+        background: #777777;
+
+        border-radius: 0 2px 2px 0;
+      }
+
+      .bateria-carga {
+        width: 85%;
+
+        height: 100%;
+
+        background: linear-gradient(to bottom, #b7e99c, #78bb5d);
+
+        border: 1px solid #5c9946;
+      }
+
+      /* =========================================================
+   IFRAME DO SITE
+========================================================= */
+
+      .conteudo-tela {
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        overflow: hidden; /* sem scroll no iPod */
+        display: flex;
+        flex-direction: column; /* cabeçalho em cima, iframe embaixo */
+      }
+
+      .site-iframe {
+        flex: 1; /* ocupa todo o espaço que sobra */
+        min-height: 0;
+        width: 100%;
+        border: none;
+        display: block;
+      }
+
+      /* =========================================================
+           CLICK WHEEL
+        ========================================================= */
+
+      .click-wheel {
+        width: 300px;
+
+        height: 300px;
+
+        max-width: 80vw;
+
+        max-height: 80vw;
+
+        margin: 85px auto 0;
+
+        border-radius: 50%;
+
+        background: #ffffff;
+
+        border: 1px solid #cfcfcf;
+
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.12),
+          inset 0 0 5px rgba(0, 0, 0, 0.04);
+
+        position: relative;
+
+        user-select: none;
+      }
+
+      /* =========================================================
+           BOTÃO MENU
+        ========================================================= */
+
+      .botao-menu {
+        position: absolute;
+
+        top: 30px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+      }
+
+      /* =========================================================
+           BOTÃO ANTERIOR
+        ========================================================= */
+
+      .botao-anterior {
+        position: absolute;
+
+        left: 30px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+      }
+
+      /* =========================================================
+           BOTÃO PRÓXIMO
+        ========================================================= */
+
+      .botao-proximo {
+        position: absolute;
+
+        right: 30px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+      }
+
+      /* =========================================================
+           BOTÃO PLAY / PAUSE
+        ========================================================= */
+
+      .botao-play {
+        position: absolute;
+
+        bottom: 28px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+      }
+
+      /* =========================================================
+           ESTILO DOS BOTÕES
+        ========================================================= */
+
+      .botao-menu,
+      .botao-anterior,
+      .botao-proximo,
+      .botao-play {
+        color: #b5b5b5;
+
+        text-decoration: none;
+
+        font-weight: bold;
+
+        transition: 0.15s;
+      }
+
+      .botao-menu:hover,
+      .botao-anterior:hover,
+      .botao-proximo:hover,
+      .botao-play:hover {
+        color: #777777;
+      }
+
+      .botao-menu:hover,
+      .botao-play:hover {
+        transform: translateX(-50%) scale(1.08);
+      }
+
+      .botao-anterior:hover,
+      .botao-proximo:hover {
+        transform: translateY(-50%) scale(1.08);
+      }
+
+      /* =========================================================
+           TEXTO DO MENU
+        ========================================================= */
+
+      .menu-texto {
+        font-size: 25px;
+
+        letter-spacing: 1px;
+      }
+
+      /* =========================================================
+           SETAS
+        ========================================================= */
+
+      .seta {
+        font-size: 34px;
+
+        letter-spacing: -8px;
+      }
+
+      /* =========================================================
+           PLAY / PAUSE
+        ========================================================= */
+
+      .play-pause {
+        font-size: 28px;
+
+        letter-spacing: 3px;
+      }
+
+      /* =========================================================
+           BOTÃO CENTRAL
+        ========================================================= */
+
+      .botao-central {
+        position: absolute;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(to bottom right, #f5f5f5, #dddddd);
+        border: 1px solid #cccccc;
+        box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.08);
+      }
+
+      /* =========================================================
+           ========================================================
+           MODO EXPANDIDO
+           ========================================================
+           
+           Quando a classe "expandido" é adicionada ao iPod,
+           a moldura desaparece visualmente e a tela ocupa
+           praticamente a tela inteira.
+
+        ============================================================
+        ========================================================= */
+
+      .ipod.expandido {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        padding: 0;
+        border-radius: 0;
+        background: #ffffff;
+        box-shadow: none;
+        border: none;
+        z-index: 100;
+      }
+
+      .ipod.expandido .tela {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      /*
+           Esconde a Click Wheel no modo expandido.
+        */
+
+      .ipod.expandido .click-wheel {
+        display: none;
+      }
+
+      /*
+           O botão de expandir continua no cabeçalho,
+           mas agora ele funciona como botão de RETRAIR.
+        */
+
+      .ipod.expandido .botao-expandir {
+        font-size: 25px;
+      }
+
+      /* =========================================================
+           RESPONSIVIDADE PARA CELULAR
+        ========================================================= */
+
+      @media (max-width: 600px) {
+        body {
+          padding: 15px 8px;
+        }
+
+        .ipod {
+          padding: 18px 15px 30px;
+
+          border-radius: 30px;
+        }
+
+        .tela {
+          height: 470px;
+
+          border-width: 6px;
+        }
+
+        .click-wheel {
+          margin-top: 60px;
+        }
+      }
+
+      body:has(.ipod.expandido) {
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =========================================================
+         IPOD INTEIRO
+    ========================================================= -->
+
+    <div class="ipod" id="ipod">
+      <!-- =====================================================
+             TELA
+        ====================================================== -->
+
+      <div class="tela">
+        <!-- =================================================
+                 ÁREA INTERNA (cabeçalho + iframe, sem scroll)
+            ================================================== -->
+
+        <div class="conteudo-tela">
+          <!-- =============================================
+                     CABEÇALHO
+                ============================================== -->
+
+          <header class="cabecalho">
+            <div class="titulo-ipod">Meu Site</div>
+
+            <div class="cabecalho-direita">
+              <!-- =====================================
+                             BOTÃO EXPANDIR / RETRAIR
+
+                             NÃO PRECISA COLOCAR LINK AQUI.
+
+                             O JavaScript controla esse botão.
+                        ====================================== -->
+
+              <button
+                class="botao-expandir"
+                id="botaoExpandir"
+                onclick="alternarTela()"
+                title="Expandir tela"
+              >
+                ⛶
+              </button>
+
+              <!-- =====================================
+                             BATERIA
+                        ====================================== -->
+
+              <div class="bateria">
+                <div class="bateria-carga"></div>
+              </div>
+            </div>
+          </header>
+
+          <!-- =============================================
+                     CONTEÚDO DO SEU SITE
+
+                     COLOQUE SEU SITE REAL AQUI.
+                ============================================== -->
+
+          <iframe
+            id="telaBlog"
+            src="moldeblog.html"
+            class="site-iframe"
+            title="Blog"
+          ></iframe>
+        </div>
+      </div>
+
+      <!-- =====================================================
+             CLICK WHEEL
+        ====================================================== -->
+
+      <div class="click-wheel">
+        <!-- MENU: volta para a página inicial -->
+        <a
+          class="botao-menu menu-texto"
+          href="#"
+          onclick="irParaInicio(); return false;"
+          title="Menu"
+          >MENU</a
+        >
+
+        <!-- VOLTAR: atividade anterior -->
+        <a
+          class="botao-anterior seta"
+          href="#"
+          onclick="anterior(); return false;"
+          title="Voltar"
+          >|◀◀</a
+        >
+
+        <!-- AVANÇAR: próxima atividade -->
+        <a
+          class="botao-proximo seta"
+          href="#"
+          onclick="proximo(); return false;"
+          title="Avançar"
+          >▶▶|</a
+        >
+
+        <!-- PLAY / PAUSE: abre o index.html -->
+        <a class="botao-play play-pause" href="index.html" title="Play / Pause"
+          >▶ ❚❚</a
+        >
+
+        <!-- BOTÃO CENTRAL -->
+        <div class="botao-central"></div>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         JAVASCRIPT
+
+         CONTROLA O BOTÃO EXPANDIR / RETRAIR
+    ========================================================= -->
+
+    <script>
+      /* Página que aparece quando o iPod abre e quando clica em MENU */
+      const paginaInicial = "moldeblog.html";
+
+      /* Atividades, na ordem em que os botões ◀◀ e ▶▶ passam por elas */
+      const atividades = [
+        "material3a.html",
+        "material3b.html",
+        "material3c.html",
+        "material3d.html",
+        "material3e.html",
+
+        "material4a.html",
+        "material4b.html",
+        "material4c.html",
+        "material4d.html",
+        "material4e.html",
+
+        "material5a.html",
+        "material5b.html",
+        "material5c.html",
+        "material5d.html",
+
+        "material6a.html",
+        "material6b.html",
+        "material6c.html",
+        "material6d.html",
+      ];
+
+      const iframe = document.getElementById("telaBlog");
+      let atual = -1; /* -1 = página inicial */
+
+      function mostrar(i) {
+        atual = i;
+        iframe.src = i === -1 ? paginaInicial : atividades[i];
+      }
+
+      function proximo() {
+        mostrar((atual + 1) % atividades.length);
+      }
+
+      function anterior() {
+        mostrar(atual <= 0 ? atividades.length - 1 : atual - 1);
+      }
+
+      function irParaInicio() {
+        mostrar(-1);
+      }
+
+      function alternarTela() {
+        /*
+         * Procura o elemento principal do iPod.
+         */
+
+        const ipod = document.getElementById("ipod");
+
+        /*
+         * Procura o botão de expandir.
+         */
+
+        const botao = document.getElementById("botaoExpandir");
+
+        /*
+         * Adiciona ou remove a classe "expandido".
+         */
+
+        ipod.classList.toggle("expandido");
+
+        /*
+         * Verifica se o iPod está expandido.
+         */
+
+        if (ipod.classList.contains("expandido")) {
+          /*
+           * Troca o símbolo do botão.
+           */
+
+          botao.textContent = "↙";
+
+          /*
+           * Troca o texto que aparece ao passar
+           * o mouse sobre o botão.
+           */
+
+          botao.title = "Retrair tela";
+        } else {
+          /*
+           * Volta para o símbolo original.
+           */
+
+          botao.textContent = "⛶";
+
+          /*
+           * Volta o texto original.
+           */
+
+          botao.title = "Expandir tela";
+        }
+      }
+    </script>
+  </body>
+</html>

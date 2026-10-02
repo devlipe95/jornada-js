@@ -157,8 +157,8 @@
       }
 
       /* =========================================================
-           SELEÇÃO DE MATERIAIS
-           ========================================================= */
+     SELEÇÃO DE MATERIAIS (visual antigo + ícones novos)
+     ========================================================= */
 
       .folders {
         width: 100%;
@@ -175,12 +175,10 @@
 
         padding: 5px 8px 8px 5px;
 
-        /* Mantém a aparência retrô */
         scrollbar-color: #17220e #769b45;
         scrollbar-width: auto;
       }
 
-      /* Barra de rolagem para navegadores baseados em Chromium */
       .folders::-webkit-scrollbar {
         width: 10px;
       }
@@ -195,8 +193,10 @@
       }
 
       .folder {
+        position: relative;
         width: 100%;
         min-height: 105px;
+        padding: 22px 6px 8px;
 
         display: flex;
         flex-direction: column;
@@ -206,6 +206,8 @@
         border: 3px solid #17220e;
         background: #8aaa58;
 
+        color: #17220e;
+        text-decoration: none;
         cursor: pointer;
 
         box-shadow: 4px 4px 0 #17220e;
@@ -216,46 +218,192 @@
         transform: translateY(-2px);
       }
 
-      .folder-icon {
-        font-size: 42px;
-        filter: grayscale(100%) contrast(1.3);
-      }
-
       .folder-name {
         margin-top: 5px;
         font-size: 12px;
         font-weight: bold;
+        text-transform: uppercase;
       }
 
-      /* =========================================================
-           LISTA DE LINKS
-           ========================================================= */
-
-      .links {
-        width: 100%;
-        margin: 5px 0 10px;
+      /* Área onde ficam os desenhos dos ícones (sem fundo próprio) */
+      .icon-box {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      .link {
-        display: block;
-
-        margin: 6px 0;
-        padding: 7px;
-
-        border: 2px solid #17220e;
-        background: #769b45;
-
-        color: #17220e;
-        text-decoration: none;
-
-        font-size: 12px;
+      /* Balãozinho de dica, dentro do quadradinho */
+      .folder[data-dica]::after {
+        content: attr(data-dica);
+        position: absolute;
+        top: 4px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 2px 6px;
+        background: #0f380f;
+        color: #9bbc0f;
+        border: 1px solid #306230;
+        font-size: 10px;
         font-weight: bold;
-
-        box-shadow: 2px 2px 0 #17220e;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.15s;
+        z-index: 5;
       }
 
-      .link:hover {
-        background: #abc978;
+      .folder[data-dica]:hover::after {
+        opacity: 1;
+      }
+
+      /* iPod */
+      .icon-ipod {
+        width: 22px;
+        height: 36px;
+        background: #e0e0e0;
+        border: 1px solid #0f380f;
+        border-radius: 3px;
+        padding: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+      }
+      .ipod-screen {
+        width: 100%;
+        height: 14px;
+        background: #0f380f;
+        border-radius: 1px;
+      }
+      .ipod-wheel {
+        width: 15px;
+        height: 15px;
+        background: #ffffff;
+        border: 1px solid #0f380f;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .ipod-btn {
+        width: 5px;
+        height: 5px;
+        background: #e0e0e0;
+        border-radius: 50%;
+      }
+
+      /* Fita VHS */
+      .icon-vhs {
+        width: 36px;
+        height: 22px;
+        background: #306230;
+        border: 1px solid #0f380f;
+        border-radius: 2px;
+        padding: 2px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .vhs-top {
+        width: 100%;
+        height: 4px;
+        background: #9bbc0f;
+      }
+      .vhs-reels {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .reel {
+        width: 8px;
+        height: 8px;
+        background: #0f380f;
+        border-radius: 50%;
+        border: 1px solid #9bbc0f;
+      }
+
+      /* Pager */
+      .icon-pager {
+        width: 34px;
+        height: 24px;
+        background: #0f380f;
+        border-radius: 3px;
+        padding: 3px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .pager-screen {
+        background: #9bbc0f;
+        color: #0f380f;
+        font-size: 6px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 1px;
+      }
+      .pager-btns {
+        display: flex;
+        gap: 3px;
+      }
+      .pager-btns span {
+        width: 5px;
+        height: 4px;
+        background: #8b956d;
+        border-radius: 1px;
+        margin: 0;
+      }
+
+      /* Nokia */
+      .icon-nokia {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .nokia-body {
+        width: 20px;
+        height: 40px;
+        background: #0f380f;
+        border-radius: 5px 5px 3px 3px;
+        border: 1px solid #306230;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2px;
+        box-sizing: border-box;
+      }
+      .nokia-screen {
+        width: 16px;
+        height: 12px;
+        background: #9bbc0f;
+        border: 1px solid #306230;
+        border-radius: 2px;
+        margin-bottom: 2px;
+      }
+      .nokia-keypad {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1px;
+      }
+      .key-main {
+        width: 12px;
+        height: 4px;
+        background: #8b956d;
+        border-radius: 1px;
+      }
+      .keys-grid {
+        width: 14px;
+        height: 10px;
+        background: #8b956d;
+        border-radius: 1px;
+        opacity: 0.6;
       }
 
       /* =========================================================
@@ -422,7 +570,7 @@
 
         <section id="startScreen" class="screen">
           <div class="page">
-            <h1>Simulador de Blog</h1>
+            <h1>Jornada JS</h1>
 
             <p>
               <span class="blink">▶</span>
@@ -445,196 +593,66 @@
           <div class="page">
             <h1>Selecione</h1>
 
-            <p>Escolha um material:</p>
-
             <div class="folders">
-              <!-- =================================================
-                   PASTA 3
-                   ================================================= -->
+              <!-- 1. iPod -->
+              <a
+                href="moldeipod.html"
+                class="folder"
+                data-dica="Material 3 ao 6"
+              >
+                <div class="icon-box">
+                  <div class="icon-ipod">
+                    <div class="ipod-screen"></div>
+                    <div class="ipod-wheel"><div class="ipod-btn"></div></div>
+                  </div>
+                </div>
+                <span class="folder-name">.Mp4</span>
+              </a>
 
-              <button class="folder" onclick="mostrarMaterial(3)">
-                <span class="folder-icon">📁</span>
-                <span class="folder-name">MATERIAL 3</span>
-              </button>
+              <!-- 2. VHS -->
+              <a href="#" class="folder">
+                <div class="icon-box">
+                  <div class="icon-vhs">
+                    <div class="vhs-top"></div>
+                    <div class="vhs-reels">
+                      <div class="reel"></div>
+                      <div class="reel"></div>
+                    </div>
+                  </div>
+                </div>
+                <span class="folder-name">VHS</span>
+              </a>
 
-              <!-- =================================================
-                   PASTA 4
-                   ================================================= -->
+              <!-- 3. Pager -->
+              <a href="#" class="folder">
+                <div class="icon-box">
+                  <div class="icon-pager">
+                    <div class="pager-screen">888-BIP</div>
+                    <div class="pager-btns"><span></span><span></span></div>
+                  </div>
+                </div>
+                <span class="folder-name">PAGER.MSG</span>
+              </a>
 
-              <button class="folder" onclick="mostrarMaterial(4)">
-                <span class="folder-icon">📁</span>
-                <span class="folder-name">MATERIAL 4</span>
-              </button>
-
-              <!-- =================================================
-                   PASTA 5
-                   ================================================= -->
-
-              <button class="folder" onclick="mostrarMaterial(5)">
-                <span class="folder-icon">📁</span>
-                <span class="folder-name">MATERIAL 5</span>
-              </button>
-
-              <!-- =================================================
-                   PASTA 6
-                   ================================================= -->
-
-              <button class="folder" onclick="mostrarMaterial(6)">
-                <span class="folder-icon">📁</span>
-                <span class="folder-name">MATERIAL 6</span>
-              </button>
+              <!-- 4. Nokia -->
+              <a href="#" class="folder">
+                <div class="icon-box">
+                  <div class="icon-nokia">
+                    <div class="nokia-body">
+                      <div class="nokia-screen"></div>
+                      <div class="nokia-keypad">
+                        <div class="key-main"></div>
+                        <div class="keys-grid"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="folder-name">NOKIA_3310</span>
+              </a>
             </div>
 
             <button class="screen-button" onclick="voltarInicio()">
-              ← VOLTAR
-            </button>
-          </div>
-        </section>
-
-        <!-- =================================================
-             MATERIAL 3
-             ================================================= -->
-
-        <section id="material3" class="screen hidden">
-          <div class="page">
-            <h1>Material 3</h1>
-
-            <div class="links">
-              <!-- Aqui você coloca o LINK da atividade A do Material 3 -->
-              <a class="link" href="atividade1.html"> ▸ Exercício A </a>
-
-              <!-- Aqui você coloca o LINK da atividade B do Material 3 -->
-              <a class="link" href="atividade2.html"> ▸ Exercício B </a>
-
-              <!-- Aqui você coloca o LINK da atividade C do Material 3 -->
-              <a class="link" href="atividade3.html"> ▸ Exercício C </a>
-
-              <!-- Aqui você coloca o LINK da atividade D do Material 3 -->
-              <a class="link" href="atividade4.html"> ▸ Exercício D </a>
-
-              <!-- Aqui você coloca o LINK da atividade E do Material 3 -->
-              <a class="link" href="atividade5.html"> ▸ Exercício E </a>
-            </div>
-
-            <button class="screen-button" onclick="voltarSelecao()">
-              ← VOLTAR
-            </button>
-          </div>
-        </section>
-
-        <!-- =================================================
-             MATERIAL 4
-             ================================================= -->
-
-        <section id="material4" class="screen hidden">
-          <div class="page">
-            <h1>Material 4</h1>
-
-            <div class="links">
-              <!-- Aqui você coloca o LINK da atividade A do Material 4 -->
-              <a class="link" href="loop.html"> ▸ Exercício A </a>
-
-              <!-- Aqui você coloca o LINK da atividade B do Material 4 -->
-              <a class="link" href="loop2.html"> ▸ Exercício B </a>
-
-              <!-- Aqui você coloca o LINK da atividade C do Material 4 -->
-              <a class="link" href="switch.html"> ▸ Exercício C </a>
-
-              <!-- Aqui você coloca o LINK da atividade D do Material 4 -->
-              <a class="link" href="switch2.html"> ▸ Exercício D </a>
-
-              <!-- Aqui você coloca o LINK da atividade E do Material 4 -->
-              <a class="link" href="while.html"> ▸ Exercício E </a>
-            </div>
-
-            <button class="screen-button" onclick="voltarSelecao()">
-              ← VOLTAR
-            </button>
-          </div>
-        </section>
-
-        <!-- =================================================
-             MATERIAL 5
-             ================================================= -->
-
-        <section id="material5" class="screen hidden">
-          <div class="page">
-            <h1>Material 5</h1>
-
-            <div class="links">
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE A
-                   DO MATERIAL 5
-                   ================================================= -->
-
-              <a class="link" href="material5a.html"> ▸ Exercício A </a>
-
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE B
-                   DO MATERIAL 5
-                   ================================================= -->
-
-              <a class="link" href="material5b.html"> ▸ Exercício B </a>
-
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE C
-                   DO MATERIAL 5
-                   ================================================= -->
-
-              <a class="link" href="material5c.html"> ▸ Exercício C </a>
-
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE D
-                   DO MATERIAL 5
-                   ================================================= -->
-
-              <a class="link" href="material5d.html"> ▸ Exercício D </a>
-
-            <button class="screen-button" onclick="voltarSelecao()">
-              ← VOLTAR
-            </button>
-          </div>
-        </section>
-
-        <!-- =================================================
-             MATERIAL 6
-             ================================================= -->
-
-        <section id="material6" class="screen hidden">
-          <div class="page">
-            <h1>Material 6</h1>
-
-            <div class="links">
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE A
-                   DO MATERIAL 6
-                   ================================================= -->
-
-              <a class="link" href="material6a.html"> ▸ Exercício A </a>
-
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE B
-                   DO MATERIAL 6
-                   ================================================= -->
-
-              <a class="link" href="material6b.html"> ▸ Exercício B </a>
-
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE C
-                   DO MATERIAL 6
-                   ================================================= -->
-
-              <a class="link" href="material6c.html"> ▸ Exercício C </a>
-
-              <!-- =================================================
-                   AQUI VOCÊ COLOCA O LINK DA ATIVIDADE D
-                   DO MATERIAL 6
-                   ================================================= -->
-
-              <a class="link" href="material6d.html"> ▸ Exercício D </a>
-
-            <button class="screen-button" onclick="voltarSelecao()">
-              ← VOLTAR
+              ⇦ VOLTAR
             </button>
           </div>
         </section>
@@ -674,49 +692,16 @@
       function esconderTodas() {
         document.getElementById("startScreen").classList.add("hidden");
         document.getElementById("selectionScreen").classList.add("hidden");
-
-        document.getElementById("material3").classList.add("hidden");
-        document.getElementById("material4").classList.add("hidden");
-        document.getElementById("material5").classList.add("hidden");
-        document.getElementById("material6").classList.add("hidden");
       }
 
       function mostrarSelecao() {
         esconderTodas();
-
         document.getElementById("selectionScreen").classList.remove("hidden");
-      }
-
-      function mostrarMaterial(numero) {
-        esconderTodas();
-
-        if (numero === 3) {
-          document.getElementById("material3").classList.remove("hidden");
-        }
-
-        if (numero === 4) {
-          document.getElementById("material4").classList.remove("hidden");
-        }
-
-        if (numero === 5) {
-          document.getElementById("material5").classList.remove("hidden");
-        }
-
-        if (numero === 6) {
-          document.getElementById("material6").classList.remove("hidden");
-        }
       }
 
       function voltarInicio() {
         esconderTodas();
-
         document.getElementById("startScreen").classList.remove("hidden");
-      }
-
-      function voltarSelecao() {
-        esconderTodas();
-
-        document.getElementById("selectionScreen").classList.remove("hidden");
       }
     </script>
   </body>

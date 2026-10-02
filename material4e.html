@@ -387,168 +387,60 @@
             <h1>Registros de um Dev Aprendiz</h1>
 
             <p>
-              Atenção: este parágrafo não contém nenhum ensinamento de JavaScript, apenas carisma e preenchimento. Pode rolar para o exercício!
+              Olá, humano! Sou apenas alguns bytes de texto simpático para o layout não ficar vazio. Rola essa tela e bora codar!
             </p>
 
             <hr class="linha" />
 
             <!-- O CONTEÚDO REAL COMEÇA AQUI -->
 
-            <h3>Crie funções para:</h3>
-
-            <ol>
-              <li>1- somar(a, b)</li>
-
-              <li>2- subtrair(a, b)</li>
-
-              <li>3- multiplicar(a, b)</li>
-
-              <li>4- dividir(a, b)</li>
-            </ol>
-
+            <h2>While</h2>
+            <h2>Use While para:</h2>
+            <ul>
+              <li>A - Contar de 1 a 10</li>
+              <li>B - Somar de 1 a 10</li>
+              <li>C - Contagem regressiva de 10 a 1</li>
+            </ul>
             <h5>
-              *Confira essa página com f12(inspecionar) na aba console do
-              DevTools para ver as respostas! Meu A vale 10 e o B vale 5!
+              Confira essa página com f12(inspecionar) na aba console do
+              DevTools para ver as respostas!
             </h5>
-
-            <hr />
-
-            <details>
-              <summary>
-                <strong
-                  >Clique aqui para ver a resolução e explicação do Exercício:
-                  Quatro Operações Matemáticas</strong
-                >
-              </summary>
-
-              <h3>Código do Script</h3>
-              <pre><code>// 1. Função para Somar
-  function somar(a, b) {
-    return a + b;
-  }
-  
-  // 2. Função para Subtrair
-  function subtrair(a, b) {
-    return a - b;
-  }
-  
-  // 3. Função para Multiplicar
-  function multiplicar(a, b) {
-    return a * b;
-  }
-  
-  // 4. Função para Dividir
-  function dividir(a, b) {
-    if (b === 0) {
-      return "Erro: Divisão por zero!";
-    }
-    return a / b;
-  }
-  
-  // Testando as funções
-  console.log(somar(10, 5));        // 15
-  console.log(subtrair(10, 5));     // 5
-  console.log(multiplicar(10, 5));  // 50
-  console.log(dividir(10, 5));      // 2
-  console.log(dividir(10, 0));      // Erro: Divisão por zero!</code></pre>
-
-              <h2>Dissecando o Script: Entendendo as Operações Básicas</h2>
-
-              <p>
-                Neste exercício, criamos quatro funções separadas para realizar
-                cada uma das operações fundamentais da matemática em JavaScript.
-              </p>
-
-              <h3>1. As Quatro Funções Principais</h3>
-              <ul>
-                <li>
-                  <strong><code>somar(a, b)</code></strong
-                  >: Utiliza o operador aritmético <code>+</code> para somar os
-                  valores de <code>a</code> e <code>b</code>.
-                </li>
-                <li>
-                  <strong><code>subtrair(a, b)</code></strong
-                  >: Utiliza o operador <code>-</code> para calcular a diferença
-                  entre <code>a</code> e <code>b</code>.
-                </li>
-                <li>
-                  <strong><code>multiplicar(a, b)</code></strong
-                  >: Utiliza o operador <code>*</code> para multiplicar
-                  <code>a</code> por <code>b</code>.
-                </li>
-                <li>
-                  <strong><code>dividir(a, b)</code></strong
-                  >: Utiliza o operador <code>/</code> para dividir
-                  <code>a</code> por <code>b</code>.
-                </li>
-              </ul>
-
-              <h3>2. Uso do Comandos <code>return</code> e Validação</h3>
-              <ul>
-                <li>
-                  <strong><code>return</code></strong
-                  >: Instrução que faz a função devolver o resultado do cálculo
-                  para onde ela foi chamada.
-                </li>
-                <li>
-                  <strong
-                    >Validação de segurança (<code>if (b === 0)</code>)</strong
-                  >: Na função de divisão, verificamos se o divisor
-                  <code>b</code> é igual a zero, evitando um resultado
-                  matematicamente inválido (<code>Infinity</code>) e retornando
-                  uma mensagem amigável.
-                </li>
-              </ul>
-
-              <h3>3. Execução e Teste</h3>
-              <ul>
-                <li>
-                  Ao passar os números como argumentos entre parênteses (ex:
-                  <code>somar(10, 5)</code>), cada função executa sua respectiva
-                  conta e devolve o valor para ser exibido pelo
-                  <code>console.log()</code>.
-                </li>
-              </ul>
-            </details>
-            <hr />
 
             <script>
               // ==========================================
-              // OPERAÇÕES MATEMÁTICAS BÁSICAS
+              // Exercício A: Contar de 1 a 10
               // ==========================================
+              // Define o limite desejado para a contagem
+              const limite = 10;
+              let X = 1;
 
-              // 1. Função de Somar
-              function somar(a, b) {
-                return a + b;
-              }
-
-              // 2. Função de Subtrair
-              function subtrair(a, b) {
-                return a - b;
-              }
-
-              // 3. Função de Multiplicar
-              function multiplicar(a, b) {
-                return a * b;
-              }
-
-              // 4. Função de Dividir (com verificação para divisão por zero)
-              function dividir(a, b) {
-                if (b === 0) {
-                  return "Erro: Divisão por zero não é permitida!";
-                }
-                return a / b;
+              while (X <= limite) {
+                console.log(X);
+                X++;
               }
 
               // ==========================================
-              // TESTANDO AS FUNÇÕES NO CONSOLE
+              // Exercício B: Soma de 1 a 10
               // ==========================================
+              let i = 1;
+              let soma = 0;
 
-              console.log("Soma (10 + 5):", somar(10, 5)); // Saída: 15
-              console.log("Subtração (10 - 5):", subtrair(10, 5)); // Saída: 5
-              console.log("Multiplicação (10 * 5):", multiplicar(10, 5)); // Saída: 50
-              console.log("Divisão (10 / 5):", dividir(10, 5)); // Saída: 2
-              console.log("Divisão por zero:", dividir(10, 0)); // Saída: Erro...
+              while (i <= 10) {
+                soma += i;
+                i++;
+              }
+
+              console.log("Soma total de 1 a 10:", soma); // Exibe 55
+
+              // ==========================================
+              // Exercício C: Contagem regressiva de 10 a 1
+              // ==========================================
+              let regressivo = 10;
+
+              while (regressivo >= 1) {
+                console.log(regressivo);
+                regressivo--;
+              }
             </script>
 
             <!-- O CONTEÚDO REAL ACABA AQUI -->
