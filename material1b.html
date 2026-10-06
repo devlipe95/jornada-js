@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- TROQUE O TÍTULO DA ABA -->
+    <title>CH 00 - MATERIAL X ATIVIDADE X</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        background: #121518;
+      }
+
+      /* =========================================================
+         CANAL DE TV (mesma estética do menu)
+      ========================================================= */
+      .tv-channel-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #121518;
+        color: #e6e6e6;
+        font-family: "Courier New", monospace;
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      /* Textos de menu da TV (OSD) */
+      .tv-osd-top {
+        display: flex;
+        justify-content: space-between;
+        color: #00ff66;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 15px;
+        text-shadow: 0 0 4px #00ff66;
+      }
+
+      /* Caixa central: cresce para empurrar o rodapé para baixo */
+      .tv-content {
+        flex: 1;
+        background: #1c2024;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #333;
+        min-height: 200px;
+      }
+
+      /* Rodapé do canal */
+      .tv-osd-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+        background: #000;
+        padding: 6px 12px;
+        border-radius: 4px;
+        border-left: 3px solid #ff3366;
+      }
+
+      .ticker-text {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 11px;
+        color: #ffcc00;
+      }
+
+      .tv-logo {
+        flex-shrink: 0;
+        font-weight: bold;
+        background: #ff3366;
+        color: #fff;
+        padding: 2px 6px;
+        font-size: 10px;
+        border-radius: 2px;
+      }
+
+      /* Linhas de tubo (não bloqueiam cliques) */
+      .scanlines {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          rgba(18, 16, 16, 0) 50%,
+          rgba(0, 0, 0, 0.25) 50%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         ESTILO BÁSICO PARA O SEU CONTEÚDO (pode editar/apagar)
+      ========================================================= */
+      .tv-content h2 {
+        margin-bottom: 10px;
+        color: #fff;
+      }
+      .tv-content p {
+        line-height: 1.5;
+      }
+
+      /* =========================================================
+   CONTEÚDO SEM EFEITO DE TV
+   A section fica numa camada acima das scanlines
+========================================================= */
+      .scanlines {
+        z-index: 1;
+      }
+
+      .exercicio-container {
+        position: relative; /* necessário para o z-index funcionar */
+        z-index: 2; /* acima das scanlines */
+        background: #ffffff; /* fundo claro próprio */
+        color: #222;
+        padding: 30px;
+        border-radius: 6px;
+      }
+
+      /* Os estilos do molde deixam h2 branco; aqui volta ao normal */
+      .exercicio-container h1,
+      .exercicio-container h2,
+      .exercicio-container h3,
+      .exercicio-container p {
+        color: inherit;
+      }
+
+       /* CSS da atividade */
+
+      #caixa {
+    background-color: gray;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+button {
+    padding: 8px 15px;
+    margin-right: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+
+#btnVermelho {
+    background-color: red;
+    color: white;
+}
+
+#btnVerde {
+    background-color: green;
+    color: white;
+}
+
+#btnAzul {
+    background-color: blue;
+    color: white;
+}
+    </style>
+  </head>
+
+  <body>
+    <div class="tv-channel-wrapper">
+    
+
+      <div class="tv-content">
+        <!-- =========================================================
+             ★★★ AQUI FICA O CONTEÚDO REAL ★★★
+        ========================================================== -->
+
+        <section class="exercicio-container">
+            <h2>Crie uma pagina com: </h2>
+            <ul>
+                <li>A - Crie uma div com id="caixa" escrito "Minha Caixa"</li>
+                <li>B - Aplique CSS: fundo cinza, padding 20px, texto centralizado</li>
+                <li>C - Crie 3 botões: "Vermelho", "Verde" e "Azul"</li>
+                <li>D - Ao clicar nos botões, altere a cor de fundo da caixa para a cor correspondente</li>
+            </ul>
+            
+            <hr> <!-- Linha para separar o enunciado do exercício prático -->
+            
+            <!-- EXERCÍCIO PRÁTICO -->
+            <div id="caixa">Minha Caixa</div>
+            <br>
+            <button id="btnVermelho">Vermelho</button>
+            <button id="btnVerde">Verde</button>
+            <button id="btnAzul">Azul</button>
+            
+            <hr> <!-- Linha para separar o exercício prático da explicação -->
+            
+            <!-- EXPLICAÇÃO DO JS -->
+            <details>
+                <summary><strong>Explicação do JS</strong></summary>
+                
+                <h3>Código utilizado:</h3>
+                <pre><code>const caixa = document.getElementById('caixa');
+            const btnVermelho = document.getElementById('btnVermelho');
+            const btnVerde = document.getElementById('btnVerde');
+            const btnAzul = document.getElementById('btnAzul');
+            
+            btnVermelho.addEventListener('click', function() {
+                caixa.style.backgroundColor = 'red';
+            });
+            
+            btnVerde.addEventListener('click', function() {
+                caixa.style.backgroundColor = 'green';
+            });
+            
+            btnAzul.addEventListener('click', function() {
+                caixa.style.backgroundColor = 'blue';
+            });</code></pre>
+            
+                <h3>Traduzindo o script para português:</h3>
+                
+                Nas quatro primeiras linhas temos <strong>const caixa = document.getElementById('caixa');</strong> até os botões. Sabendo que <strong>const</strong> cria um slot com valor imutável e <strong>document.getElementById</strong> busca um elemento na página pela sua id, temos quatro slots imutáveis guardando a caixa e cada um dos três botões. <br>
+                
+                Traduzindo esse bloco inicial: <em>"No HTML, procure pelos elementos com id 'caixa', 'btnVermelho', 'btnVerde' e 'btnAzul', e guarde cada um dentro do seu respectivo slot."</em> <br><br>
+            
+                Na linha seguinte temos <strong>btnVermelho.addEventListener('click', function() {</strong>. O termo <strong>btnVermelho</strong> chama o slot do primeiro botão, <strong>addEventListener('click', ...)</strong> escuta quando o usuário clica nele, e <strong>function() {</strong> abre o bloco de código que vai rodar. <br>
+                
+                Traduzindo essa instrução: <em>"Avisamos ao 'btnVermelho' para ficar ouvindo a tela e, no exato momento em que receber um clique, executar a função contida nele."</em> <br><br>
+            
+                Dentro da função temos <strong>caixa.style.backgroundColor = 'red';</strong>. Aqui, <strong>caixa</strong> chama o nosso slot da div, <strong>style</strong> acessa as propriedades visuais (CSS) desse elemento, <strong>backgroundColor</strong> especifica a cor de fundo, e o sinal de <strong>=</strong> atribui a cor 'red' (vermelho). <br>
+                
+                Traduzindo a linha interna: <em>"Acesse o estilo visual do elemento 'caixa' e mude a sua cor de fundo para vermelho."</em> <br><br>
+            
+                Repetimos a mesma estrutura com <strong>btnVerde</strong> e <strong>btnAzul</strong> mudando a propriedade <strong>style.backgroundColor</strong> para 'green' e 'blue'. <br><br>
+            
+                <h3>Resumo final:</h3>
+                <p>
+                    Juntando todas essas traduções, o código está dizendo: <em>"Mapeie a caixa e os três botões. Fique escutando o clique em qualquer um dos botões. Quando um botão for clicado, altere a propriedade de estilo do fundo da caixa para a cor correspondente."</em> É por isso que, ao clicar em "Vermelho", "Verde" ou "Azul", a cor do elemento muda na hora.
+                </p>
+            </details>
+
+          <div class="js-exercise-area">
+            <script>
+                const caixa = document.getElementById('caixa');
+const btnVermelho = document.getElementById('btnVermelho');
+const btnVerde = document.getElementById('btnVerde');
+const btnAzul = document.getElementById('btnAzul');
+
+btnVermelho.addEventListener('click', function() {
+    caixa.style.backgroundColor = 'red';
+});
+
+btnVerde.addEventListener('click', function() {
+    caixa.style.backgroundColor = 'green';
+});
+
+btnAzul.addEventListener('click', function() {
+    caixa.style.backgroundColor = 'blue';
+});
+            </script>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             ★★★ AQUI TERMINA O CONTEÚDO REAL ★★★
+        ========================================================== -->
+      </div>
+
+     
+
+      <!-- Efeito visual de tubo (scanlines) -->
+      <div class="scanlines"></div>
+    </div>
+  </body>
+</html>

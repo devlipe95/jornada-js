@@ -125,7 +125,7 @@
         z-index: 2; /* acima das scanlines */
         background: #ffffff; /* fundo claro próprio */
         color: #222;
-        padding: 15px;
+        padding: 30px;
         border-radius: 6px;
       }
 
@@ -137,20 +137,77 @@
         color: inherit;
       }
 
-       /* CSS da atividade */
+      /* CSS da atividade */
 
-       
+      /* 1- Formulário com fundo branco, sombra e bordas arredondadas */
+      .meu-formulario {
+        background-color: white;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .campo {
+        margin-bottom: 16px;
+      }
+
+      /* 2- Labels com negrito */
+      .meu-formulario label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 6px;
+        color: #333;
+      }
+
+      /* 3- Inputs com borda azul clara e padding */
+      .meu-formulario input,
+      .meu-formulario textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1.5px solid #add8e6;
+        border-radius: 6px;
+        box-sizing: border-box;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+
+      .meu-formulario textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+
+      /* 4- Quando o input estiver em foco → borda azul */
+      .meu-formulario input:focus,
+      .meu-formulario textarea:focus {
+        border-color: #007bff;
+      }
+
+      /* 5- Botão com fundo azul, borda arredondada e hover */
+      .btn-enviar {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s ease;
+      }
+
+      .btn-enviar:hover {
+        background-color: #0056b3;
+      }
     </style>
   </head>
 
   <body>
-    <div class="tv-channel-wrapper">
-      <!-- Interface de TV (OSD) -->
-      <div class="tv-osd-top">
-        <!-- TROQUE: 00 = número do canal, X = material e atividade -->
-        <span class="tv-channel">CH 00 - MATERIAL X ATIVIDADE X</span>
-        <span class="tv-status">● PLAY</span>
-      </div>
+    
 
       <div class="tv-content">
         <!-- =========================================================
@@ -158,12 +215,67 @@
         ========================================================== -->
 
         <section class="exercicio-container">
-          <h2>Título da Atividade</h2>
-          <p>espaço reservado a conteúdo real</p>
+          <h2>Crie uma pagina com:</h2>
+          <ul>
+            <li>
+              A - Pegar o formulário da Atividade 2 (Nome, E-mail, Idade,
+              Mensagem e Botão)
+            </li>
+            <li>
+              B - Formulário com fundo branco, sombra e bordas arredondadas
+            </li>
+            <li>C - Labels com negrito</li>
+            <li>D - Inputs com borda azul clara e padding</li>
+            <li>E - Quando o input estiver em foco → borda azul</li>
+            <li>F - Botão com fundo azul, borda arredondada e hover</li>
+          </ul>
 
-          <div class="js-exercise-area">
-            <script></script>
-          </div>
+          <hr />
+          <!-- Linha para separar o enunciado do exercício prático -->
+
+          <!-- EXERCÍCIO PRÁTICO -->
+          <form class="meu-formulario" action="#" method="POST">
+            <div class="campo">
+              <label for="nome">Nome:</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Digite seu nome completo"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="email">E-mail:</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="exemplo@email.com"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="idade">Idade:</label>
+              <input
+                type="number"
+                id="idade"
+                name="idade"
+                placeholder="Digite sua idade"
+              />
+            </div>
+
+            <div class="campo">
+              <label for="mensagem">Mensagem:</label>
+              <textarea
+                id="mensagem"
+                name="mensagem"
+                placeholder="Escreva sua mensagem aqui..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-enviar">Enviar</button>
+          </form>
         </section>
 
         <!-- =========================================================
@@ -171,13 +283,7 @@
         ========================================================== -->
       </div>
 
-      <!-- Rodapé (news ticker) - NÃO ALTERAR -->
-      <div class="tv-osd-bottom">
-        <div class="ticker-text">
-          USE ◀◀ ▶▶ E ▶ PARA TROCAR DE CANAL --- ■ VOLTA AO MENU ---
-        </div>
-        <div class="tv-logo">JS-TV</div>
-      </div>
+      
 
       <!-- Efeito visual de tubo (scanlines) -->
       <div class="scanlines"></div>

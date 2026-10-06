@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- TROQUE O TÍTULO DA ABA -->
+    <title>CH 00 - MATERIAL X ATIVIDADE X</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        background: #121518;
+      }
+
+      /* =========================================================
+         CANAL DE TV (mesma estética do menu)
+      ========================================================= */
+      .tv-channel-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #121518;
+        color: #e6e6e6;
+        font-family: "Courier New", monospace;
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      /* Textos de menu da TV (OSD) */
+      .tv-osd-top {
+        display: flex;
+        justify-content: space-between;
+        color: #00ff66;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 15px;
+        text-shadow: 0 0 4px #00ff66;
+      }
+
+      /* Caixa central: cresce para empurrar o rodapé para baixo */
+      .tv-content {
+        flex: 1;
+        background: #1c2024;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #333;
+        min-height: 200px;
+      }
+
+      /* Rodapé do canal */
+      .tv-osd-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+        background: #000;
+        padding: 6px 12px;
+        border-radius: 4px;
+        border-left: 3px solid #ff3366;
+      }
+
+      .ticker-text {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 11px;
+        color: #ffcc00;
+      }
+
+      .tv-logo {
+        flex-shrink: 0;
+        font-weight: bold;
+        background: #ff3366;
+        color: #fff;
+        padding: 2px 6px;
+        font-size: 10px;
+        border-radius: 2px;
+      }
+
+      /* Linhas de tubo (não bloqueiam cliques) */
+      .scanlines {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          rgba(18, 16, 16, 0) 50%,
+          rgba(0, 0, 0, 0.25) 50%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         ESTILO BÁSICO PARA O SEU CONTEÚDO (pode editar/apagar)
+      ========================================================= */
+      .tv-content h2 {
+        margin-bottom: 10px;
+        color: #fff;
+      }
+      .tv-content p {
+        line-height: 1.5;
+      }
+
+      /* =========================================================
+   CONTEÚDO SEM EFEITO DE TV
+   A section fica numa camada acima das scanlines
+========================================================= */
+      .scanlines {
+        z-index: 1;
+      }
+
+      .exercicio-container {
+        position: relative; /* necessário para o z-index funcionar */
+        z-index: 2; /* acima das scanlines */
+        background: #ffffff; /* fundo claro próprio */
+        color: #222;
+        padding: 30px;
+        border-radius: 6px;
+      }
+
+      /* Os estilos do molde deixam h2 branco; aqui volta ao normal */
+      .exercicio-container h1,
+      .exercicio-container h2,
+      .exercicio-container h3,
+      .exercicio-container p {
+        color: inherit;
+      }
+
+      /* CSS da atividade */
+
+      input {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        outline: none;
+        font-size: 14px;
+        transition: border-color 0.2s ease;
+      }
+
+      .erro {
+        border: 2px solid red;
+        background-color: #ffe6e6;
+      }
+
+      .ok {
+        border: 2px solid green;
+        background-color: #e6ffe6;
+      }
+
+      .mensagem-erro {
+        color: red;
+        font-size: 12px;
+        margin-top: 4px;
+        margin-bottom: 0;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="tv-channel-wrapper">
+      
+
+      <div class="tv-content">
+        <!-- =========================================================
+             ★★★ AQUI FICA O CONTEÚDO REAL ★★★
+        ========================================================== -->
+
+        <section class="exercicio-container">
+          <h2>Crie uma pagina com:</h2>
+          <ul>
+            <li>A - Validar ENQUANTO o usuário digita</li>
+            <li>B - Usar o evento "keyup" em vez de "submit"</li>
+            <li>
+              C - Mostrar mensagem de erro em tempo real abaixo de cada campo
+            </li>
+            <li>D - Quando o campo ficar válido → borda verde</li>
+            <li>E - Remover a necessidade do botão enviar</li>
+          </ul>
+
+          <hr />
+          <!-- Linha para separar o enunciado do exercício prático -->
+
+          <!-- EXERCÍCIO PRÁTICO -->
+          <form id="meuFormulario">
+            <div>
+              <label for="nome">Nome:</label><br />
+              <input type="text" id="nome" placeholder="Mínimo 3 letras" />
+              <p id="erroNome" class="mensagem-erro"></p>
+            </div>
+            <br />
+
+            <div>
+              <label for="email">E-mail:</label><br />
+              <input type="text" id="email" placeholder="Digite seu e-mail" />
+              <p id="erroEmail" class="mensagem-erro"></p>
+            </div>
+          </form>
+
+          <hr />
+          <!-- Linha para separar o exercício prático da explicação -->
+
+          <!-- EXPLICAÇÃO DO JS -->
+          <details>
+            <summary><strong>Explicação do JS</strong></summary>
+
+            <h3>Código utilizado:</h3>
+            <pre><code>const campoNome = document.getElementById('nome');
+            const campoEmail = document.getElementById('email');
+            const erroNome = document.getElementById('erroNome');
+            const erroEmail = document.getElementById('erroEmail');
+            
+            campoNome.addEventListener('keyup', function() {
+                const nome = campoNome.value.trim();
+            
+                if (nome.length < 3) {
+                    erroNome.textContent = 'O nome deve ter pelo menos 3 letras.';
+                    campoNome.className = 'erro';
+                } else {
+                    erroNome.textContent = '';
+                    campoNome.className = 'ok';
+                }
+            });
+            
+            campoEmail.addEventListener('keyup', function() {
+                const email = campoEmail.value.trim();
+            
+                if (!email.includes('@')) {
+                    erroEmail.textContent = 'Digite um e-mail válido com @.';
+                    campoEmail.className = 'erro';
+                } else {
+                    erroEmail.textContent = '';
+                    campoEmail.className = 'ok';
+                }
+            });</code></pre>
+
+            <h3>Traduzindo o script para português:</h3>
+
+            Nas quatro primeiras linhas temos
+            <strong>const campoNome = document.getElementById('nome');</strong>
+            e os demais elementos. Sabendo que <strong>const</strong> cria um
+            slot de memória com valor imutável e
+            <strong>document.getElementById</strong> resgata o elemento pela id.
+            <br />
+
+            Traduzindo o bloco inicial:
+            <em
+              >"No HTML, procure pelos campos de nome e e-mail e pelas suas
+              respectivas mensagens de erro, guardando cada um em seu slot
+              imutável."</em
+            >
+            <br /><br />
+
+            Na linha seguinte temos
+            <strong>campoNome.addEventListener('keyup', function() {</strong>. O
+            termo <strong>campoNome</strong> chama o slot do input,
+            <strong>addEventListener('keyup', ...)</strong> escuta quando uma
+            tecla é solta após ser pressionada, e
+            <strong>function() {</strong> abre o bloco de código que vai rodar.
+            <br />
+
+            Traduzindo a escuta do evento:
+            <em
+              >"Avisamos ao campo de nome para ficar ouvindo o teclado e, a cada
+              tecla que o usuário soltar (keyup), executar a validação."</em
+            >
+            <br /><br />
+
+            Dentro da função do nome temos
+            <strong>const nome = campoNome.value.trim();</strong>. A propriedade
+            <strong>value</strong> pega o texto digitado e
+            <strong>trim()</strong> remove os espaços do início e do fim. <br />
+
+            Traduzindo a leitura:
+            <em>"Extraia o texto limpo digitado dentro do campo de nome."</em>
+            <br /><br />
+
+            Em seguida temos <strong>if (nome.length < 3) {</strong>. A
+            propriedade <strong>length</strong> conta as letras digitadas e
+            <strong>< 3</strong> testa se a quantidade é menor que três. <br />
+
+            Traduzindo o teste do nome:
+            <em
+              >"SE o número de letras for menor que 3, mostre o aviso de erro e
+              aplique a classe 'erro' (borda vermelha) no campo."</em
+            >
+            <br /><br />
+
+            Logo abaixo temos o <strong>else {</strong>, que entra em ação assim
+            que a regra é cumprida. <br />
+
+            Traduzindo o sucesso do nome:
+            <em
+              >"SENÃO (quando atingir 3 ou mais letras), apague a mensagem de
+              erro e aplique a classe 'ok' (borda verde) no campo."</em
+            >
+            <br /><br />
+
+            No bloco do e-mail temos
+            <strong
+              >campoEmail.addEventListener('keyup', function() { ... });</strong
+            >. <br />
+
+            O teste condicional <strong>if (!email.includes('@')) {</strong> usa
+            o método <strong>includes('@')</strong> para verificar se existe a
+            letra '@' e a exclamação <strong>!</strong> inverte a lógica para
+            checar a ausência do caractere. <br />
+
+            Traduzindo o teste do e-mail:
+            <em
+              >"A cada tecla digitada no e-mail, SE o texto NÃO contiver '@',
+              exiba a mensagem de erro e aplique a classe 'erro' (borda
+              vermelha); SENÃO, limpe o aviso e aplique a classe 'ok' (borda
+              verde)."</em
+            >
+            <br /><br />
+
+            <h3>Resumo final:</h3>
+            <p>
+              Juntando todas essas traduções, o código está dizendo:
+              <em
+                >"Mapeie os campos de texto. Fique ouvindo cada tecla que o
+                usuário solta (keyup): no momento exato da digitação, valide as
+                regras. Se o nome tiver menos de 3 letras ou o e-mail não tiver
+                '@', mostre a mensagem de erro abaixo do campo e pinte a borda
+                de vermelho; assim que a informação estiver correta, limpe a
+                mensagem e pinte a borda do campo de verde em tempo real."</em
+              >
+            </p>
+          </details>
+
+          <div class="js-exercise-area">
+            <script>
+              const campoNome = document.getElementById("nome");
+              const campoEmail = document.getElementById("email");
+              const erroNome = document.getElementById("erroNome");
+              const erroEmail = document.getElementById("erroEmail");
+
+              campoNome.addEventListener("keyup", function () {
+                const nome = campoNome.value.trim();
+
+                if (nome.length < 3) {
+                  erroNome.textContent = "O nome deve ter pelo menos 3 letras.";
+                  campoNome.className = "erro";
+                } else {
+                  erroNome.textContent = "";
+                  campoNome.className = "ok";
+                }
+              });
+
+              campoEmail.addEventListener("keyup", function () {
+                const email = campoEmail.value.trim();
+
+                if (!email.includes("@")) {
+                  erroEmail.textContent = "Digite um e-mail válido com @.";
+                  campoEmail.className = "erro";
+                } else {
+                  erroEmail.textContent = "";
+                  campoEmail.className = "ok";
+                }
+              });
+            </script>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             ★★★ AQUI TERMINA O CONTEÚDO REAL ★★★
+        ========================================================== -->
+      </div>
+
+      
+
+      <!-- Efeito visual de tubo (scanlines) -->
+      <div class="scanlines"></div>
+    </div>
+  </body>
+</html>

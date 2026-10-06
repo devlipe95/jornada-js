@@ -125,7 +125,7 @@
         z-index: 2; /* acima das scanlines */
         background: #ffffff; /* fundo claro próprio */
         color: #222;
-        padding: 15px;
+        padding: 30px;
         border-radius: 6px;
       }
 
@@ -137,20 +137,12 @@
         color: inherit;
       }
 
-       /* CSS da atividade */
-
-       
+      /* CSS da atividade */
     </style>
   </head>
 
   <body>
-    <div class="tv-channel-wrapper">
-      <!-- Interface de TV (OSD) -->
-      <div class="tv-osd-top">
-        <!-- TROQUE: 00 = número do canal, X = material e atividade -->
-        <span class="tv-channel">CH 00 - MATERIAL X ATIVIDADE X</span>
-        <span class="tv-status">● PLAY</span>
-      </div>
+   
 
       <div class="tv-content">
         <!-- =========================================================
@@ -158,12 +150,50 @@
         ========================================================== -->
 
         <section class="exercicio-container">
-          <h2>Título da Atividade</h2>
-          <p>espaço reservado a conteúdo real</p>
+          <h2>ATIVIDADE 1 — Responda:</h2>
 
-          <div class="js-exercise-area">
-            <script></script>
-          </div>
+          <ul>
+            <li>a- O que é um formulário?</li>
+            <li>b- Qual a função do HTML em um formulário?</li>
+            <li>c- Qual a função do CSS em um formulário?</li>
+            <li>d- Qual a função do JS em um formulário?</li>
+          </ul>
+
+          <h3>a) O que é um formulário?</h3>
+          <p>
+            Um formulário web é uma seção de uma página HTML projetada para
+            coletar informações enviadas pelo usuário (como nome, e-mail, senha
+            ou mensagens) e transmiti-las para um servidor ou processá-las
+            localmente.
+          </p>
+
+          <h3>b) Qual a função do HTML em um formulário?</h3>
+          <p>
+            O HTML define a estrutura e o conteúdo do formulário. Ele cria os
+            elementos interativos (como caixas de texto &lt;input&gt;, botões
+            &lt;button&gt;, caixas de seleção &lt;select&gt; e rótulos
+            &lt;label&gt;) e organiza a hierarquia dos campos para os
+            navegadores e leitores de tela.
+          </p>
+
+          <h3>c) Qual a função do CSS em um formulário?</h3>
+          <p>
+            O CSS é responsável pela apresentação e estilo visual. Ele define
+            layout, espaçamentos, cores, fontes, alinhamentos e estados visuais
+            (como alterar a cor da borda quando um campo está em foco ou
+            destacar campos inválidos), tornando o formulário legível, atraente
+            e acessível.
+          </p>
+
+          <h3>d) Qual a função do JS em um formulário?</h3>
+          <p>
+            O JavaScript gerencia o comportamento e a interatividade. Ele é
+            usado para validar os dados em tempo real antes do envio (por
+            exemplo, checar se um e-mail é válido), manipular o envio sem
+            recarregar a página (via requisições assíncronas/AJAX) e criar
+            dinâmicas avançadas (como exibir campos condicionais ou máscaras de
+            formatação de CPF/telefone).
+          </p>
         </section>
 
         <!-- =========================================================
@@ -171,13 +201,7 @@
         ========================================================== -->
       </div>
 
-      <!-- Rodapé (news ticker) - NÃO ALTERAR -->
-      <div class="tv-osd-bottom">
-        <div class="ticker-text">
-          USE ◀◀ ▶▶ E ▶ PARA TROCAR DE CANAL --- ■ VOLTA AO MENU ---
-        </div>
-        <div class="tv-logo">JS-TV</div>
-      </div>
+     
 
       <!-- Efeito visual de tubo (scanlines) -->
       <div class="scanlines"></div>

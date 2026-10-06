@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- TROQUE O TÍTULO DA ABA -->
+    <title>CH 00 - MATERIAL X ATIVIDADE X</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+        background: #121518;
+      }
+
+      /* =========================================================
+         CANAL DE TV (mesma estética do menu)
+      ========================================================= */
+      .tv-channel-wrapper {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #121518;
+        color: #e6e6e6;
+        font-family: "Courier New", monospace;
+        padding: 18px;
+        overflow: hidden;
+      }
+
+      /* Textos de menu da TV (OSD) */
+      .tv-osd-top {
+        display: flex;
+        justify-content: space-between;
+        color: #00ff66;
+        font-weight: bold;
+        font-size: 14px;
+        margin-bottom: 15px;
+        text-shadow: 0 0 4px #00ff66;
+      }
+
+      /* Caixa central: cresce para empurrar o rodapé para baixo */
+      .tv-content {
+        flex: 1;
+        background: #1c2024;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #333;
+        min-height: 200px;
+      }
+
+      /* Rodapé do canal */
+      .tv-osd-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-top: 15px;
+        background: #000;
+        padding: 6px 12px;
+        border-radius: 4px;
+        border-left: 3px solid #ff3366;
+      }
+
+      .ticker-text {
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size: 11px;
+        color: #ffcc00;
+      }
+
+      .tv-logo {
+        flex-shrink: 0;
+        font-weight: bold;
+        background: #ff3366;
+        color: #fff;
+        padding: 2px 6px;
+        font-size: 10px;
+        border-radius: 2px;
+      }
+
+      /* Linhas de tubo (não bloqueiam cliques) */
+      .scanlines {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          rgba(18, 16, 16, 0) 50%,
+          rgba(0, 0, 0, 0.25) 50%
+        );
+        background-size: 100% 4px;
+        pointer-events: none;
+      }
+
+      /* =========================================================
+         ESTILO BÁSICO PARA O SEU CONTEÚDO (pode editar/apagar)
+      ========================================================= */
+      .tv-content h2 {
+        margin-bottom: 10px;
+        color: #fff;
+      }
+      .tv-content p {
+        line-height: 1.5;
+      }
+
+      /* =========================================================
+   CONTEÚDO SEM EFEITO DE TV
+   A section fica numa camada acima das scanlines
+========================================================= */
+      .scanlines {
+        z-index: 1;
+      }
+
+      .exercicio-container {
+        position: relative; /* necessário para o z-index funcionar */
+        z-index: 2; /* acima das scanlines */
+        background: #ffffff; /* fundo claro próprio */
+        color: #222;
+        padding: 30px;
+        border-radius: 6px;
+      }
+
+      /* Os estilos do molde deixam h2 branco; aqui volta ao normal */
+      .exercicio-container h1,
+      .exercicio-container h2,
+      .exercicio-container h3,
+      .exercicio-container p {
+        color: inherit;
+      }
+
+      /* CSS da atividade */
+
+      body {
+        font-family: Arial, sans-serif;
+        transition: background-color 0.3s ease;
+        padding: 20px;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      #contador {
+        color: #333;
+      }
+    </style>
+  </head>
+
+  <body>
+ 
+
+      <div class="tv-content">
+        <!-- =========================================================
+             ★★★ AQUI FICA O CONTEÚDO REAL ★★★
+        ========================================================== -->
+
+        <section class="exercicio-container">
+          <h2>Crie uma pagina com:</h2>
+          <ul>
+            <li>
+              A - Um contador na tela, com botões de adicionar (+5) e subtrair
+              (-5)
+            </li>
+            <li>
+              B - Ao chegar no valor 10 (ou maior), mude a cor de fundo da
+              página (body)
+            </li>
+            <li>
+              C - Ao chegar no valor 10 (ou maior), exiba uma mensagem de
+              alerta/aviso
+            </li>
+          </ul>
+
+          <hr />
+          <!-- Linha para separar o enunciado do exercício prático -->
+
+          <!-- EXERCÍCIO PRÁTICO -->
+          <h1>Contador: <span id="contador">0</span></h1>
+          <button id="btnMais">+5</button>
+          <button id="btnMenos">-5</button>
+          <p id="mensagem" style="color: green; font-weight: bold"></p>
+
+          <hr />
+          <!-- Linha para separar o exercício prático da explicação -->
+
+          <!-- EXPLICAÇÃO DO JS -->
+          <details>
+            <summary><strong>Explicação do JS</strong></summary>
+
+            <h3>Código utilizado:</h3>
+            <pre><code>let numero = 0;
+            
+            const contadorSpan = document.getElementById('contador');
+            const btnMais = document.getElementById('btnMais');
+            const btnMenos = document.getElementById('btnMenos');
+            const mensagemP = document.getElementById('mensagem');
+            
+            function verificarValor() {
+                if (numero >= 10) {
+                    document.body.style.backgroundColor = 'lightgreen';
+                    mensagemP.textContent = 'Parabéns! Você atingiu 10 ou mais! 🎉';
+                } else {
+                    document.body.style.backgroundColor = 'white';
+                    mensagemP.textContent = '';
+                }
+            }
+            
+            btnMais.addEventListener('click', function() {
+                numero = numero + 5;
+                contadorSpan.textContent = numero;
+                verificarValor();
+            });
+            
+            btnMenos.addEventListener('click', function() {
+                numero = numero - 5;
+                contadorSpan.textContent = numero;
+                verificarValor();
+            });</code></pre>
+
+            <h3>Traduzindo o script para português:</h3>
+
+            O código começa com <strong>let numero = 0;</strong>. Sabendo que
+            <strong>let</strong> cria um slot de memória onde o valor pode ser
+            alterado depois e <strong>numero</strong> é o nome desse slot,
+            criamos uma caixa mutável que começa guardando o número 0. <br />
+
+            Em seguida, temos os comandos <strong>const</strong> com
+            <strong>document.getElementById(...)</strong>. Traduzindo essa
+            parte:
+            <em
+              >"No HTML, procure e capture o texto do contador, os dois botões e
+              o parágrafo da mensagem, guardando cada um em seu slot
+              imutável."</em
+            >
+            <br /><br />
+
+            Depois definimos a função
+            <strong>function verificarValor() {</strong>. O termo
+            <strong>function</strong> guarda um conjunto de regras que podemos
+            rodar quando quisermos, e <strong>verificarValor</strong> é o nome
+            dado a esse bloco. <br />
+
+            Dentro dessa função temos a dica do exercício:
+            <strong>if (numero >= 10) {</strong>. A palavra
+            <strong>if</strong> significa "se" e a expressão
+            <strong>numero >= 10</strong> testa se o valor dentro da nossa
+            variável é maior ou igual a 10. <br />
+
+            Traduzindo o bloco do <strong>if</strong>:
+            <em
+              >"SE o número guardado for maior ou igual a 10, mude o fundo da
+              página (document.body.style.backgroundColor) para verde claro e
+              escreva a frase de parabéns na mensagem
+              (mensagemP.textContent)."</em
+            >
+            <br />
+
+            Logo abaixo temos <strong>else {</strong>. A palavra
+            <strong>else</strong> significa "senão" (o que fazer se a condição
+            do <strong>if</strong> for falsa). <br />
+
+            Traduzindo o bloco do <strong>else</strong>:
+            <em
+              >"SENÃO (caso o número seja menor que 10), mantenha o fundo do
+              body branco e limpe o texto da mensagem para ela sumir."</em
+            >
+            <br /><br />
+
+            Nas linhas seguintes temos os escutadores de evento
+            <strong
+              >btnMais.addEventListener('click', function() { ... })</strong
+            >
+            e
+            <strong
+              >btnMenos.addEventListener('click', function() { ... })</strong
+            >. <br />
+
+            Na instrução <strong>numero = numero + 5;</strong>, pegamos o valor
+            atual da variável e somamos 5 a ele. <br />
+
+            Na instrução <strong>contadorSpan.textContent = numero;</strong>,
+            atualizamos o texto da tela para mostrar o novo valor somado. <br />
+
+            E na linha <strong>verificarValor();</strong>, chamamos a função que
+            criamos para checar se o número bateu a meta de 10. <br />
+
+            Traduzindo o clique dos botões:
+            <em
+              >"Quando clicar no botão +5 (ou -5), altere o valor do número,
+              atualize o texto na tela e rode a verificação do 'if' para saber
+              se o fundo deve mudar de cor e se a mensagem deve aparecer."</em
+            >
+            <br /><br />
+
+            <h3>Resumo final:</h3>
+            <p>
+              Juntando todas essas traduções, o código está dizendo:
+              <em
+                >"Guarde um número começando em 0. Sempre que os botões de +5 ou
+                -5 forem clicados, atualize esse número e a tela. Em seguida,
+                teste com a regra do 'if': se o número for 10 ou mais, pinte o
+                fundo da tela de verde e exiba o aviso; se for menor, mantenha o
+                fundo normal."</em
+              >
+              E é por isso que a cor e a mensagem reagem automaticamente quando
+              o contador atinge 10.
+            </p>
+          </details>
+
+          <div class="js-exercise-area">
+            <script>
+              let numero = 0;
+
+              const contadorSpan = document.getElementById("contador");
+              const btnMais = document.getElementById("btnMais");
+              const btnMenos = document.getElementById("btnMenos");
+              const mensagemP = document.getElementById("mensagem");
+
+              function verificarValor() {
+                if (numero >= 10) {
+                  document.body.style.backgroundColor = "lightgreen";
+                  mensagemP.textContent =
+                    "Parabéns! Você atingiu 10 ou mais! 🎉";
+                } else {
+                  document.body.style.backgroundColor = "white";
+                  mensagemP.textContent = "";
+                }
+              }
+
+              btnMais.addEventListener("click", function () {
+                numero = numero + 5;
+                contadorSpan.textContent = numero;
+                verificarValor();
+              });
+
+              btnMenos.addEventListener("click", function () {
+                numero = numero - 5;
+                contadorSpan.textContent = numero;
+                verificarValor();
+              });
+            </script>
+          </div>
+        </section>
+
+        <!-- =========================================================
+             ★★★ AQUI TERMINA O CONTEÚDO REAL ★★★
+        ========================================================== -->
+      </div>
+
+      
+
+      <!-- Efeito visual de tubo (scanlines) -->
+      <div class="scanlines"></div>
+    </div>
+  </body>
+</html>

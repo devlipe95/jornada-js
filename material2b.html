@@ -125,7 +125,7 @@
         z-index: 2; /* acima das scanlines */
         background: #ffffff; /* fundo claro próprio */
         color: #222;
-        padding: 15px;
+        padding: 30px;
         border-radius: 6px;
       }
 
@@ -137,20 +137,12 @@
         color: inherit;
       }
 
-       /* CSS da atividade */
-
-       
+      /* CSS da atividade */
     </style>
   </head>
 
   <body>
-    <div class="tv-channel-wrapper">
-      <!-- Interface de TV (OSD) -->
-      <div class="tv-osd-top">
-        <!-- TROQUE: 00 = número do canal, X = material e atividade -->
-        <span class="tv-channel">CH 00 - MATERIAL X ATIVIDADE X</span>
-        <span class="tv-status">● PLAY</span>
-      </div>
+    
 
       <div class="tv-content">
         <!-- =========================================================
@@ -158,8 +150,67 @@
         ========================================================== -->
 
         <section class="exercicio-container">
-          <h2>Título da Atividade</h2>
-          <p>espaço reservado a conteúdo real</p>
+          <h2>Crie uma pagina com:</h2>
+          <ul>
+            <li>A - Campo de Nome (text)</li>
+            <li>B - Campo de Email (email)</li>
+            <li>C - Campo de Idade (number)</li>
+            <li>D - Campo de Mensagem (textarea)</li>
+            <li>E - Colocar placeholder em todos os campos</li>
+            <li>F - Botão de enviar</li>
+            <li>G - Usar a tag &lt;label&gt; antes de cada campo</li>
+          </ul>
+
+          <hr />
+          <!-- Linha para separar o enunciado do exercício prático -->
+
+          <!-- EXERCÍCIO PRÁTICO -->
+          <form action="#" method="POST">
+            <div>
+              <label for="nome">Nome:</label><br />
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Digite seu nome completo"
+              />
+            </div>
+            <br />
+
+            <div>
+              <label for="email">E-mail:</label><br />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="exemplo@email.com"
+              />
+            </div>
+            <br />
+
+            <div>
+              <label for="idade">Idade:</label><br />
+              <input
+                type="number"
+                id="idade"
+                name="idade"
+                placeholder="Digite sua idade"
+              />
+            </div>
+            <br />
+
+            <div>
+              <label for="mensagem">Mensagem:</label><br />
+              <textarea
+                id="mensagem"
+                name="mensagem"
+                placeholder="Escreva sua mensagem aqui..."
+              ></textarea>
+            </div>
+            <br />
+
+            <button type="submit">Enviar</button>
+          </form>
 
           <div class="js-exercise-area">
             <script></script>
@@ -171,13 +222,7 @@
         ========================================================== -->
       </div>
 
-      <!-- Rodapé (news ticker) - NÃO ALTERAR -->
-      <div class="tv-osd-bottom">
-        <div class="ticker-text">
-          USE ◀◀ ▶▶ E ▶ PARA TROCAR DE CANAL --- ■ VOLTA AO MENU ---
-        </div>
-        <div class="tv-logo">JS-TV</div>
-      </div>
+ 
 
       <!-- Efeito visual de tubo (scanlines) -->
       <div class="scanlines"></div>
