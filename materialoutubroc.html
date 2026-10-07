@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 3 - Landing Page</title>
+
+  <!-- Importação do CSS do Bootstrap 5 via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Estilos Gerais da Página */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+      color: #333;
+    }
+
+    /* 1. Título Grande e Centralizado na Landing Page */
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: #2c3e50;
+    }
+
+    /* 4. Animação Pulsante no Botão Principal */
+    .btn-pulso-principal {
+      animation: pulsoInfinito 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulsoInfinito {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.6);
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 14px rgba(13, 110, 253, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+      }
+    }
+
+    /* 5. Transição Hover nos Botões */
+    .btn-custom-hover {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-custom-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 5. Transição Hover no Card */
+    .card-custom-hover {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card-custom-hover:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12) !important;
+    }
+
+    /* Estilos do Emoji/Ícone no Card */
+    .card-emoji {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    /* Estilos do Sumário / FAQ (Saiba Mais) */
+    details {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 12px 18px;
+      margin-top: 30px;
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    .faq-item {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px dashed #ccc;
+    }
+
+    .faq-item h3 {
+      margin-bottom: 5px;
+      color: #34495e;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Enunciado do Exercício Visível -->
+  <h2>Atividade 3 (Material 3 - 37)</h2>
+  <p>Crie uma landing page com:</p>
+  <ul>
+    <li>Um título grande e centralizado</li>
+    <li>3 botões Bootstrap (cores diferentes)</li>
+    <li>Um card com imagem/emoji + texto</li>
+    <li>Animação pulsante no botão principal</li>
+    <li>Transição hover nos botões e cards</li>
+  </ul>
+
+  <!-- 2. Divisória e Título do Resultado -->
+  <hr>
+  <h2>Resultado:</h2>
+
+  <!-- LANDING PAGE -->
+  <main class="py-4">
+    <!-- 1. Título Grande e Centralizado -->
+    <header class="text-center my-4">
+      <h1 class="hero-title mb-3">Transforme Ideias em Soluções Digitais</h1>
+      <p class="lead text-muted mx-auto" style="max-width: 600px;">
+        Descubra como construir páginas modernas, atraentes e responsivas utilizando o Bootstrap e animações em CSS.
+      </p>
+
+      <!-- 2, 4 e 5. 3 Botões Bootstrap de Cores Diferentes com Animação Pulsante e Hover -->
+      <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+        <!-- Botão Principal com Pulso e Hover -->
+        <button type="button" class="btn btn-primary btn-lg btn-pulso-principal btn-custom-hover">
+          Começar Agora
+        </button>
+
+        <!-- Botão Secundário 1 -->
+        <button type="button" class="btn btn-success btn-lg btn-custom-hover">
+          Ver Recursos
+        </button>
+
+        <!-- Botão Secundário 2 -->
+        <button type="button" class="btn btn-outline-dark btn-lg btn-custom-hover">
+          Saiba Mais
+        </button>
+      </div>
+    </header>
+
+    <!-- 3 e 5. Card com Emoji/Imagem + Texto e Transição Hover -->
+    <section class="d-flex justify-content-center mt-5">
+      <div class="card card-custom-hover shadow-sm border-0 text-center p-4" style="max-width: 380px;">
+        <div class="card-emoji mb-3">🚀</div>
+        <div class="card-body p-0">
+          <h3 class="card-title h4 fw-bold text-dark mb-2">Desenvolvimento Ágil</h3>
+          <p class="card-text text-secondary">
+            Aprenda a estruturar componentes interativos rapidamente utilizando classes utilitárias e estilos modernos.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 3. Sumário "Saiba mais" estilo FAQ -->
+  <details>
+    <summary>Saiba mais</summary>
+
+    <div class="faq-item">
+      <h3>O que é uma Landing Page?</h3>
+      <p>Uma Landing Page (ou "página de destino") é uma página web criada especificamente para focar a atenção do visitante em um único objetivo ou ação principal (como clicar em um botão de cadastro, comprar um produto ou conhecer um recurso), com título impactante e poucos elementos de distração.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como o título foi centralizado e destacado?</h3>
+      <p>Utilizamos as classes utilitárias do Bootstrap <code>text-center</code> para centralizar o texto horizontalmente e <code>mb-3</code> para criar uma margem inferior. No CSS, definimos o tamanho da fonte com <code>font-size: 2.5rem</code> para deixá-lo bem visível.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como funciona a animação pulsante no botão principal?</h3>
+      <p>Criamos uma regra de animação com <code>@keyframes pulsoInfinito</code>. Ela faz o botão aumentar suavemente de tamanho (até 108% do tamanho original) enquanto expande um anel transparente azul ao seu redor (simulado pela propriedade <code>box-shadow</code>), gerando um efeito contínuo de atenção.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como funcionam os efeitos hover nos botões e no card?</h3>
+      <p>Utilizamos o seletor <code>:hover</code> no CSS junto com a propriedade <code>transform: translateY()</code>. Quando o leitor passa o ponteiro do mouse sobre o botão ou card, ele se desloca alguns pixels para cima e a sua sombra se projeta para baixo, simulando um efeito tátil de elevação.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>O que é o componente Card do Bootstrap?</h3>
+      <p>O <code>card</code> é uma caixa flexível do Bootstrap usada para organizar informações relacionadas em um único bloco. Ele permite agrupar ícones/imagens, títulos e textos de forma limpa e elegante.</p>
+    </div>
+  </details>
+
+</body>
+</html>

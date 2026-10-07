@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Moldura de Pager</title>
+
+    <style>
+      /* =========================================================
+         CONFIGURAÇÕES GERAIS
+         ALTERE --largura PARA DEIXAR TUDO MAIOR OU MENOR.
+         ALTERE --altura-tela PARA MUDAR A ALTURA DO VISOR.
+      ========================================================= */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --largura: min(580px, 96vw);
+        --altura-tela: 300px;
+      }
+
+      body {
+        min-height: 100vh;
+        background: #3b3a37;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 30px 12px;
+      }
+
+      body:has(.conjunto.expandido) {
+        overflow: hidden;
+      }
+
+      .conjunto {
+        width: var(--largura);
+      }
+
+      /* =========================================================
+         CORPO DO PAGER (borracha marrom-acinzentada)
+      ========================================================= */
+      .pager {
+        position: relative;
+        padding: 38px 54px 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        border-radius: 46px 46px 60px 60px / 40px 40px 56px 56px;
+        background: radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255, 255, 255, 0.1),
+            transparent 60%
+          ),
+          linear-gradient(#4d4540, #3a332f);
+        box-shadow: 0 16px 26px rgba(0, 0, 0, 0.55),
+          inset 0 3px 0 rgba(255, 255, 255, 0.12),
+          inset 0 -6px 12px rgba(0, 0, 0, 0.35);
+      }
+
+      /* frestas laterais (esquerda e direita) */
+      .pager::before,
+      .pager::after {
+        content: "";
+        position: absolute;
+        top: 22%;
+        height: 34%;
+        width: 15px;
+        background: repeating-linear-gradient(
+          to bottom,
+          #1a1614 0 8px,
+          transparent 8px 19px
+        );
+      }
+      .pager::before {
+        left: 0;
+        border-radius: 0 7px 7px 0;
+      }
+      .pager::after {
+        right: 0;
+        border-radius: 7px 0 0 7px;
+      }
+
+      /* =========================================================
+         MOLDURA PRETA BRILHANTE + VISOR LCD
+      ========================================================= */
+      .bisel {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 16px 16px 12px;
+        background: linear-gradient(#0b0b0c, #000);
+        border-radius: 24px;
+        border: 3px solid #2a2523;
+        box-shadow: inset 0 0 10px #000, 0 2px 0 rgba(255, 255, 255, 0.07);
+      }
+
+      /* =========================================================
+         VISOR (aqui dentro entra o site de verdade)
+      ========================================================= */
+      .tela {
+        position: relative;
+        height: var(--altura-tela);
+        background: #cfd3cc;
+        overflow: hidden;
+        border-radius: 6px;
+        box-shadow: inset 0 0 16px rgba(0, 0, 0, 0.35);
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* reflexo do vidro (não bloqueia cliques) */
+      .tela::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        border-radius: inherit;
+        background: linear-gradient(
+          125deg,
+          rgba(255, 255, 255, 0.14) 0%,
+          rgba(255, 255, 255, 0) 24%
+        );
+      }
+
+      /* ★★★ AQUI FICA O CONTEÚDO REAL ★★★ */
+      .tela iframe {
+        flex: 1;
+        width: 100%;
+        min-height: 0;
+        border: none;
+        background: #fff;
+      }
+
+      .logo {
+        text-align: center;
+        color: #f2f2f2;
+        font-family: Georgia, "Times New Roman", serif;
+        font-style: italic;
+        font-size: 17px;
+        letter-spacing: 3px;
+      }
+
+      /* =========================================================
+         BOTÕES (igual à foto: setas | pausa | liga/desliga)
+      ========================================================= */
+      .botoes {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .botoes button,
+      .botoes a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #bdb7b2;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        background: linear-gradient(#4a4340, #332d2b);
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.55),
+          inset 0 1px 0 rgba(255, 255, 255, 0.14);
+      }
+      .botoes button:active,
+      .botoes a:active {
+        transform: translateY(2px);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+      }
+      .botoes button:focus-visible,
+      .botoes a:focus-visible {
+        outline: 3px solid #ffd45c;
+        outline-offset: 3px;
+      }
+      .botoes button:hover,
+      .botoes a:hover {
+        filter: brightness(1.18);
+      }
+
+      /* par de setas: duas metades de uma pílula */
+      .par {
+        display: flex;
+        flex: 0 0 38%;
+        height: 58px;
+        border-radius: 29px;
+        border: 2px solid #1b1817;
+        overflow: visible;
+      }
+      .par button {
+        flex: 1;
+        height: 100%;
+        font-size: 24px;
+      }
+      .par button:first-child {
+        border-radius: 27px 0 0 27px;
+        border-right: 1px solid #1b1817;
+      }
+      .par button:last-child {
+        border-radius: 0 27px 27px 0;
+      }
+
+      /* botão de pausa (expandir/retrair) */
+      .pausa {
+        flex: 0 0 28%;
+        height: 58px;
+        border-radius: 29px;
+        border: 2px solid #1b1817;
+      }
+
+      /* botão liga/desliga em formato de cúpula */
+      .power {
+        flex: 0 0 24%;
+        height: 58px;
+        border-radius: 60% 60% 16px 16px / 100% 100% 16px 16px;
+        border: 2px solid #1b1817;
+        font-size: 24px;
+      }
+
+      /* dica ao passar o mouse (ou focar com Tab) */
+      [data-dica]::after {
+        content: attr(data-dica);
+        position: absolute;
+        bottom: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 5px 9px;
+        background: #000;
+        color: #ffcc00;
+        font: 12px "Courier New", monospace;
+        white-space: nowrap;
+        border-radius: 3px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.12s;
+        z-index: 10;
+      }
+      .par button:first-child[data-dica]::after {
+        left: 0;
+        transform: none;
+      }
+      .power[data-dica]::after {
+        left: auto;
+        right: 0;
+        transform: none;
+      }
+      [data-dica]:hover::after,
+      [data-dica]:focus-visible::after {
+        opacity: 1;
+      }
+
+      /* =========================================================
+         MODO EXPANDIDO
+         O pager some e o visor ocupa a janela toda.
+      ========================================================= */
+      .conjunto.expandido {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        z-index: 100;
+        background: #fff;
+      }
+      .conjunto.expandido .pager {
+        position: absolute;
+        inset: 0;
+        padding: 0;
+        gap: 0;
+        border-radius: 0;
+        background: #fff;
+        box-shadow: none;
+      }
+      .conjunto.expandido .pager::before,
+      .conjunto.expandido .pager::after,
+      .conjunto.expandido .logo,
+      .conjunto.expandido .tela::after {
+        display: none;
+      }
+      .conjunto.expandido .bisel {
+        flex: 1;
+        min-height: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        background: #fff;
+      }
+      .conjunto.expandido .tela {
+        flex: 1;
+        height: auto;
+        border-radius: 0;
+        box-shadow: none;
+      }
+      /* só o botão de pausa sobra, no canto, para retrair */
+      .conjunto.expandido .botoes {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 5;
+      }
+      .conjunto.expandido .par,
+      .conjunto.expandido .power {
+        display: none;
+      }
+      .conjunto.expandido .pausa {
+        flex: none;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+      }
+      .conjunto.expandido .pausa[data-dica]::after {
+        left: auto;
+        right: 0;
+        bottom: auto;
+        top: calc(100% + 8px);
+        transform: none;
+      }
+
+      /* =========================================================
+         CELULAR
+      ========================================================= */
+      @media (max-width: 600px) {
+        :root {
+          --altura-tela: 250px;
+        }
+        .pager {
+          padding: 26px 30px 26px;
+          gap: 20px;
+        }
+        .pager::before,
+        .pager::after {
+          width: 10px;
+        }
+        .bisel {
+          padding: 10px 10px 8px;
+          border-radius: 18px;
+        }
+        .par,
+        .pausa,
+        .power {
+          height: 46px;
+        }
+        .par button {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="conjunto" id="conjunto">
+      <div class="pager">
+        <!-- ===================== VISOR ===================== -->
+        <div class="bisel">
+          <div class="tela">
+            <!-- ★★★ AQUI FICA O CONTEÚDO REAL ★★★
+                 Troque o src pelo caminho do seu site/atividade. -->
+            <iframe
+              id="telaAtividade"
+              src="materialoutubroa.html"
+              title="Conteúdo do pager"
+            ></iframe>
+            <!-- ★★★ FIM DO CONTEÚDO REAL ★★★ -->
+          </div>
+          <div class="logo">Bip-300 · <span id="contador">1/3</span></div>
+        </div>
+
+        <!-- ===================== BOTÕES ===================== -->
+        <div class="botoes">
+          <div class="par">
+            <button
+              type="button"
+              onclick="mudar(-1)"
+              data-dica="Material anterior"
+              aria-label="Material anterior"
+            >
+              ◀
+            </button>
+            <button
+              type="button"
+              onclick="mudar(1)"
+              data-dica="Próximo material"
+              aria-label="Próximo material"
+            >
+              ▶
+            </button>
+          </div>
+
+          <button
+            type="button"
+            class="pausa"
+            id="botaoExpandir"
+            onclick="alternarTela()"
+            data-dica="Expandir tela"
+            aria-label="Expandir tela"
+          >
+            ⛶
+          </button>
+
+          <a
+            href="index.html"
+            class="power"
+            data-dica="Voltar ao menu/Gameboy"
+            aria-label="Voltar ao menu/Gameboy"
+            >⏻</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      /* =========================================================
+         MATERIAIS (os 3 arquivos que o iframe exibe)
+      ========================================================= */
+      const materiais = [
+        "materialoutubroa.html",
+        "materialoutubrob.html",
+        "materialoutubroc.html",
+      ];
+
+      const iframe = document.getElementById("telaAtividade");
+      const contador = document.getElementById("contador");
+      let indice = 0;
+
+      /* Setas: trocam entre os 3 materiais (voltam ao início no fim) */
+      function mudar(d) {
+        indice = (indice + d + materiais.length) % materiais.length;
+        iframe.src = materiais[indice];
+        contador.textContent = `${indice + 1}/${materiais.length}`;
+      }
+
+      /* Expande a tela para a janela inteira e volta ao normal */
+      function alternarTela() {
+        const conjunto = document.getElementById("conjunto");
+        const botao = document.getElementById("botaoExpandir");
+        const expandido = conjunto.classList.toggle("expandido");
+        botao.innerHTML = expandido
+          ? "↙"
+          : "⛶";
+        botao.dataset.dica = expandido ? "Retrair tela" : "Expandir tela";
+        botao.setAttribute("aria-label", botao.dataset.dica);
+      }
+
+      /* Esc retrai a tela expandida */
+      document.addEventListener("keydown", (e) => {
+        if (
+          e.key === "Escape" &&
+          document.getElementById("conjunto").classList.contains("expandido")
+        )
+          alternarTela();
+      });
+    </script>
+  </body>
+</html>

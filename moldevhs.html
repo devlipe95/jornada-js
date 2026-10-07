@@ -85,7 +85,9 @@
       }
 
       /* reflexo do vidro por cima do conteúdo (não bloqueia cliques) */
-      .tela::after { display: none; }
+      .tela::after {
+        display: none;
+      }
       .tela::after {
         content: "";
         position: absolute;
@@ -155,6 +157,55 @@
         border-radius: 8px;
         border: 1px solid #333;
         overflow: hidden;
+      }
+
+      /* =========================================================
+   BOTÃO DESLIGAR TV (fica antes da lista de canais)
+========================================================= */
+      .desligar-tv {
+        position: relative;
+        display: block;
+        padding: 9px 12px;
+        margin: 8px 8px 0;
+        font-size: 15px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-decoration: none;
+        color: #ff6b81;
+        border-left: 4px solid #ff3366;
+        background: #2a1a1f;
+        user-select: none;
+        flex-shrink: 0;
+      }
+      .desligar-tv:hover,
+      .desligar-tv:focus-visible {
+        background: #ff3366;
+        color: #fff;
+        outline: none;
+      }
+      /* texto do hover */
+      .desligar-tv .texto-hover {
+        display: none;
+      }
+      .desligar-tv:hover .texto-normal,
+      .desligar-tv:focus-visible .texto-normal {
+        display: none;
+      }
+      .desligar-tv:hover .texto-hover,
+      .desligar-tv:focus-visible .texto-hover {
+        display: inline;
+      }
+      /* some quando uma atividade está aberta */
+      .em-atividade .desligar-tv {
+        display: none;
+      }
+
+      @media (max-width: 600px) {
+        .desligar-tv {
+          font-size: 13px;
+          padding: 8px;
+          letter-spacing: 0;
+        }
       }
 
       /* =========================================================
@@ -581,6 +632,12 @@
                 </div>
 
                 <div class="tv-content">
+                  <!-- BOTÃO DESLIGAR TV -->
+                  <a href="index.html" class="desligar-tv">
+                    <span class="texto-normal">⏻ Desligar TV</span>
+                    <span class="texto-hover">⏻ Voltar ao menu/Gameboy</span>
+                  </a>
+
                   <!-- LISTA DE CANAIS (gerada pelo JavaScript lá embaixo) -->
                   <div
                     class="menu-canais"

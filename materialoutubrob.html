@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 2 - Bootstrap, Alertas e Animações</title>
+
+  <!-- Importação do CSS do Bootstrap 5 via CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    /* Estilos Gerais da Página */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 20px;
+      color: #333;
+    }
+
+    /* 3. Animação CSS personalizada no botão principal */
+    .btn-principal-animado {
+      animation: pulsoAtencao 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulsoAtencao {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.7);
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 12px rgba(13, 110, 253, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(13, 110, 253, 0);
+      }
+    }
+
+    /* 4. Efeito hover em TODOS os botões */
+    .btn-custom-hover {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-custom-hover:hover {
+      transform: translateY(-4px); /* Eleva o botão levemente para cima */
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Adiciona uma sombra suave abaixo */
+    }
+
+    /* Estilos do Sumário / FAQ (Saiba Mais) */
+    details {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      padding: 12px 18px;
+      margin-top: 25px;
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    .faq-item {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px dashed #ccc;
+    }
+
+    .faq-item h3 {
+      margin-bottom: 5px;
+      color: #34495e;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Enunciado do Exercício Visível -->
+  <h2>Atividade 2 (Material 3 - 30)</h2>
+  <p>Crie uma página com:</p>
+  <ul>
+    <li>5 botões Bootstrap de cores diferentes</li>
+    <li>4 alertas (sucesso, erro, aviso, info)</li>
+    <li>Uma animação CSS personalizada no botão principal</li>
+    <li>Um efeito hover em todos os botões</li>
+  </ul>
+
+  <!-- 2. Divisória e Título do Resultado -->
+  <hr>
+  <h2>Resultado:</h2>
+
+  <!-- 1, 3 e 4. Botões Bootstrap com Cores Diferentes, Animação no Principal e Efeito Hover -->
+  <section class="mb-4">
+    <h3 class="h5 mb-3">Botões:</h3>
+    <div class="d-flex flex-wrap gap-2 align-items-center">
+      <!-- Botão Principal (Primary) com animação personalizada e efeito hover -->
+      <button type="button" class="btn btn-primary btn-principal-animado btn-custom-hover">
+        Botão Principal (Primary)
+      </button>
+
+      <!-- Botões de outras cores -->
+      <button type="button" class="btn btn-success btn-custom-hover">
+        Sucesso (Success)
+      </button>
+      <button type="button" class="btn btn-danger btn-custom-hover">
+        Perigo (Danger)
+      </button>
+      <button type="button" class="btn btn-warning btn-custom-hover">
+        Aviso (Warning)
+      </button>
+      <button type="button" class="btn btn-info text-white btn-custom-hover">
+        Informação (Info)
+      </button>
+    </div>
+  </section>
+
+  <!-- 2. 4 Alertas Bootstrap -->
+  <section class="mb-4">
+    <h3 class="h5 mb-3">Alertas:</h3>
+
+    <!-- Sucesso -->
+    <div class="alert alert-success" role="alert">
+      <strong>Sucesso!</strong> Sua operação foi concluída com êxito.
+    </div>
+
+    <!-- Erro -->
+    <div class="alert alert-danger" role="alert">
+      <strong>Erro!</strong> Não foi possível processar a sua solicitação.
+    </div>
+
+    <!-- Aviso -->
+    <div class="alert alert-warning" role="alert">
+      <strong>Aviso!</strong> Verifique os dados antes de prosseguir.
+    </div>
+
+    <!-- Info -->
+    <div class="alert alert-info" role="alert">
+      <strong>Informação!</strong> Há atualizações disponíveis para o seu sistema.
+    </div>
+  </section>
+
+  <!-- 3. Sumário "Saiba mais" estilo FAQ -->
+  <details>
+    <summary>Saiba mais</summary>
+
+    <div class="faq-item">
+      <h3>O que é o Bootstrap?</h3>
+      <p>O Bootstrap é uma biblioteca pronta com centenas de visuais e componentes pré-configurados (como botões, caixas de alerta e menus). Ele permite criar sites modernos, bonitos e que se adaptam a celulares e computadores sem precisar escrever todo o estilo do zero.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como funcionam as classes <code>btn btn-primary</code>, <code>btn-success</code>, etc.?</h3>
+      <p>A classe base <code>btn</code> avisa ao Bootstrap que aquele elemento é um botão (dando o formato arredondado, margens internas e cursor de clique). As classes complementares (como <code>btn-primary</code> para azul ou <code>btn-success</code> para verde) definem a cor de fundo e do texto de acordo com a paleta de cores do Bootstrap.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como foram criados os 4 alertas?</h3>
+      <p>Utilizamos as classes de alerta do Bootstrap (<code>alert alert-success</code>, <code>alert-danger</code>, <code>alert-warning</code> e <code>alert-info</code>). Elas criam automaticamente caixas coloridas com bordas e fundos suaves para sinalizar diferentes tipos de mensagens ao usuário.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como funciona a animação do botão principal?</h3>
+      <p>Criamos um efeito de "pulso" usando <code>@keyframes</code> chamado <code>pulsoAtencao</code>. A cada ciclo, o botão aumenta ligeiramente de tamanho (de 100% para 108%) e solta uma "onda" de luz azul ao redor dele, chamando a atenção do visitante. A regra <code>infinite</code> faz com que esse efeito continue repetindo.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como funciona o efeito hover em todos os botões?</h3>
+      <p>Usamos a classe personalizada <code>btn-custom-hover</code>. Quando o mouse passa por cima de qualquer botão (<code>:hover</code>), o CSS aplica um deslocamento suave para cima (<code>translateY(-4px)</code>) e projeta uma leve sombra, dando a impressão tátil de que o botão está "flutuando" para ser clicado.</p>
+    </div>
+  </details>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atividade 1 - Animações e Transições CSS</title>
+  <style>
+    /* Estilos Gerais da Página */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 0 20px;
+      color: #333;
+    }
+
+    /* Container dos Exercícios Práticos */
+    .container-caixas {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-around;
+      margin: 40px 0;
+    }
+
+    /* Estilo Base para as Caixas */
+    .box {
+      width: 120px;
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    /* 1. Caixa com Transition (Muda de cor ao passar o mouse) */
+    .box-transition {
+      background-color: #3498db;
+      /* Aplica transição suave de 0.5s para a mudança de cor de fundo */
+      transition: background-color 0.5s ease;
+      cursor: pointer;
+    }
+
+    .box-transition:hover {
+      background-color: #e74c3c;
+    }
+
+    /* 2. Caixa com @keyframes (Aumenta no meio e roda infinitamente) */
+    .box-pulse {
+      background-color: #2ecc71;
+      /* Aplica a animação 'pulsar' com duração de 2s, rodando infinitamente */
+      animation: pulsar 2s infinite ease-in-out;
+    }
+
+    @keyframes pulsar {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.3); /* Aumenta de tamanho no meio (50%) */
+      }
+      100% {
+        transform: scale(1);   /* Volta ao normal no final (100%) */
+      }
+    }
+
+    /* 3. Caixa que gira 360° continuamente */
+    .box-spin {
+      background-color: #9b59b6;
+      /* Aplica a animação 'girar' com duração de 3s, de forma contínua e linear */
+      animation: girar 3s linear infinite;
+    }
+
+    @keyframes girar {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg); /* Gira 360 graus */
+      }
+    }
+
+    /* Estilos do Sumário / FAQ (Saiba Mais) */
+    details {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 10px 15px;
+      margin-top: 30px;
+    }
+
+    summary {
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #2c3e50;
+    }
+
+    .faq-item {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px dashed #ccc;
+    }
+
+    .faq-item h3 {
+      margin-bottom: 5px;
+      color: #34495e;
+      font-size: 1rem;
+    }
+
+    .faq-item p {
+      margin: 0;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Enunciado do Exercício Visível -->
+  <h2>Atividade 1 (Material 3 - 18)</h2>
+  <p>Crie uma página com:</p>
+  <ul>
+    <li>Uma caixa com <code>transition</code> que muda de cor ao passar o mouse</li>
+    <li>Uma caixa com <code>@keyframes</code> que:
+      <ul>
+        <li>Aumenta de tamanho no meio (50%)</li>
+        <li>Volta ao normal no final</li>
+        <li>Roda infinitamente</li>
+      </ul>
+    </li>
+    <li>Uma caixa que gira 360° continuamente</li>
+  </ul>
+
+  <!-- 2. Divisória e Título do Resultado -->
+  <hr>
+  <h2>Resultado:</h2>
+
+  <div class="container-caixas">
+    <div class="box box-transition">Passe o mouse</div>
+    <div class="box box-pulse">Pulsando</div>
+    <div class="box box-spin">Girando</div>
+  </div>
+
+  <!-- 3. Sumário "Saiba mais" estilo FAQ -->
+  <details>
+    <summary>Saiba mais</summary>
+    
+    <div class="faq-item">
+      <h3>O que é CSS?</h3>
+      <p>O CSS (Cascading Style Sheets) é como o "estilista" de um site. Enquanto o HTML define a estrutura (textos, botões, títulos), o CSS é responsável por definir as cores, tamanhos, fontes, posicionamento e até os movimentos que acontecem na página.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Por que a primeira caixa muda de cor quando passo o mouse?</h3>
+      <p>Usamos um recurso chamado <code>:hover</code> (que detecta a presença do ponteiro do mouse) junto com o <code>transition</code>. O <code>transition</code> avisa ao navegador que a mudança de cor não deve ser instantânea, mas sim uma transformação suave que leva meio segundo para acontecer.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>O que é um @keyframes e como funciona?</h3>
+      <p>O <code>@keyframes</code> é como um roteiro de um filme para o CSS. Nele, nós dizemos o que deve acontecer em cada momento da animação (por exemplo: no início em 0%, no meio do caminho em 50%, e no final em 100%). O navegador lê esse roteiro e executa os movimentos nos momentos exatos estipulados.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Por que as caixas não param de se mexer?</h3>
+      <p>Na regra da animação do CSS, colocamos a palavra <code>infinite</code>. Isso indica ao navegador para reiniciar o "roteiro" da animação assim que ele chegar ao fim, criando um ciclo contínuo sem fim.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Como funciona a caixa que gira 360°?</h3>
+      <p>Usamos a propriedade de transformação para rotacionar o elemento. O "roteiro" diz para a caixa começar no ângulo de 0 graus e ir girando até completar uma volta inteira (360 graus). Como ela está configurada para ser infinita, ela continua girando sem parar.</p>
+    </div>
+  </details>
+
+</body>
+</html>
